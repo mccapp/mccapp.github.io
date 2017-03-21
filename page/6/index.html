@@ -75,38 +75,35 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="st-default-search-input search-form-input" placeholder="搜索" />
         <button type="submit" class="search-form-submit"></button>
     </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
+    <script type="text/javascript">
+(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 </script>
-<script src="/js/insight.js"></script>
+<style>
+    .st-ui-injected-overlay-container,
+    .st-ui-injected-overlay-container *:not(select) {
+        font-family: inherit !important;
+    }
+    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
+        color: undefined !important;
+    }
+    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
+        border-bottom: 2px solid undefined;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
+        color: undefined;
+    }
+    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
+        border-color: undefined;
+    }
+</style>
 
 </div>
         </div>
@@ -124,7 +121,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="st-default-search-input search-form-input" placeholder="搜索" />
     </div>
 
                 </td>
@@ -148,7 +145,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                40
+                41
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -201,6 +198,144 @@
 
             
             <section id="main">
+    <article id="post-android开发的经验教训" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/03/11/android开发的经验教训/">android开发的经验教训</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/03/11/android开发的经验教训/">
+            <time datetime="2016-03-11T02:19:45.000Z" itemprop="datePublished">2016-03-11</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <ol>
+<li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
+</li>
+<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="external">就不要绘制它！</a></p>
+</li>
+<li><p>除非真的需要，否则别使用数据库；</p>
+</li>
+<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="external">multidexing 可以拯救你</a>;</p>
+</li>
+<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
+</li>
+<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a> 可能是现在最佳的网络请求库；</p>
+</li>
+<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="external">Retrolambda</a>来简化你的代码；</p>
+</li>
+<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
+</li>
+<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
+</li>
+<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">包名按照功能来，而不是按分层来</a>;</p>
+</li>
+<li><p>把所有东西都移到 application thread之外；</p>
+</li>
+<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="external">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
+</li>
+<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">可能</a>的方式去加速它；</p>
+</li>
+<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">profile reports</a>，以便知道什么占据了编译时间；</p>
+</li>
+<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="external">有名的</a> 架构；</p>
+</li>
+<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="external">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
+</li>
+<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="external">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
+</li>
+<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="external">fragmented podcast</a> 将会让你受益；</p>
+</li>
+<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="external">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
+</li>
+<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="external">恰当的</a>输入类型；</p>
+</li>
+<li><p>Use analytics to find usage patterns and isolate bugs;</p>
+</li>
+<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="external">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="external">dryrun</a> 来快速查看它们的的效果）</p>
+</li>
+<li><p>你的service应该做你所需的事情，并且尽快死去；</p>
+</li>
+<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="external">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
+</li>
+<li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
+</li>
+<li><p>不要运行自己的CIserver，维护server是费时的事情，因为磁盘空间，安全问题，更新server以防止SSL攻击等等原因。使用circleci, travis 或者 shippable, 它们便宜，而且你也可以少担心一些事情；</p>
+</li>
+<li><p>Automate your deployments to the playstore;</p>
+</li>
+<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">proguard</a> ）；</p>
+</li>
+<li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
+</li>
+<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="external">考虑用SVG来替代PNG</a> ；</p>
+</li>
+<li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
+</li>
+<li><p>监控你的连接情况以及连接类型（wifi之下更新更多数据？）；</p>
+</li>
+<li><p>监控你的电源和电量（在充电的时候更新更多的数据？电量低的时候暂停更新？）；</p>
+</li>
+<li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
+</li>
+<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="external">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
+</li>
+</ol>
+<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="external">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/03/11/android开发的经验教训/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-七友" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -661,108 +796,8 @@ public static String replace(final String sourceString,Object[] object) {
 
 
 
-    <article id="post-git基础学习" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/09/21/git基础学习/">git基础学习</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/09/21/git基础学习/">
-            <time datetime="2015-09-21T03:13:18.000Z" itemprop="datePublished">2015-09-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/git/">git</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/git/">git</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p>git常用命令</p>
-</blockquote>
-<ol>
-<li>git mkdir xx(创建xx文件夹) cd xx(切换到xx文件夹) </li>
-<li>touch a.md(新建a.md文件)</li>
-<li>gitstatus (查看git文件内容状态) </li>
-<li>git init(初始化仓库)</li>
-<li>git add xx(添加xx文件到暂存区) git add . (添加所有文件到暂存区)</li>
-<li>git commit -m”content”(content 提交内容留言)</li>
-<li>git log (查看日志)</li>
-<li>git branch (查看分支，* master是默认分支)</li>
-<li>git branch a (新建名为a的分支)</li>
-<li>git checkout a (切换到名为a的分支 快捷方式 git checkout -b a 新建a分支并切换到该分支)</li>
-<li>git merge (分支合并 切换到主分支 再执行 git merge a 将a分支合并到主分支上)</li>
-<li>git branch -d a (删除a分支)</li>
-<li>git branch -D a (执行 branch -d a 删除失败，比如a分支未合并到主分支上，git branch -D a就是执行强制删除)</li>
-<li>git tag v1.0(创建标签v1.0版本。标签，用于标记版本。切换某版本 git checkout v1.0)</li>
-</ol>
-<blockquote>
-<p>PUSH&amp;PUll</p>
-</blockquote>
-<ol>
-<li>git push origin master (推代码到远程仓库)</li>
-<li>git pull origin master (拉代码到本地)</li>
-<li>git clone git@github.com:mccapp/test.git (将远程代码复制到本地)</li>
-<li>git remote add origin git@github.com:mccapp/test.git (将本地项目与github上的项目进行关联)</li>
-<li>git remote -v (查看有那些远程仓库)</li>
-<li>git config –blobal user.name “mccapp” (设置github用户名)</li>
-<li>git config –blobal user.email  “rsinn@sina.com”(设置邮箱)</li>
-</ol>
-<blockquote>
-<p>git进阶<br> <a href="http://stormzhang.com/github/2016/06/16/learn-github-from-zero5/" target="_blank" rel="external">进阶链接</a></p>
-</blockquote>
-<p><a href="http://stormzhang.com/github/2016/07/09/learn-from-github-from-zero6/" target="_blank" rel="external">团队合作git</a><br><a href="http://blog.csdn.net/column/details/retrofit.html" target="_blank" rel="external">rxjava进阶教程</a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2015/09/21/git基础学习/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/5/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/5/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -887,7 +922,7 @@ public static String replace(final String sourceString,Object[] object) {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 

@@ -148,11 +148,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                39
+                40
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                21
+                22
                 <span>标签</span>
             </div>
         </div>
@@ -201,6 +201,72 @@
 
             
             <section id="main">
+    <article id="post-二零一六年总结" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/12/28/二零一六年总结/">二零一六年总结</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/12/28/二零一六年总结/">
+            <time datetime="2016-12-28T07:26:24.000Z" itemprop="datePublished">2016-12-28</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/文字/">文字</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/笔录/">笔录</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>1.情感优先于思考选择跳槽去了朋友公司。<br>2.对问题的思考程度不是很慎重。<br>3.太过于注重自己在熟人的位置。<br>4.该经历的总会经历，该放下也会放下。<br>5.以上都是屁话。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/12/28/二零一六年总结/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-gradle目录解析" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -594,295 +660,6 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
 
 
 
-    <article id="post-android常用的算法" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/11/01/android常用的算法/">android常用的算法</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/11/01/android常用的算法/">
-            <time datetime="2016-11-01T08:20:48.000Z" itemprop="datePublished">2016-11-01</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/算法/">算法</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p> 1.插入排序算法</p>
-</blockquote>
-<pre><code>插入排序的基本思想是在遍历数组的过程中，假设在序号 i 之前的元素即 [0..i-1] 都已经排好序，本趟需要找到 i 对应的元素 x 的正确位置 k ，并且在寻找这个位置 k 的过程中逐个将比较过的元素往后移一位，为元素 x “腾位置”，最后将 k 对应的元素值赋为 x ，一般情况下，插入排序的时间复杂度和空间复杂度分别为 O(n2 ) 和 O(1)。
-
-public int []  sortInsert(int[] array){
-        for(int i = 1 ; i &lt; array.length; i++){
-            int temp = array[i];
-            int j ;
-            for ( j = i - 1; j &gt;= 0 &amp;&amp; temp &lt; array[j] ; j--){
-                array[ j + 1 ] = array[j];   
-            }
-            array[ j + i ] = temp;
-        }
-        return array;
-}
-</code></pre><blockquote>
-<p>2.选择排序算法</p>
-</blockquote>
-<pre><code>选择排序的基本思想是遍历数组的过程中，以 i 代表当前需要排序的序号，则需要在剩余的 [i…n-1] 中找出其中的最小值，然后将找到的最小值与 i 指向的值进行交换。因为每一趟确定元素的过程中都会有一个选择最大值的子流程，所以人们形象地称之为选择排序。选择排序的时间复杂度和空间复杂度分别为 O(n2 ) 和 O(1) 。
-
-public int[] sortSelect(int[] arr){
-  for (int i = 0; i &lt; arr.length; i++) {
-        int miniPost = i;
-        for (int m = i + 1; m &lt; arr.length; m++) {
-              if (arr[m] &lt; arr[miniPost]) {
-                    miniPost = m;
-              }
-        }
-
-        if (arr[i] &gt; arr[miniPost]) {
-              int temp;
-              temp = arr[i];
-              arr[i] = arr[miniPost];
-              arr[miniPost] = temp;
-       }
-  }
-  return arr;
-</code></pre><p> }</p>
-<blockquote>
-<p>3.冒泡排序算法</p>
-</blockquote>
-<pre><code>冒泡排序是將比較大的數字沉在最下面，较小的浮在上面
-
-public int[] sortBubble(int[] array){
- int temp;
- // 第一层循环:表明比较的次数, 比如 length 个元素,比较次数为 length-1 次（肯定不需和自己比）
- for(int i=0;i&lt;array.length-1;i++){
-      for (int j = array.length - 1; j &gt; i; j--) {
-            if (array[j] &lt; array[j - 1]) {
-                 temp = array[j];
-                 array[j] = array[j - 1];
-                 array[j - 1] = temp;
-            }
-      }
- }
- return array;
-</code></pre><blockquote>
-<p>4.快速排序算法</p>
-</blockquote>
-<pre><code>通过一趟排序将待排记录分割成独立的两部分,其中一部分记录的关键字均比另一部分的关键字小,则可以分别对这两部分记录继续进行排序,已达到整个序列有序的目的，本质就是,找一个基位(枢轴,分水岭,作用是左边的都比它小,右边的都比它大.可随机,取名base，首先从序列最右边开始找比base小的,如果小,换位置,从而base移到刚才右边(比较时比base小)的位置(记为临时的high位),这样base右边的都比base大。然后,从序列的最左边开始找比base大的，如果大,换位置,从而base移动到刚才左边(比较时比base大)的位置(记为临时的low位),这样base左边的都比base小，循环以上两步,直到 low == heigh, 这使才真正的找到了枢轴,分水岭. 返回这个位置,分水岭左边和右边的序列,分别再来递归。
-
-
-public int[] sortQuick(int[] array){
-
- return quickSort(array, 0, array.length-1);
-
-}
-private int[] quickSort(int[] arr, int low, int heigh) {
-  if (low &lt; heigh) {
-       int division = partition(arr, low, heigh);
-       quickSort(arr, low, division - 1);
-       quickSort(arr, division + 1, heigh);
-  }
-  return arr;
-}
-</code></pre><p>// 分水岭,基位,左边的都比这个位置小,右边的都大    </p>
-<pre><code>private int partition(int[] arr, int low, int heigh) {
-  int base = arr[low]; //用子表的第一个记录做枢轴(分水岭)记录
-  while (low &lt; heigh) { //从表的两端交替向中间扫描
-        while (low &lt; heigh &amp;&amp; arr[heigh] &gt;= base) {
-             heigh--;
-        }
-        // base 赋值给 当前 heigh 位,base 挪到(互换)到了这里,heigh位右边的都比base大
-        swap(arr, heigh, low);
-        while (low &lt; heigh &amp;&amp; arr[low] &lt;= base) {
-              low++;
-        }
-        // 遇到左边比base值大的了,换位置
-        swap(arr, heigh, low);
-  }
-  // now low = heigh;
-  return low;
-  }
-
-    private void swap(int[] arr, int a, int b) {
-          int temp;
-          temp = arr[a];
-          arr[a] = arr[b];
-          arr[b] = temp;
-  }
-</code></pre><blockquote>
-<p>5.合并排序算法</p>
-</blockquote>
-<p>归并排序采用的是递归来实现，属于“分而治之”，将目标数组从中间一分为二，之后分别对这两个数组进行排序，排序完毕之后再将排好序的两个数组“归并”到一起，归并排序最重要的也就是这个“归并”的过程，归并的过程中需要额外的跟需要归并的两个数组长度一致的空间</p>
-<pre><code>private int[] sort(int[] nums, int low, int high) {
-  int mid = (low + high) / 2;
-  if (low &lt; high) {
-      // 左边
-      sort(nums, low, mid);
-      // 右边
-      sort(nums, mid + 1, high);
-      // 左右归并
-      merge(nums, low, mid, high);
- }
- return nums;
- }
- private void merge(int[] nums, int low, int mid, int high) {
-      int[] temp = new int[high - low + 1];
-      int i = low;// 左指针
-      int j = mid + 1;// 右指针
-      int k = 0;
-      // 把较小的数先移到新数组中
-      while (i &lt;= mid &amp;&amp; j &lt;= high) {
-          if (nums[i] &lt; nums[j]) {
-               temp[k++] = nums[i++];
-          } else {
-               temp[k++] = nums[j++];
-          }
-      }
-      // 把左边剩余的数移入数组
-      while (i &lt;= mid) {
-           temp[k++] = nums[i++];
-      }
-      // 把右边边剩余的数移入数组
-      while (j &lt;= high) {
-           temp[k++] = nums[j++];
-      }
-      // 把新数组中的数覆盖nums数组
-      for (int k2 = 0; k2 &lt; temp.length; k2++) {
-           nums[k2 + low] = temp[k2];
-      }
-  }
-  public int[] sortMerge(int[] array) {
-         return sort(array, 0, array.length - 1);
- }
-</code></pre><blockquote>
-<p>6.希尔排序算法</p>
-</blockquote>
-<p>希尔排序的诞生是由于插入排序在处理大规模数组的时候会遇到需要移动太多元素的问题。希尔排序的思想是将一个大的数组“分而治之”，划分为若干个小的数组，以 gap 来划分，比如数组 [1, 2, 3, 4, 5, 6, 7, 8] ，如果以 gap = 2 来划分，可以分为 [1, 3, 5, 7] 和 [2, 4, 6, 8] 两个数组（对应的，如 gap = 3 ， 则划分的数组为： [1, 4, 7] 、 [2, 5, 8] 、 [3, 6] ）然后分别对划分出来的数组进行插入排序，待各个子数组排序完毕之后再减小 gap 值重复进行之前的步骤，直至 gap = 1 ，即对整个数组进行插入排序，此时的数组已经基本上快排好序了，所以需要移动的元素会很小很小，解决了插入排序在处理大规模数组时较多移动次数的问题，</p>
-<p>希尔排序是插入排序的改进版，在数据量大的时候对效率的提升帮助很大，数据量小的时候建议直接使用插入排序就好了。</p>
-<pre><code>public int[] sortShell(int[] array) {
- // 取增量
- int step = array.length / 2;
- while (step &gt;= 1) {
-      for (int i = step; i &lt; array.length; i++) {
-           int temp = array[i];
-           int j = 0;
-           // 跟插入排序的区别就在这里
-           for (j = i - step; j &gt;= 0 &amp;&amp; temp &lt; array[j]; j -= step) {
-                 array[j + step] = array[j];
-           }
-           array[j + step] = temp;
-      }
-      step /= 2;
-     }
-     return array;
- }
-</code></pre><blockquote>
-<p>7.堆排序算法</p>
-</blockquote>
-<p>本质就是先构造一个大顶堆,parent比children大,root节点就是最大的节点 把最大的节点(root)与尾节点(最后一个节点,比较小)位置互换，剩下最后的尾节点,现在最大,其余的,从第一个元素开始到尾节点前一位,构造大顶堆递归。</p>
-<pre><code>public int[] sortHeap(int[] array) {
- buildHeap(array);// 构建堆
- int n = array.length;
- int i = 0;
- for (i = n - 1; i &gt;= 1; i--) {
-      swap(array, 0, i);
-      heapify(array, 0, i);
- }
- return array;
- }
-private void buildHeap(int[] array) {
-     int n = array.length;// 数组中元素的个数
-        for (int i = n / 2 - 1; i &gt;= 0; i--)
-          heapify(array, i, n);
-}
-private void heapify(int[] A, int idx, int max) {
-      int left = 2 * idx + 1;// 左孩子的下标（如果存在的话）
-      int right = 2 * idx + 2;// 左孩子的下标（如果存在的话）
-      int largest = 0;// 寻找3个节点中最大值节点的下标
-      if (left &lt; max &amp;&amp; A[left] &gt; A[idx])
-            largest = left;
-      else
-            largest = idx;
-      if (right &lt; max &amp;&amp; A[right] &gt; A[largest])
-            largest = right;
-            if (largest != idx) {
-                  swap(A, largest, idx);
-                  heapify(A, largest, max);
-            }
-      }
-  }
-</code></pre><p>// 建堆函数，认为【s，m】中只有 s<br>// 对应的关键字未满足大顶堆定义，通过调整使【s，m】成为大顶堆=====================================================</p>
-<pre><code>public static void heapAdjust(int[] array, int s, int m) {
-      // 用0下标元素作为暂存单元
-      array[0] = array[s];
-      // 沿孩子较大的结点向下筛选
-      for (int j = 2 * s; j &lt;= m; j *= 2) {
-            // 保证j为较大孩子结点的下标，j &lt; m 保证 j+1 &lt;= m ，不越界
-            if (j &lt; m &amp;&amp; array[j] &lt; array[j + 1]) {
-                   j++;
-            }
-            if (!(array[0] &lt; array[j])) {
-                   break;
-            }
-            // 若S位较小，应将较大孩子上移
-            array[s] = array[j];
-            // 较大孩子的值变成S位的较小值，可能引起顶堆的不平衡，故对其所在的堆进行筛选
-            s = j;
-      }
-      // 若S位较大，则值不变；否则，S位向下移动至2*s、4*s、。。。
-      array[s] = array[0];
-}
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/11/01/android常用的算法/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
     </nav>
@@ -895,6 +672,25 @@ private void heapify(int[] A, int idx, int max) {
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/03/21/hexo部署问题/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/hexo/">hexo</a></p>
+                            <p class="item-title"><a href="/2017/03/21/hexo部署问题/" class="title">hexo部署问题</a></p>
+                            <p class="item-date"><time datetime="2017-03-21T06:48:20.000Z" itemprop="datePublished">2017-03-21</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -972,25 +768,6 @@ private void heapify(int[] A, int idx, int max) {
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/12/28/二零一六年总结/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/文字/">文字</a></p>
-                            <p class="item-title"><a href="/2016/12/28/二零一六年总结/" class="title">二零一六年总结</a></p>
-                            <p class="item-date"><time datetime="2016-12-28T07:26:24.000Z" itemprop="datePublished">2016-12-28</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1000,7 +777,7 @@ private void heapify(int[] A, int idx, int max) {
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -1009,7 +786,7 @@ private void heapify(int[] A, int idx, int max) {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1018,7 +795,7 @@ private void heapify(int[] A, int idx, int max) {
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1027,7 +804,7 @@ private void heapify(int[] A, int idx, int max) {
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dagger2/" style="font-size: 13.33px;">dagger2</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/glide/" style="font-size: 16.67px;">glide</a> <a href="/tags/gradle/" style="font-size: 13.33px;">gradle</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 13.33px;">mvp</a> <a href="/tags/resume/" style="font-size: 13.33px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 10px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 13.33px;">文字</a> <a href="/tags/歌曲/" style="font-size: 13.33px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 16.67px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dagger2/" style="font-size: 13.33px;">dagger2</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/glide/" style="font-size: 16.67px;">glide</a> <a href="/tags/gradle/" style="font-size: 13.33px;">gradle</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 13.33px;">mvp</a> <a href="/tags/resume/" style="font-size: 13.33px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 10px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 13.33px;">文字</a> <a href="/tags/歌曲/" style="font-size: 13.33px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 16.67px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
         </div>
     </div>
 

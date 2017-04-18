@@ -145,7 +145,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                42
+                44
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -198,6 +198,151 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
             <section id="main">
+    <article id="post-android开发要避免的那些坑" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/11/07/android开发要避免的那些坑/">android开发要避免的那些坑</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/11/07/android开发要避免的那些坑/">
+            <time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><a href="http://blog.csdn.net/zhangke3016/article/details/51831122" target="_blank" rel="external">android开发要避免的那些坑</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/11/07/android开发要避免的那些坑/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-rxjava操作符" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/11/02/rxjava操作符/">rxjava操作符</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/11/02/rxjava操作符/">
+            <time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/rxandroid/">rxandroid</a>, <a class="tag-link" href="/tags/rxjava/">rxjava</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>操作符决策树</p>
+<p>直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）<br>创建操作</p>
+<p>用于创建Observable的操作符<br>Create<br>通过调用观察者的方法从头创建一个Observable<br>Empty/Never/Throw<br>创建行为受限的特殊Observable<br>Defer<br>在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable<br>Just<br>将对象或者对象集合转换为一个会发射这些对象的Observable<br>From<br>将其它的对象或数据结构转换为Observable<br>Range<br>创建发射指定范围的整数序列的Observable,range操作符,发射从start开始的count个数<br>Interval<br>间隔一定时间发送一个数字,从0开始.本身运行在Schedulers.computation() 线程内<br>Repeat<br>Repeat作用在Observable上,会对其重复发射count次<br>Timer<br>Timer会在指定时间后发射一个数字0，注意其也是运行在computation Scheduler<br>变换操作</p>
+<p>对Observable发射的数据进行变，能将数据转化为我们想要的格式，<br>Buffer<br>缓存，可以简单的理解为缓存，它定期从Observable收集数据到一个集合，然后把这些数据集合打包发射，而不是一次发射一个<br>FlatMap<br>扁平映射，将Observable发射的数据变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable，可以认为是一个将嵌套的数据结构展开的过程。<br>GroupBy<br>分组，将原来的Observable分拆为Observable集合，将原始Observable发射的数据按Key分组，每一个Observable发射一组不同的数据<br>Map<br>映射，通过对序列的每一项都应用一个函数变换Observable发射的数据，实质是对序列中的每一项执行一个函数，函数的参数就是这个数据项<br>Scan<br>扫描， 连续地对数据序列的每一项应用一个函数，然后连续发射结果,每一项结果基于之前的结果.累加器函数.<br>Window<br>窗口，定期将来自Observable的数据分拆成一些Observable窗口，然后发射这些窗口，而不是每次发射一项。类似于Buffer，但Buffer发射的是数据，Window发射的是Observable，每一个Observable发射原始Observable的数据的一个子集<br>toList<br>Returns an Observable that emits a single item, a list composed of all the items emitted by the source Observable. 将一个Observable转换为一个List.<br>过滤操作</p>
+<p>滤掉数据集合中我们不想要的数据。用于从Observable发射的数据中进行选择。<br>throttleWithTimeout<br>源Observable每次发射出来一个数据后就会进行计时,如果在设定好的时间结束前源Observable有新的数据发射出来，这个数据就会被丢弃，同时重新开始计时。<br>Debounce<br>只有在空闲了一段时间后才发射数据，通俗的说，就是如果一段时间没有操作，就执行一次操作.还可以根据一个函数来进行限流。这个函数的返回值是一个临时Observable，<br>如果源Observable在发射一个新的数据的时候，上一个数据根据函数所生成的临时Observable还没有结束,没有调用onComplete，那么上一个数据就会被过滤掉。如果是最后一个,还是会发射.<br>Distinct<br>去重，过滤掉所有的重复数据项<br>DistinctUtilChanged<br>过滤掉相邻的重复项<br>ElementAt<br>取值，取特定位置的数据项<br>Filter<br>过滤，过滤掉没有通过谓词测试的数据项，只发射通过测试的<br>First<br>取满足条件的第一个,如无满足条件数据抛出异常.可以使用takeFisrt(),仅会调动onComplete.<br>有null数据时会抛空指针异常,要判空处理.<br>只取满足条件的第一个数据.可以和BlockingObservable连用。可以Observable.toBlocking或者BlockingObservable.from方法来将一个Observable对象转化为BlockingObservable对象<br>Last<br>末项，只发射最后一条数据.<br>IgnoreElements<br>忽略所有的数据，只保留终止通知(onError或onCompleted)<br>Sample<br>取样，定期发射最新的数据，等于是数据抽样，有的实现里叫ThrottleFirst<br>throttleFirst<br>会定期发射这个时间段里源Observable发射的第一个数据<br>Skip<br>跳过前面的若干项数据<br>SkipLast<br>跳过后面的若干项数据<br>Take<br>只保留前面的若干项数据<br>TakeLast<br>只保留后面的若干项数据<br>takeFirst<br>有null数据时会抛空指针异常,要判空处理<br>和first一样，但在所有数据不满足条件时不会抛出异常，仅仅调用onComplete.<br>组合操作</p>
+<p>And/Then/When<br>通过模式(And条件)和计划(Then次序)组合两个或多个Observable发射的数据集<br>CombineLatest<br>当两个Observables中的任何一个发射了一个数据时，通过一个指定的函数组合每个Observable发射的最新数据（一共两个数据），然后发射这个函数的结果<br>必须满足两个条件:<br>1)所有的Observable都发射过数据。<br>2)满足条件1的时候任何一个Observable发射一个数据，就将所有Observable最新发射的数据按照提供的函数组装起来发射出去。<br>在这两个条件下,可能会忽略掉一些发射的数据.<br>Join<br>无论何时，如果一个Observable发射了一个数据项，只要在另一个Observable发射的数据项定义的时间窗口内，就将两个Observable发射的数据合并发射<br>参数说明:<br>1)源Observable所要组合的目标Observable<br>2)一个函数，就收从源Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了源Observable发射出来数据的有效期<br>3)一个函数，就收从目标Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了目标Observable发射出来数据的有效期<br>4)一个函数，接收从源Observable和目标Observable发射来的数据，并返回最终组合完的数据。<br>Merge<br>将两个Observable发射的数据组合并成一个<br>Merge可能会让合并的Observables发射的数据交错（可以使用Concat操作符,不会让数据交错，它会按顺序一个接着一个发射多个Observables的发射物）。<br>StartWith<br>在发射原来的Observable的数据序列之前，先发射一个指定的数据序列或数据项<br>在数据序列的开头插入一条指定的项<br>你也可以传递一个Observable给startWith，<br>它会将那个Observable的发射物插在原始Observable发射的数据序列之前.这可以看作是Concat的反转。<br>Switch，在RxJava的实现为SwitchOnNext<br>将一个发射Observable序列的Observable转换为这样一个Observable：它逐个发射那些Observable最近发射的数据<br>用来将一个发射多个小Observable的源Observable转化为一个Observable，然后发射这多个小Observable所发射的数据。<br>需要注意的就是，如果一个小的Observable正在发射数据的时候，源Observable又发射出一个新的小Observable，则前一个Observable发射的数据会被抛弃，直接发射新的小Observable所发射的数据。<br>Zip<br>zip zipWith<br>打包，使用一个指定的函数将多个Observable发射的数据组合在一起，然后将这个函数的结果作为单项数据发射<br>Zip操作符将多个Observable发射的数据按顺序组合起来，每个数据只能组合一次，而且都是有序的。<br>最终组合的数据的数量由发射数据最少的Observable来决定。<br>错误处理</p>
+<p>这些操作符用于从错误通知中恢复<br>Catch<br>捕获，继续序列操作，将错误替换为正常的数据，从onError通知中恢复<br>onErrorReturn<br>当发生错误的时候，让Observable发射一个预先定义好的数据并正常地终止,不会抛出异常 onErrorResumeNext<br>当发生错误的时候，由另外一个Observable来代替当前的Observable并继续发射数据 onExceptionResumeNext<br>类似于OnErrorResume,不同之处在于其会对onError抛出的数据类型做判断，<br>如果是Exception，也会使用另外一个Observable代替原Observable继续发射数据，<br>否则会将错误分发给Subscriber。<br>Retry<br>重试，如果Observable发射了一个错误通知，重新订阅它，期待它正常终止<br>retry<br>Retry操作符在发生错误的时候会重新进行订阅,而且可以重复多次，<br>所以发射的数据可能会产生重复。如果重复指定次数还有错误的话就会将错误返回给观察者,会掉onError retryWhen<br>当错误发生时，retryWhen会接收onError的throwable作为参数，并根据定义好的函数返回一个Observable，如果这个Observable发射一个数据，就会重新订阅。<br>需要注意的是使用retryWhen的时候,因为每次重新订阅都会产生错误，所以作为参数的obserbvable会不断地发射数据，使用zipWith操作符可以限制重新订阅的次数，否则会无限制地重新订阅。<br>会正常结束,调用onCompleted<br>辅助操作</p>
+<p>Delay<br>延迟一段时间发射结果数据<br>DelaySubscription<br>延迟注册到Observer上<br>Do<br>Do操作符就是给Observable的生命周期的各个阶段加上一系列的回调监听，当Observable执行到这个阶段的时候，这些回调就会被触发.<br>doOnEach<br>Observable每发射一个数据的时候就会触发这个回调，不仅包括onNext还包括onError和onCompleted。<br>doOnNext<br>只有onNext的时候才会被触发。<br>doOnSubscribe,doOnUnSubscribe<br>会在Subscriber进行订阅和反订阅的时候触发回调。<br>当一个Observable通过OnError或者OnCompleted结束的时候，会反订阅所有的Subscriber。在Android中和生命周期绑定起来,因为有些Observable执行不完啊.<br>doOnSubscribeOn<br>在开始注册前做一些工作。处于当前线程，而不是subscribeOn指定的线程。<br>DoOnError<br>在OnError发生的时候触发回调，并将Throwable对象作为参数传进回调函数里。<br>DoOnComplete<br>会在OnCompleted发生的时候触发回调。<br>DoOnTerminate<br>会在Observable结束前触发回调，无论是正常还是异常终止。<br>finallyDo,doAfterTerminate<br>会在Observable结束后触发回调，无论是正常还是异常终止。<br>Materialize,dematerialize<br>Meterialize操作符将OnNext/OnError/OnComplete都转化为一个Notification对象并按照原来的顺序发射出来,dematerialize相反<br>使用integerNotification.getValue() +”, ” + integerNotification.getKind()可以看到打印值和类型.<br>ObserveOn<br>指定Subscriber的调度程序（工作线程）<br>SubscribeOn<br>指定Observable应该在哪个调度程序上执行<br>Serialize<br>强制Observable按次序发射数据并且功能是有效的<br>Subscribe<br>收到Observable发射的数据和通知后执行的操作<br>TimeInterval<br>将一个Observable转换为发射两个数据之间所耗费时间的Observable<br>TimeInterval会拦截发射出来的数据，取代为前后两个发射两个数据的间隔时间。对于第一个发射的数据，其时间间隔为订阅后到首次发射的间隔。<br>Timeout<br>添加超时机制，如果过了指定的一段时间没有发射数据，就发射一个错误通知<br>Timeout操作符给Observable加上超时时间，每发射一个数据后就重置计时器，当超过预定的时间还没有发射下一个数据，就抛出一个超时的异常。<br>Rxjava将Timeout实现为很多不同功能的操作符，比如说超时后用一个备用的Observable继续发射数据等。<br>Timestamp<br>给Observable发射的每个数据项添加一个时间戳<br>TimeStamp会将每个数据项给重新包装一下，加上了一个时间戳来标明每次发射的时间<br>Using<br>创建一个只在Observable的生命周期内存在的一次性资源<br>Using操作符创建一个在Observable生命周期内存活的资源，也可以这样理解：<br>我们创建一个资源并使用它，用一个Observable来限制这个资源的使用时间，当这个Observable终止的时候，这个资源就会被销毁。<br>Using需要使用三个参数，分别是：<br>1)创建这个一次性资源的函数<br>2)创建Observable的函数<br>3)释放资源的函数<br>条件和布尔操作</p>
+<p>这些操作符可用于单个或多个数据项，也可用于Observable<br>All<br>判断Observable发射的所有的数据项是否都满足某个条件<br>All操作符根据一个函数对源Observable发射的所有数据进行判断，最终返回的结果就是这个判断结果。<br>对发射的所有数据应用这个函数,如果全部都满足则返回true，否则就返回false。<br>Amb<br>Amb操作符可以将至多9个Observable结合起来，让他们竞争。<br>哪个Observable首先发射了数据（包括onError和onComplete)就会继续发射这个Observable的数据，其他的Observable所发射的数据都会别丢弃。<br>Contains<br>判断Observable是否会发射一个指定的数据项<br>Contains操作符用来判断源Observable所发射的数据是否包含某一个数据，如果包含会返回true，如果源Observable已经结束了却还没有发射这个数据则返回false。<br>IsEmpty<br>IsEmpty操作符用来判断源Observable是否发射过数据，没有发射过数据返回true.<br>Null也是一个数据<br>DefaultIfEmpty<br>发射来自原始Observable的数据，如果原始Observable没有发射数据，就发射一个默认数据<br>会判断源Observable是否发射数据，如果源Observable发射了数据则正常发射这些数据，如果没有则发射一个默认的数据<br>SequenceEqual<br>判断两个Observable是否按相同的数据序列<br>SequenceEqual操作符用来判断两个Observable发射的数据序列是否相同（发射的数据相同，数据的序列相同，结束的状态相同），如果相同返回true，否则返回false<br>SkipUntil<br>SkipUnitl是根据一个标志Observable来判断的，当这个标志Observable没有发射数据的时候，所有源Observable发射的数据都会被跳过；当标志Observable发射了一个数据，则开始正常地发射数据。<br>一直等到skipUntil发射了数据才能发射源Observable的数据,并忽略了此段时间内的数据<br>SkipWhile<br>SkipWhile则是根据一个函数来判断是否跳过数据，当函数返回值为true的时候则一直跳过源Observable发射的数据；当函数返回false的时候则开始正常发射数据。<br>TakeUntil<br>和SkipUtil恰好相反,只获取takeUntil里的Observable之前的数据<br>TakeWhile<br>和SkipWhile相反,获取满足skipWhile的数据<br>算术和聚合操作</p>
+<p>Concat<br>将多个Observable结合成一个Observable并发射数据，并且严格按照先后顺序发射数据，前一个Observable的数据没有发射完，不发射后面Observable的数据<br>Count<br>Count操作符用来统计源Observable发射了多少个数据，最后将数目给发射出来；<br>如果源Observable发射错误，则会将错误直接报出来；在源Observable没有终止前，count是不会发射统计数据的。<br>Reduce<br>Reduce操作符应用一个函数接收Observable发射的数据和函数的计算结果作为下次计算的参数，输出最后的结果。<br>跟前面我们了解过的scan操作符很类似，只是scan会输出每次计算的结果，而reduce只会输出最后的结果。<br>Collect<br>collect用来将源Observable发射的数据给收集到一个数据结构里面，需要使用两个参数：<br>一个产生收集数据结构的函数<br>一个接收第一个函数产生的数据结构和源Observable发射的数据作为参数的函数。<br>连接操作</p>
+<p>一些有精确可控的订阅行为的特殊Observable<br>什么是Connectable Observable:<br>就是一种特殊的Observable对象，并不是Subscrib的时候就发射数据，而是只有对其应用connect操作符的时候才开始发射数据，<br>所以可以用来更灵活的控制数据发射的时机。<br>使用Publish操作符将Observable转换为Connectable Observable,然后可以通过connect控制何时发射.<br>Publish<br>将一个普通的Observable转换为可连接的<br>Publish操作符就是用来将一个普通的Observable对象转化为一个Connectable Observable。需要注意的是如果发射数据已经开始了再进行订阅只能接收以后发射的数据。<br>Connect<br>Connect操作符就是用来触发Connectable Observable发射数据的。<br>应用Connect操作符后会返回一个Subscription对象，通过这个Subscription对象，我们可以调用其unsubscribe方法来终止数据的发射。<br>另外，如果还没有订阅者订阅的时候就应用Connect操作符也是可以使其开始发射数据的。<br>RefCount<br>RefCount操作符就是将一个Connectable Observable 对象再重新转化为一个普通的Observable对象，这时候订阅者进行订阅时就会触发数据的发射。<br>Replay<br>Replay操作符返回一个Connectable Observable 对象并且可以缓存其发射过的数据，这样即使有订阅者在其发射数据之后进行订阅也能收到其之前发射过的数据。<br>不过使用Replay操作符我们最好还是限定其缓存的大小，否则缓存的数据太多了可会占用很大的一块内存。<br>对缓存的控制可以从空间和时间两个方面来实现。<br>直接返回一个connectable observable,不用publish<br>转换操作</p>
+<p>to<br>自定义操作符</p>
+<p>lift compose</p>
+<p><a href="http://blog.csdn.net/zhupumao/article/details/51932850" target="_blank" rel="external">rxjava汇总链接</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/11/02/rxjava操作符/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-android常用的算法" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -678,244 +823,6 @@ public class AppApplication extends Application{
 
 
 
-    <article id="post-androidmvp架构模式" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/10/31/androidmvp架构模式/">androidMVP架构模式</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/10/31/androidmvp架构模式/">
-            <time datetime="2016-10-31T01:47:42.000Z" itemprop="datePublished">2016-10-31</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/mvp/">mvp</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>android MVP模式在Android项目中的使用</p>
-<p>在开发当中我们会涉及到一些架构模式，对于初级程序员来说是很陌生，但是对于中级过渡高级的程序员来说是非常重要需要了解的模式。首先我们先了解有哪些架构模式：不管都前端，移动端，后端都会涉及到这三种：MVC、MVP、MVVM。<br>概念：什么是MVP<br>MVP是模型(Model)、视图(View)、主持人(Presenter)的缩写,分别代表项目中3个不同的模块。<br>模型(Model):负责处理数据的加载或者存储，比如从网络或者本地数据库获取数据等；<br>视图(View):负责界面数据的展示，与用户进行交互；<br>主持人(Presenter):相当于协调者，是模型与视图之间的桥梁，将模型与视图分离开来。</p>
-<p>如下图所示，View与Model并不直接交互，而是使用Presenter作为View与Model之间的桥梁。其中Presenter中同时持有View层以及Model层的Interface的引用，而View层持有Presenter层Ineterface的引用。当View层某个界面需要展示展示某些数据的时候，首先会调用Presenter层的某个接口，然后Presneter层会调用Model层请求数据，当Model层数据加载成功之后会调用Presenter层的回调方法通知Presenter层数据加载完毕，最后Presneter层再调用View层的接口将加载后的数据展示给用户。这就是Mvp模式的整个核心过程。<br><img src="http://images2015.cnblogs.com/blog/420264/201512/420264-20151223222959015-298327306.png" alt="此处输入图片的描述"></p>
-<p>这样分层的好处就是大大减少了Model与View层之间的耦合度。一方面可以使得View层和Model层单独开发与测试，互不依赖。另一方面Model层可以封装复用，可以极大的减少代码量。当然，Mvp还有其他的一些优点。</p>
-<p>  1.View层<br>    View层首页数据展示模块的组件是Activity，里面有一个RecycleView 布局如下：  </p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
- &lt;android.support.v7.widget.RecyclerView
-        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-        android:id=&quot;@+id/recycle_view&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:scrollbars=&quot;vertical&quot;
-        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;
-        android:paddingTop=&quot;@dimen/card_margin&quot;&gt;
-    &lt;/android.support.v7.widget.RecyclerView&gt;
-</code></pre><p>首页列表模块主要展示从网络获取的首页列表信息，view层的接口大概需要如下方法：<br>(1)请求数据的过程中需要提示‘正在加载’的反馈信息给用户<br>(2)加载数据成功后，将加载得到的数据填充到RecycleView展示给用户<br>(3)加载数据成功后，将提示‘正在加载’反馈信息取消掉<br>(4)若加载数据失败，如网络连接、则需要给用户提示信息。 </p>
-<pre><code>//业务接口
-public interface HomeContract {
-    interface View {
-       void onLoading();
-       void onError(String error);
-       void updateUI(XXX xxx);
-       void ToastMessage(String message);
-    }
-    interface Action extends IPresenter {
-        void requestHome(XXX... xxx);
-    }
-}
-
-//业务处理请求
-public class HomePresenter implements HomeContract.Action{
-        HomeContract.view view;
-        public HomePresenter(HomeContract.view view){
-                this.view =view;
-        }
-        @Override
-        pubublic void requestHome(XXX... xxx){
-                //请求网络数据处理业务层 
-                view.onLoading();
-                view.onError();
-                view.updateUI();
-                view.ToastMessage();
-        }
-}
-</code></pre><p>首页列表Activity中实现上述接口：</p>
-<pre><code>public class HomeActivity extends AppCompatActivity implements HomeContract.view {
-  HomeContract.Action action;
-    @Override
-    public void onLoading(){
-            //提示加载信息
-    }
-    @Override
-    public void onError(String error){
-            //加载错误ui
-    }
-    @Override
-    public void updateUI(XXX xxx){
-            //更新UI数据
-    }
-    @Override
-    public void ToastMessage(String message){
-           //网络请求结束提示信息
-    }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        action = new HomePresenter(this);
-        action.requestHome(xx);
-    }
-}
-
-当用户打开首页界面时，就请求网络获取数据，初始化Presenter引用实例，调用Presenter层的requestHome接口，业务处理完毕后，调用相应的onLoading()、onError()、updateUI()、ToastMessage()方法处理不同逻辑。
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/10/31/androidmvp架构模式/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/10/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/10/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">
-            <time datetime="2016-10-28T01:37:48.000Z" itemprop="datePublished">2016-10-28</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p> 　自2014年以来，SaaS、CRM、OA、ERP、HR、APM、进销存、财务系统等，这些名词大量出现在微信朋友圈、电视楼宇广告和千百万融资资讯中。它们到底是什么意思？相互之间又有什么区别？在这个飞速发展的互联网时代，再不知道这些可就OUT了！</p>
-<p>　　SaaS、CRM、OA、ERP、HR、进销存究竟是什么？<br>　　<img src="http://img.mp.itc.cn/upload/20160409/7daac8961ba14a06af4f77edb2889702_th.jpg?_=5776061" alt="此处输入图片的描述"><br>SaaS模式就像用自来水</p>
-<p>　　2015年被媒体和IT从业人员称为SaaS元年。什么是SaaS呢？SaaS是Software-as-a-Service（软件即服务）的简称，“软件即服务”，简单理解也就是“按需租用别人提供的软件服务”，它是一种软件交付模式。SaaS这个说法是区别于以往软件购买和交付方式而提出的。</p>
-<p>　　在以往，如果你的公司需要使用一款软件来管理财务记账，作为公司管理者，你需要向软件提供公司说明需求、支付购买软件的费用并提供安装软件的硬件环境，然后软件公司就会上门安装调试软件，调试完后就可以正式投入使用了。</p>
-<p>　　这里有一个很显著的特点是，软件都安装在你指定的地方，你拥有100%的管控权，相应的，你后续还需要继续投入人员和资源来维护系统的正常运行。</p>
-<p>　　SaaS的模式就不一样了，在客户还没有到来之前，软件提供公司就自己提服务器、数据库等硬件，把软件安装发布好，这样作为软件使用方的你就变得轻松很多，一上来就可以直接进行体验，体验之后，你觉得哪些功能合适你的，就挑选出来，按月支付比较低廉的费用就可以正式使用了。后续的升级、维护也由软件公司负责。简而言之，SaaS模式就是软件提供公司事先把所有的软件相关工作都归类准备好了，用户直接过来挑选自己需要的用就OK了。</p>
-<p>　　业内有一个很恰当的比喻：一开始的时候，各家都是自己挖井抽水蓄水，挖井抽水蓄水的技术是有专业的公司提供，但总的来说喝水这个事情是自家管自家的，这是传统软件的供水模式。在SaaS模式下，挖井抽水蓄水净水修水管这些工作对使用方来说都是透明的，你有需要的时候就打开水龙头取水就OK了，然后每月自来水公司会过来跟你结算。同样的，优缺点很明显，优点是按需用水省事了，成本变低了，缺点是水由水务公司完全控制，供水稳定性、供水质量取决于水务公司实力。</p>
-<p>　　CRM是什么呢？追踪客户的</p>
-<p>　　CRM是英文Customer Relationship Management （客户关系管理）的简称。这个比较好理解，就是用来管理客户的。</p>
-<p>　　一般来说，CRM客户管理系统由客户信息管理、销售过程自动化（SFA）、营销自动化（MA）、客户服务与支持（CSS）管理、客户分析（CA）系统这5大主要功能模块组成。</p>
-<p>　　通俗一点说，CRM系统特别是移动CRM系统能帮助你及你的同事很方便地记录客户信息、跟踪分析新老客户、挖掘潜在客户。</p>
-<p>　　OA是什么呢？管办公室活动的</p>
-<p>　　OA是Office Automation（办公自动化）的简称，本来OA涵盖的范围非常广泛，基本上所有和办公相关的系统都可以称作是OA，但现在大都数公司都把OA系统定义为企业内部的协作沟通系统，一般提供的功能有流程审批（请假报销等）、即时沟通、文档管理、内部论坛、任务管理、会议管理、通讯录、问卷调查等。</p>
-<p>　　ERP是什么呢？生产制造一条龙全包</p>
-<p>　　ERP是Enterprise Resource Planning（企业资源计划）的简称，从字面上理解，各企业的资源、计划相关的管理都可以算在ERP的范畴里，比如员工、生产、制造、财务、销售、采购、仓储、分销、质量等等，只要是用于企业管理的软件都属于ERP的范畴。由于越来越多的细分系统的出现，行业内人们为了做区分，一般把功能比较全面（往往包含从原料到生产到仓储到销售一系列）的偏生产制造的管理系统才定义为ERP系统，而其中某项细分功能的系统虽然原则上属于ERP，但一般不称为ERP。</p>
-<p>　　HR软件是什么？管员工的</p>
-<p>　　HR软件是human resource software（人力资源软件）的简称，就是用来管理人事相关的系统，比如招聘管理、职工管理、劳动合同、奖惩管理、办公用品、培训管理、绩效管理、考勤管理、社保管理等。</p>
-<p>　　什么是进销存？</p>
-<p>　　进销存是指企业管理过程中采购（进货）→入库（库存）→销售（销货）的三个管理过程。这三个过程是一般企业特别是中小商户的核心经营过程，用来管理这三个过程的系统就是进销存系统，简称进销存。</p>
-<p>　　什么是财务系统？</p>
-<p>　　财务系统是指专门用于完成会计工作的管理系统。财务系统一般包含：总账管理、固定资产管理、资金管理、客户及应收应付管理、报表管理、财务分析、核算系统等。</p>
-<p>　　SaaS、CRM、OA、ERP、HR、进销存、财务系统的区别在哪里？</p>
-<p>　　SaaS是一种软件交付（交易）模式，以这种“按需租用”模式提供服务的软件称为SaaS，目前大部分的软件都采取这种模式，也就是说大部分的OA、ERP、HR、进销存、财务系统都可以叫作SaaS软件。由于ERP系统覆盖的链条很长，一般需要深度定制，所以比较少是以SaaS提供的。</p>
-<p>　　现在的CRM、OA、HR、进销存、财务系统一般都以SaaS方式提供，CRM更专注于销售方面的管理，OA更专注于企业内部的协作沟通，HR更专注于人力管理，进销存专注于仓库相关的管理、财务系统专注资产、预算相关的管理。</p>
-<p>　　由于它们涉及到企业不同时间段、不同角色、不同业务等各个方面，同时也因为各企业的规模、经营方式几乎完全不同，所以目前没有哪一款产品能囊括CRM、OA、HR、进销存等这些功能，目前市面上的产品能还处于在自己专注的领域深耕发展的阶段。</p>
-<p>　　当然为了更快地拉开同竞争对手的差距，它们往往选择开放相互对接的方式，比较钉钉这些OA系统就提供了开放平台，用于对接进销存、财务系统。</p>
-<p>　　CRM、OA、ERP、HR、进销存、财务系统目前有哪些代表产品？</p>
-<p>　　CRM的标杆是美国的Salesforce，国内有纷享逍客、销售易、红圈营销、八百客等。</p>
-<p>　　OA在国内有钉钉、云之家、今目标、微信企业号、企业微信（即将上线）这几个产品，有很多稍微大一点的企业内部会自建OA系统，等内部使用实施成熟后也会开放出来供外部使用。</p>
-<p>　　ERP和财务系统，素来有“南金蝶北用友”之称，这两家拿下中国大部分市场份额，SAP则是全球最成功是ERP厂商，据称85%的世界500强公司都有使用SAP系统，但这套系统非常昂贵非常复杂，不适用于中小企业。</p>
-<p>　　HR。有北森、dayHR、金柚等，由于单纯的HR系统很容易被OA或进销存击穿，现在的HR往往做得非常深，人才评测、招聘等都会涉及。</p>
-<p>　　进销存系统，有管家婆、智慧记、云销城、秦丝生意通等，在采购、销售、库存这三个最核心的管理环节需求会非常强烈，但对于操作速度要求很高，一般软件很难满足，所以目前来说进销存的普及率还不到8%。</p>
-<p>　　2016年CRM、OA、ERP、HR、进销存、财务系统的趋势是怎么样的？</p>
-<p>　　1、SaaS化。对于提供方而言标准化的SaaS产品更具有爆发性，对于消费方而言SaaS具有低成本、随时随地接入访问这些特性，再加上IT基础设施、安全技术等方面的成熟，SaaS将成为以后最主要的软件模式。</p>
-<p>　　2、移动化。金蝶创始人徐少春在发布云之家的时候，把笔记本直接扔进垃圾桶了，说以后只使用手机办公，这虽然是一个噱头，但确实说明移动办公是个大趋势。</p>
-<p>　　3、垂直化。前面说过，不同规模、不同阶段、不同行业的企业对企业应用的需求千差万别，企业内部中不同岗位、不同时段、不同职别的员工对企业应用的需求同样也千差万别，往往需要垂直细分到具体的行业才有可能做精，做更好的体验。</p>
-<p>　　4、免费化。SaaS化、竞争白热化、周边资源可整合、软件边际成本趋零等这些原因会使得免费的企业级应用会越来越多。</p>
-<p>　　5、合纵连横化。条件成熟，创业公司有机会崛起，BAT头巨头大举进入，在这个巨大的看似类似却又碎片化的领域，接下来我们会看到一场场合纵连横的好戏会不断上演。</p>
-<p>　　6、更普及。以前信息化系统成本很高，往往只有大企业才有能力使用，现在条件成熟，投资机构热钱及创业者的热情投入，企业级应用空前繁荣，企业无论大小都能选择一款适合自己的应用。</p>
-<p>　　涨姿势：几个概念</p>
-<p>　　企业级应用。是指为商业组织、企业服务的应用系统，业内一般称为To B类应用，用于区别对个人类的应用（To C）。</p>
-<p>　　APM是Application Performance Management &amp; Monitoring（应用性能管理 &amp; 监控）的简称，是用来监控和管理应用软件是否有效运行的，为上面据说的系统提供相关的监控。</p>
-<p>　　EIP 是Enterprise Information Portal（企业信息门户）的简称，当一公司把前面所提到的OA、进销存、财务等等系统都使用上之后，使用人员需要在各个系统之间来回切换，非常麻烦低效，于是EIP就出现了，它就是把各种应用系统统一集成到一个入口系统中，在一平台时管理各个业务。</p>
-<p>　　客服系统可以说是CRM系统的延伸，主要提供在线客服聊天、机器人客服、帮助文档、客户反馈等功能。</p>
-<p>  <a href="http://www.cnblogs.com/tuyile006/p/5776061.html" target="_blank" rel="external">原文地址</a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/10/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
@@ -928,6 +835,44 @@ public class HomePresenter implements HomeContract.Action{
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/18/Git分支管理策略/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/git/">git</a></p>
+                            <p class="item-title"><a href="/2017/04/18/Git分支管理策略/" class="title">Git分支管理策略</a></p>
+                            <p class="item-date"><time datetime="2017-04-18T03:55:47.000Z" itemprop="datePublished">2017-04-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/04/17/设计模式中类的关系/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/java/">java</a></p>
+                            <p class="item-title"><a href="/2017/04/17/设计模式中类的关系/" class="title">设计模式中类的关系</a></p>
+                            <p class="item-date"><time datetime="2017-04-17T07:28:13.000Z" itemprop="datePublished">2017-04-17</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -986,44 +931,6 @@ public class HomePresenter implements HomeContract.Action{
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/01/01/2017-01-01/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://upload-images.jianshu.io/upload_images/2075631-a8b59d0dc455078c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1080/q/50)" alt="2017.01.01" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/文字/">文字</a></p>
-                            <p class="item-title"><a href="/2017/01/01/2017-01-01/" class="title">2017.01.01</a></p>
-                            <p class="item-date"><time datetime="2017-01-01T02:32:24.000Z" itemprop="datePublished">2017-01-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/12/31/2016/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://upload-images.jianshu.io/upload_images/1026670-ccdadad29e14b198.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)" alt="2016" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/文字/">文字</a></p>
-                            <p class="item-title"><a href="/2016/12/31/2016/" class="title">2016</a></p>
-                            <p class="item-date"><time datetime="2016-12-31T10:53:55.000Z" itemprop="datePublished">2016-12-31</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1033,7 +940,7 @@ public class HomePresenter implements HomeContract.Action{
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -1042,7 +949,7 @@ public class HomePresenter implements HomeContract.Action{
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -1051,7 +958,7 @@ public class HomePresenter implements HomeContract.Action{
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -1060,7 +967,7 @@ public class HomePresenter implements HomeContract.Action{
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 13.33px;">dagger2</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/glide/" style="font-size: 16.67px;">glide</a> <a href="/tags/gradle/" style="font-size: 13.33px;">gradle</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 13.33px;">mvp</a> <a href="/tags/resume/" style="font-size: 13.33px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 10px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 13.33px;">文字</a> <a href="/tags/歌曲/" style="font-size: 13.33px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 16.67px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 13.33px;">dagger2</a> <a href="/tags/git/" style="font-size: 16.67px;">git</a> <a href="/tags/glide/" style="font-size: 16.67px;">glide</a> <a href="/tags/gradle/" style="font-size: 13.33px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 13.33px;">mvp</a> <a href="/tags/resume/" style="font-size: 13.33px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 10px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 13.33px;">文字</a> <a href="/tags/歌曲/" style="font-size: 13.33px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 16.67px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 16.67px;">设计模式</a>
         </div>
     </div>
 

@@ -145,7 +145,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                47
+                43
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -198,7 +198,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
             <section id="main">
-    <article id="post-gradle包含库出现的问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-androidstudio项目目录结构解析" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +206,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/10/21/gradle包含库出现的问题/">gradle包含库出现的问题</a>
+            <a class="article-title" href="/2016/04/10/androidstudio项目目录结构解析/">androidstudio项目目录结构解析</a>
         </h1>
     
 
@@ -215,8 +215,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/10/21/gradle包含库出现的问题/">
-            <time datetime="2016-10-21T02:41:37.000Z" itemprop="datePublished">2016-10-21</time>
+        <a href="/2016/04/10/androidstudio项目目录结构解析/">
+            <time datetime="2016-04-10T02:35:56.000Z" itemprop="datePublished">2016-04-10</time>
         </a>
     </div>
 
@@ -224,13 +224,13 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/gradle/">gradle</a>
+        <a class="article-category-link" href="/categories/android/">android</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/gradle/">gradle</a>
+        <a class="tag-link" href="/tags/android/">android</a>
     </div>
 
                     </div>
@@ -241,134 +241,31 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Error:org.gradle.api.internal.changedetection.state.DefaultFileCollectionSnapshotter$FileCollectionSnapshotImpl cannot be cast to org.gradle.api.internal.changedetection.state.OutputFilesCollectionSnapshotter$OutputFilesSnapshot<br>Possible causes for this unexpected error include:<ul><li>Gradle’s dependency cache may be corrupt (this sometimes occurs after a network connection timeout.)<br><a href="syncProject">Re-download dependencies and sync project (requires network)</a></li><li>The state of a Gradle build process (daemon) may be corrupt. Stopping all Gradle daemons may solve this problem.<br><a href="stopGradleDaemons">Stop Gradle build processes (requires restart)</a></li><li>Your project may be using a third-party plugin which is not compatible with the other plugins in the project or the version of Gradle requested by the project.</li></ul>In the case of corrupt Gradle processes, you can also try closing the IDE and then killing all Java processes.</p>
-<p> 我直接把根目录的build删除，.gradle个文件夹也删除，然后gradle文件夹里面的版本再次提升一下版本就好了 </p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/10/21/gradle包含库出现的问题/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-Vuforia知识" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/10/20/Vuforia知识/">Vuforia知识</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/10/20/Vuforia知识/">
-            <time datetime="2016-10-20T02:21:47.000Z" itemprop="datePublished">2016-10-20</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/vuforia/">vuforia</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/vuforia/">vuforia</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p>Vuforia示例应用提供了九种应用展示，介绍主要特点和表现出基本功能</p>
+            <p>首先先上图<br><img src="http://ww1.sinaimg.cn/mw690/005zrb37gw1f9mtxo22gnj30bj0kngo7.jpg" alt="此处输入图片的描述"></p>
+<p>大家看到的是android studio 创建的项目清单【图方便，就用完整的项目来做示例 - - 】<br>app/build app模块build编译输出的目录( 关于上传svn或github需要忽略的文件待会说明)<br>app/build.gradle (主要配置 编译sdk版本、编译工具    、包名、sdk最低支持版本、目标sdk版本、app版本号、app版本名称、ndk等等)<br>app/app.iml app模块的配置文件(Intellij模块文件，很重要但是基本不用管，大家都知道Intellij是AndroidStudio的亲妈的嘛，所以有这个文件是正常的)<br>app/proguard-rules.pro app模块proguard文件(混淆配置文件,主要用于打包签名apk配置混淆代码[是否混淆是可选的])<br>build.gradle 项目的build.gradle编译文件，主要就是申明仓库地址和版本号<br>settings.gradle定义项目包含哪些模块[指引用了哪些外库]<br>local.properties 配置SDK/NDK<br>nearby.iml 项目的配置文件<br>External Libraries 项目依赖的Lib, 编译时自动下载的</p>
+<blockquote>
+<p>AndroidStudio自动忽略</p>
 </blockquote>
-<p><strong>Image Targets （图像目标）</strong></p>
-<p> 图像目标示例显示如何检测图像的目标和渲染在它上面的一个简单的3D对象。主要功能包括：</p>
-<ol>
-<li>同时检测和多目标跟踪</li>
-<li>加载和激活多个设备中的数据</li>
-<li>激活扩展跟踪器</li>
-<li>管理相机功能：闪灯光和连续自动对焦</li>
-</ol>
-<p><strong>Cylinder Targets(圆柱跟踪)</strong><br>筒形靶样品显示了如何检测的圆筒形靶和围绕圆柱体的圆周运动3D对象。主要功能包括：</p>
-<ol>
-<li>检测气缸目标和跟踪</li>
-<li>遮挡处理</li>
-<li>激活扩展跟踪</li>
-<li>管理相机功能：闪灯光和连续自动对焦</li>
-</ol>
-<p><strong>Multi Targets(多目标)</strong><br> 多目标的示例显示了如何检测一个简单的长方体形状的三维动画和周边形状的3D对象。主要功能包括：</p>
-<ol>
-<li>检测与长方体形状的3D跟踪</li>
-<li>遮挡处理</li>
-<li>激活扩展跟踪</li>
-<li>管理相机功能：山灯光和连续自动对焦</li>
-</ol>
-<p><strong>User Defined Targets(用户自定义目标)</strong><br>用户定义的目标示例显示了如何捕获和从用户选择的摄像机的视频帧运行时创建一个图像的目标。包括主要功能：</p>
-<ol>
-<li>创建和管理用户的定义的图像目标</li>
-<li>激活扩展跟踪</li>
-<li>管理相机功能：闪灯光和连续自动对焦</li>
-</ol>
-<p><strong>Smart Terrain(智能地形)</strong><br> 智能地形示例应用程序演示了如何在一个目标让聪明的地形和使用重建网格渲染的内容。主要包括功能：</p>
-<ol>
-<li>从已知的目标初始化</li>
-<li>扫描表面找对象</li>
-<li>在主要绘制网格</li>
-<li>上主表面中找到的对象的渲染的箱</li>
-</ol>
-<p><strong>Cloud Recognition(云识别)</strong><br> 云Reco的示例显示了如何使用云识别服务识别位于云数据库的目标。 主要功能包括：</p>
-<ol>
-<li>管理检测基于云的图像目标跟踪</li>
-<li>激活扩展跟踪</li>
-<li>管理相机功能：闪光灯和连续自动对焦</li>
-</ol>
-<p><strong>Text Recognition (文字识别)</strong><br> 文本识别样本显示在相机画面的指定区域内的动态识别英语单词。 主要功能包括</p>
-<ol>
-<li>检测的英语单词和跟踪包含在默认的文字列表</li>
-<li>管理相机功能：闪光灯 </li>
-</ol>
-<p><strong>Frame Markers(帧标记)</strong><br> 帧标记示例演示如何检测帧标记，并呈现在上面一个简单的3D对象。 主要功能包括：</p>
-<ol>
-<li>检测和多帧标记追踪 </li>
-<li>管理相机功能：闪光灯和连续自动对焦</li>
-</ol>
-<p><strong>Virtual Button(虚拟按键)</strong><br> 虚弥按钮示例显示了如何开发人员可以在触发时间触及或闭塞得摄像机视图时，图像的目标定义的矩形区域。样品呈现，当虚拟按钮中的一个被触发改变的颜色的3D对象。主要功能包括：</p>
-<ol>
-<li>按钮遮挡事件处理</li>
-<li>多个虚拟按钮激活</li>
-<li>管理相机功能：闪光灯和连续自动对焦</li>
-</ol>
+<pre><code>现在的AndroidStudio已经很智能了，当创建项目的时候自动给我们创建了一个
+上传svn或git需要忽略的文件如下：
+.gitignore 并给我们忽略了一些文件
 
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
+手动忽略
+1、.idea文件
+2、.gradle文件夹
+3、所有的build文件夹
+4、所有的.iml文件
+5、local.properties文件
+</code></pre>
         
         </div>
         <footer class="article-footer">
@@ -380,7 +277,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
     
-        <a href="http://www.nearby.ren/2016/10/20/Vuforia知识/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/04/10/androidstudio项目目录结构解析/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -390,7 +287,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
 
 
-    <article id="post-淘汰" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -398,7 +295,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/07/17/淘汰/">淘汰</a>
+            <a class="article-title" href="/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存</a>
         </h1>
     
 
@@ -407,24 +304,14 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/07/17/淘汰/">
-            <time datetime="2016-07-17T01:24:27.000Z" itemprop="datePublished">2016-07-17</time>
+        <a href="/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">
+            <time datetime="2016-03-28T01:37:48.000Z" itemprop="datePublished">2016-03-28</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/文字/">文字</a>
-    </div>
-
                         
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/歌曲/">歌曲</a>
-    </div>
-
                     </div>
                 
             </header>
@@ -433,13 +320,51 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>陈奕迅 - 淘汰<br>曲 : 周杰伦 词：周杰伦</p>
-<p>我说了 所有的谎<br>你全都相信<br>简单的 我爱你<br>你却老不信<br>你书里的剧情<br>我不想上演<br>因为我喜欢 喜剧收尾</p>
-<p>我试过 完美放弃<br>的确很踏实<br>醒来了<br>梦散了<br>你我都走散了<br>情歌歌词何必押韵<br>就算我是K歌之王<br>也不见得把 爱情唱得完美</p>
-<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
-<p>我试过完美放弃<br>的确很踏实<br>醒来了<br>梦散了<br>你我都走散了<br>情歌歌词何必押韵<br>就算我是K歌之王<br>也不见得把 爱情唱得完美</p>
-<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
-<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
+            <p> 　自2014年以来，SaaS、CRM、OA、ERP、HR、APM、进销存、财务系统等，这些名词大量出现在微信朋友圈、电视楼宇广告和千百万融资资讯中。它们到底是什么意思？相互之间又有什么区别？在这个飞速发展的互联网时代，再不知道这些可就OUT了！</p>
+<p>　　SaaS、CRM、OA、ERP、HR、进销存究竟是什么？<br>　　<img src="http://img.mp.itc.cn/upload/20160409/7daac8961ba14a06af4f77edb2889702_th.jpg?_=5776061" alt="此处输入图片的描述"><br>SaaS模式就像用自来水</p>
+<p>　　2015年被媒体和IT从业人员称为SaaS元年。什么是SaaS呢？SaaS是Software-as-a-Service（软件即服务）的简称，“软件即服务”，简单理解也就是“按需租用别人提供的软件服务”，它是一种软件交付模式。SaaS这个说法是区别于以往软件购买和交付方式而提出的。</p>
+<p>　　在以往，如果你的公司需要使用一款软件来管理财务记账，作为公司管理者，你需要向软件提供公司说明需求、支付购买软件的费用并提供安装软件的硬件环境，然后软件公司就会上门安装调试软件，调试完后就可以正式投入使用了。</p>
+<p>　　这里有一个很显著的特点是，软件都安装在你指定的地方，你拥有100%的管控权，相应的，你后续还需要继续投入人员和资源来维护系统的正常运行。</p>
+<p>　　SaaS的模式就不一样了，在客户还没有到来之前，软件提供公司就自己提服务器、数据库等硬件，把软件安装发布好，这样作为软件使用方的你就变得轻松很多，一上来就可以直接进行体验，体验之后，你觉得哪些功能合适你的，就挑选出来，按月支付比较低廉的费用就可以正式使用了。后续的升级、维护也由软件公司负责。简而言之，SaaS模式就是软件提供公司事先把所有的软件相关工作都归类准备好了，用户直接过来挑选自己需要的用就OK了。</p>
+<p>　　业内有一个很恰当的比喻：一开始的时候，各家都是自己挖井抽水蓄水，挖井抽水蓄水的技术是有专业的公司提供，但总的来说喝水这个事情是自家管自家的，这是传统软件的供水模式。在SaaS模式下，挖井抽水蓄水净水修水管这些工作对使用方来说都是透明的，你有需要的时候就打开水龙头取水就OK了，然后每月自来水公司会过来跟你结算。同样的，优缺点很明显，优点是按需用水省事了，成本变低了，缺点是水由水务公司完全控制，供水稳定性、供水质量取决于水务公司实力。</p>
+<p>　　CRM是什么呢？追踪客户的</p>
+<p>　　CRM是英文Customer Relationship Management （客户关系管理）的简称。这个比较好理解，就是用来管理客户的。</p>
+<p>　　一般来说，CRM客户管理系统由客户信息管理、销售过程自动化（SFA）、营销自动化（MA）、客户服务与支持（CSS）管理、客户分析（CA）系统这5大主要功能模块组成。</p>
+<p>　　通俗一点说，CRM系统特别是移动CRM系统能帮助你及你的同事很方便地记录客户信息、跟踪分析新老客户、挖掘潜在客户。</p>
+<p>　　OA是什么呢？管办公室活动的</p>
+<p>　　OA是Office Automation（办公自动化）的简称，本来OA涵盖的范围非常广泛，基本上所有和办公相关的系统都可以称作是OA，但现在大都数公司都把OA系统定义为企业内部的协作沟通系统，一般提供的功能有流程审批（请假报销等）、即时沟通、文档管理、内部论坛、任务管理、会议管理、通讯录、问卷调查等。</p>
+<p>　　ERP是什么呢？生产制造一条龙全包</p>
+<p>　　ERP是Enterprise Resource Planning（企业资源计划）的简称，从字面上理解，各企业的资源、计划相关的管理都可以算在ERP的范畴里，比如员工、生产、制造、财务、销售、采购、仓储、分销、质量等等，只要是用于企业管理的软件都属于ERP的范畴。由于越来越多的细分系统的出现，行业内人们为了做区分，一般把功能比较全面（往往包含从原料到生产到仓储到销售一系列）的偏生产制造的管理系统才定义为ERP系统，而其中某项细分功能的系统虽然原则上属于ERP，但一般不称为ERP。</p>
+<p>　　HR软件是什么？管员工的</p>
+<p>　　HR软件是human resource software（人力资源软件）的简称，就是用来管理人事相关的系统，比如招聘管理、职工管理、劳动合同、奖惩管理、办公用品、培训管理、绩效管理、考勤管理、社保管理等。</p>
+<p>　　什么是进销存？</p>
+<p>　　进销存是指企业管理过程中采购（进货）→入库（库存）→销售（销货）的三个管理过程。这三个过程是一般企业特别是中小商户的核心经营过程，用来管理这三个过程的系统就是进销存系统，简称进销存。</p>
+<p>　　什么是财务系统？</p>
+<p>　　财务系统是指专门用于完成会计工作的管理系统。财务系统一般包含：总账管理、固定资产管理、资金管理、客户及应收应付管理、报表管理、财务分析、核算系统等。</p>
+<p>　　SaaS、CRM、OA、ERP、HR、进销存、财务系统的区别在哪里？</p>
+<p>　　SaaS是一种软件交付（交易）模式，以这种“按需租用”模式提供服务的软件称为SaaS，目前大部分的软件都采取这种模式，也就是说大部分的OA、ERP、HR、进销存、财务系统都可以叫作SaaS软件。由于ERP系统覆盖的链条很长，一般需要深度定制，所以比较少是以SaaS提供的。</p>
+<p>　　现在的CRM、OA、HR、进销存、财务系统一般都以SaaS方式提供，CRM更专注于销售方面的管理，OA更专注于企业内部的协作沟通，HR更专注于人力管理，进销存专注于仓库相关的管理、财务系统专注资产、预算相关的管理。</p>
+<p>　　由于它们涉及到企业不同时间段、不同角色、不同业务等各个方面，同时也因为各企业的规模、经营方式几乎完全不同，所以目前没有哪一款产品能囊括CRM、OA、HR、进销存等这些功能，目前市面上的产品能还处于在自己专注的领域深耕发展的阶段。</p>
+<p>　　当然为了更快地拉开同竞争对手的差距，它们往往选择开放相互对接的方式，比较钉钉这些OA系统就提供了开放平台，用于对接进销存、财务系统。</p>
+<p>　　CRM、OA、ERP、HR、进销存、财务系统目前有哪些代表产品？</p>
+<p>　　CRM的标杆是美国的Salesforce，国内有纷享逍客、销售易、红圈营销、八百客等。</p>
+<p>　　OA在国内有钉钉、云之家、今目标、微信企业号、企业微信（即将上线）这几个产品，有很多稍微大一点的企业内部会自建OA系统，等内部使用实施成熟后也会开放出来供外部使用。</p>
+<p>　　ERP和财务系统，素来有“南金蝶北用友”之称，这两家拿下中国大部分市场份额，SAP则是全球最成功是ERP厂商，据称85%的世界500强公司都有使用SAP系统，但这套系统非常昂贵非常复杂，不适用于中小企业。</p>
+<p>　　HR。有北森、dayHR、金柚等，由于单纯的HR系统很容易被OA或进销存击穿，现在的HR往往做得非常深，人才评测、招聘等都会涉及。</p>
+<p>　　进销存系统，有管家婆、智慧记、云销城、秦丝生意通等，在采购、销售、库存这三个最核心的管理环节需求会非常强烈，但对于操作速度要求很高，一般软件很难满足，所以目前来说进销存的普及率还不到8%。</p>
+<p>　　2016年CRM、OA、ERP、HR、进销存、财务系统的趋势是怎么样的？</p>
+<p>　　1、SaaS化。对于提供方而言标准化的SaaS产品更具有爆发性，对于消费方而言SaaS具有低成本、随时随地接入访问这些特性，再加上IT基础设施、安全技术等方面的成熟，SaaS将成为以后最主要的软件模式。</p>
+<p>　　2、移动化。金蝶创始人徐少春在发布云之家的时候，把笔记本直接扔进垃圾桶了，说以后只使用手机办公，这虽然是一个噱头，但确实说明移动办公是个大趋势。</p>
+<p>　　3、垂直化。前面说过，不同规模、不同阶段、不同行业的企业对企业应用的需求千差万别，企业内部中不同岗位、不同时段、不同职别的员工对企业应用的需求同样也千差万别，往往需要垂直细分到具体的行业才有可能做精，做更好的体验。</p>
+<p>　　4、免费化。SaaS化、竞争白热化、周边资源可整合、软件边际成本趋零等这些原因会使得免费的企业级应用会越来越多。</p>
+<p>　　5、合纵连横化。条件成熟，创业公司有机会崛起，BAT头巨头大举进入，在这个巨大的看似类似却又碎片化的领域，接下来我们会看到一场场合纵连横的好戏会不断上演。</p>
+<p>　　6、更普及。以前信息化系统成本很高，往往只有大企业才有能力使用，现在条件成熟，投资机构热钱及创业者的热情投入，企业级应用空前繁荣，企业无论大小都能选择一款适合自己的应用。</p>
+<p>　　涨姿势：几个概念</p>
+<p>　　企业级应用。是指为商业组织、企业服务的应用系统，业内一般称为To B类应用，用于区别对个人类的应用（To C）。</p>
+<p>　　APM是Application Performance Management &amp; Monitoring（应用性能管理 &amp; 监控）的简称，是用来监控和管理应用软件是否有效运行的，为上面据说的系统提供相关的监控。</p>
+<p>　　EIP 是Enterprise Information Portal（企业信息门户）的简称，当一公司把前面所提到的OA、进销存、财务等等系统都使用上之后，使用人员需要在各个系统之间来回切换，非常麻烦低效，于是EIP就出现了，它就是把各种应用系统统一集成到一个入口系统中，在一平台时管理各个业务。</p>
+<p>　　客服系统可以说是CRM系统的延伸，主要提供在线客服聊天、机器人客服、帮助文档、客户反馈等功能。</p>
+<p>  <a href="http://www.cnblogs.com/tuyile006/p/5776061.html" target="_blank" rel="external">原文地址</a></p>
 
         
         </div>
@@ -452,7 +377,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
     
-        <a href="http://www.nearby.ren/2016/07/17/淘汰/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -462,7 +387,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
 
 
-    <article id="post-Android之Lru算法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-swiftype账号与教程" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -470,7 +395,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/06/18/Android之Lru算法/">Android之Lru算法</a>
+            <a class="article-title" href="/2016/03/21/swiftype账号与教程/">swiftype账号与教程</a>
         </h1>
     
 
@@ -479,24 +404,14 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/06/18/Android之Lru算法/">
-            <time datetime="2016-06-18T12:45:21.000Z" itemprop="datePublished">2016-06-18</time>
+        <a href="/2016/03/21/swiftype账号与教程/">
+            <time datetime="2016-03-21T08:14:55.000Z" itemprop="datePublished">2016-03-21</time>
         </a>
     </div>
 
 
                         
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
                         
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
-    </div>
-
                     </div>
                 
             </header>
@@ -505,138 +420,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Lru：</p>
-<p>   LRU是Least Recently Used 的缩写，翻译过来就是“最近最少使用”，LRU缓存就是使用这种原理实现，简单的说就是缓存一定量的数据，当超过设定的阈值时就把一些过期的数据删除掉，比如我们缓存10000条数据，当数据小于10000时可以随意添加，当超过10000时就需要把新的数据添加进来，同时要把过期数据删除，以确保我们最大缓存10000条，那怎么确定删除哪条过期数据呢，采用LRU算法实现的话就是将最老的数据删掉。</p>
-<p> 1.）初始化MemoryCache</p>
-<p>  这里内存缓存的是Drawable 而不是Bitmap 理由是Drawable相对Bitmap来说有很大的内存优势<br>  int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小<br>  int mCacheSize = maxMemory / 8;//设置图片内存缓存占用八分之一<br>  mMemoryCache = new LruCache<string, drawable="">(mCacheSize) {<br>  //必须重写此方法，来测量Bitmap的大小<br>  @Override<br>  protected int sizeOf(String key, Drawable value) {<br>  　　if (value instanceof BitmapDrawable) {<br>  　　　　Bitmap bitmap = ((BitmapDrawable) value).getBitmap();<br>  　　　　return bitmap == null ? 0 : bitmap.getByteCount();<br>　　　}<br>　　　return super.sizeOf(key, value);<br>            }<br>        };</string,></p>
-<p>2.）添加一个Drawable到内存缓存<br>    /**</p>
-<pre><code> * 添加Drawable到内存缓存
- *
- * @param key
- * @param drawable
- */
-private void addDrawableToMemoryCache(String key, Drawable drawable) {
-    if (getDrawableFromMemCache(key) == null &amp;&amp; drawable != null) {
-        mMemoryCache.put(key, drawable);
-    }
-}
-</code></pre><p>3.）从内存缓存中获取一个Drawable</p>
-<pre><code>/**
- * 从内存缓存中获取一个Drawable
- *
- * @param key
- * @return
- */
-public Drawable getDrawableFromMemCache(String key) {
-    return mMemoryCache.get(key);
-}
-</code></pre><p>4.）从内存缓存中移除一个Drawable</p>
-<p>   /**</p>
-<pre><code> * 从内存缓存中移除
- *
- * @param key
- */
-public void removeCacheFromMemory(String key) {
-    mMemoryCache.remove(key);
-}
-</code></pre><p>5.）清空内存缓存</p>
-<pre><code>/**
- * 清理内存缓存
- */
-public void cleanMemoryCCache() {
-    mMemoryCache.evictAll();
-}
-</code></pre><p>其实Lru缓存机制本质上就是存储在一个LinkedHashMap存储，为了保障插入的数据顺序，方便清理。</p>
-<p>基于DiskLruCache实现磁盘缓存：</p>
-<p>   DiskLruCache类并不是谷歌官方实现，需要自行下载，下载地址：<a href="https://github.com/JakeWharton/DiskLruCache" target="_blank" rel="external">https://github.com/JakeWharton/DiskLruCache</a></p>
-<p>  1.）初始化DiskLruCache</p>
-<pre><code>File cacheDir = context.getCacheDir();//指定的是数据的缓存地址
- long diskCacheSize = 1024 * 1024 * 30;//最多可以缓存多少字节的数据
- int appVersion = DiskLruUtils.getAppVersion(context);//指定当前应用程序的版本号
- int valueCount = 1;//指定同一个key可以对应多少个缓存文件
- try {
-     mDiskCache = DiskLruCache.open(cacheDir, appVersion, valueCount, diskCacheSize);
- } catch (Exception ex) {
- }
-</code></pre><p>2.）写入一个文件到磁盘缓存</p>
-<pre><code>/**
- * 添加Bitmap到磁盘缓存
- *
- * @param key
- * @param value
- */
-private void addBitmapToDiskCache(String key, byte[] value) {
-    OutputStream out = null;
-    try {
-        DiskLruCache.Editor editor = mDiskCache.edit(key);
-        if (editor != null) {
-            out = editor.newOutputStream(0);
-            if (value != null &amp;&amp; value.length &gt; 0) {
-                out.write(value);
-                out.flush();
-                editor.commit();
-            } else {
-                editor.abort();
-            }
-        }
-        mDiskCache.flush();
-    } catch (IOException e) {
-        e.printStackTrace();
-    } finally {
-        DiskLruUtils.closeQuietly(out);
-    }
-}
-</code></pre><p>3.）从磁盘缓存中读取Drawable</p>
-<pre><code>/**
- * 从磁盘缓存中获取一个Drawable
- *
- * @param key
- * @return
- */
-public Drawable getDrawableFromDiskCache(String key) {
-    try {
-        DiskLruCache.Snapshot snapShot = mDiskCache.get(key);
-        if (snapShot != null) {
-            InputStream is = snapShot.getInputStream(0);
-            Bitmap bitmap = BitmapFactory.decodeStream(is);
-            Drawable drawable = DiskLruUtils.bitmap2Drawable(bitmap);
-            //从磁盘中读取到之后 加入内存缓存
-            addDrawableToMemoryCache(key, drawable);
-            return drawable;
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    return null;
-}
-</code></pre><p>4.）从磁盘缓存中移除</p>
-<pre><code>/**
- * 从磁盘缓存中移除
- *
- * @param key
- */
-public void removeCacheFromDisk(String key) {
-    try {
-        mDiskCache.remove(key);
-    } catch (Exception e) {
-    }
-}
-</code></pre><p>5.）清空磁盘缓存</p>
-<pre><code>/**
- * 清理磁盘缓存
- */
-public void cleanDiskCache() {
-    try {
-        mDiskCache.delete();
-    } catch (Exception e) {
-    }
-}
-</code></pre><p>图片下载过程：</p>
-<p>   接下来实例中用到了一点RxJava的知识有不了解RxJava的请自行了解一下。</p>
-<p>  1.）采用异步方式操作磁盘缓存和网络下载， 内存缓存可以在主线程中操作</p>
-<p>   public void disPlay(final ImageView imageView, String imageUrl) {<br>        //生成唯一key<br>        final String key = DiskLruUtils.hashKeyForDisk(imageUrl);<br>        //先从内存中读取<br>        Drawable drawableFromMemCache = getDrawableFromMemCache(key);<br>        if (drawableFromMemCache != null) {<br>            imageView.setImageDrawable(drawableFromMemCache);<br>            return;<br>        }<br>        Observable.just(imageUrl)<br>                .map(new Func1<string, drawable="">() {<br>                    @Override<br>                    public Drawable call(String imageUrl) { // 参数类型 String<br>                        //从磁盘中读取<br>                        Drawable drawableFromDiskCache = getDrawableFromDiskCache(key);<br>                        if (drawableFromDiskCache != null) {<br>                            return drawableFromDiskCache;<br>                        }<br>                        //网络下载<br>                        return download(imageUrl); // 返回类型 Drawable<br>                    }<br>                })<br>                .subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程<br>                .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程<br>                .subscribe(new Action1<drawable>() {<br>                    @Override<br>                    public void call(Drawable drawable) { // 参数类型 Drawable<br>                        imageView.setImageDrawable(drawable);<br>                    }<br>                });<br>    }</drawable></string,></p>
-<p>2.）下载图片过程以及处理</p>
-<p> private Drawable download(String imageUrl) {<br>        HttpURLConnection urlConnection = null;<br>        ByteArrayOutputStream bos = null;<br>        InputStream ins = null;<br>        try {<br>            final URL url = new URL(imageUrl);<br>            urlConnection = (HttpURLConnection) url.openConnection();<br>            ins = urlConnection.getInputStream();<br>            bos = new ByteArrayOutputStream();<br>            int b;<br>            while ((b = ins.read()) != -1) {<br>                bos.write(b);<br>            }<br>            bos.flush();<br>            byte[] bytes = bos.toByteArray();<br>            Bitmap bitmap = DiskLruUtils.bytes2Bitmap(bytes);<br>            String key = DiskLruUtils.hashKeyForDisk(imageUrl);<br>            Drawable drawable = DiskLruUtils.bitmap2Drawable(bitmap);<br>            //加入内存缓存<br>            addDrawableToMemoryCache(key, drawable);<br>            //加入磁盘缓存<br>            addBitmapToDiskCache(key, bytes);<br>            return drawable;<br>        } catch (IOException e) {<br>            e.printStackTrace();<br>        } finally {<br>            if (urlConnection != null) {<br>                urlConnection.disconnect();<br>            }<br>            DiskLruUtils.closeQuietly(bos);<br>            DiskLruUtils.closeQuietly(ins);<br>        }<br>        return null;<br>    }</p>
+            <p>　<br>首先，老一套的要去swiftype的网站<a href="https://swiftype.com注册一个账号，然后根据指引建立好自己网站对应的索引。" target="_blank" rel="external">https://swiftype.com注册一个账号，然后根据指引建立好自己网站对应的索引。</a><br>对了有人说注册以后是30天试用，这个没关系，网站给的是30天高级账户的使用<br>（那种有可以建立多个搜索引擎、多账户共同管理、一个引擎index多个域名的功能的账户），<br>30天到期后你可选择花钱继续用这个高级账户（土豪自便），或者选择降级成为免费的账户类型，<br>也就是我现在用的那种，所以，不用担心。<br>登陆后会自动切换到dashboard，一开始会有什么welcome to swiftype，不用搭理直接close即可。<br>然后下面的Create an engine选项便出现了，点吧，如图所示：</p>
+<p><a href="https://github.com/ppoffice/hexo-theme-icarus/wiki/Search" target="_blank" rel="external">https://github.com/ppoffice/hexo-theme-icarus/wiki/Search</a><br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/1.jpg" alt="此处输入图片的描述"><br>然后到下一步，给你的网站建立一个索引：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/2.jpg" alt="此处输入图片的描述"><br>接着让你输入网址，写吧：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/3.jpg" alt="此处输入图片的描述"><br>然后让你起个名字，起吧：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/4.jpg" alt="此处输入图片的描述"><br>然后他开始抓取你网站的数据，等等吧：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/5.jpg" alt="此处输入图片的描述"><br>抓好之后你的dashboard会变成这个样子：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/6.jpg" alt="此处输入图片的描述"><br>可以点进去看看抓了些什么数据：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/7.jpg" alt="此处输入图片的描述"><br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/8.jpg" alt="此处输入图片的描述"><br>最后点击菜单的右边 interface 下的 install serarch<br>复制出key 即可。<br>然后打开 icarus配置搜索引擎的教程按教程即可<br><a href="https://github.com/ppoffice/hexo-theme-icarus/wiki/Search" target="_blank" rel="external">https://github.com/ppoffice/hexo-theme-icarus/wiki/Search</a></p>
 
         
         </div>
@@ -649,7 +434,7 @@ public void cleanDiskCache() {
 
             
     
-        <a href="http://www.nearby.ren/2016/06/18/Android之Lru算法/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/03/21/swiftype账号与教程/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -659,7 +444,7 @@ public void cleanDiskCache() {
 
 
 
-    <article id="post-Android之Glide缓存" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-android开发的经验教训" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -667,7 +452,7 @@ public void cleanDiskCache() {
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/06/17/Android之Glide缓存/">Android之Glide缓存</a>
+            <a class="article-title" href="/2016/03/11/android开发的经验教训/">android开发的经验教训</a>
         </h1>
     
 
@@ -676,8 +461,8 @@ public void cleanDiskCache() {
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/06/17/Android之Glide缓存/">
-            <time datetime="2016-06-17T12:31:28.000Z" itemprop="datePublished">2016-06-17</time>
+        <a href="/2016/03/11/android开发的经验教训/">
+            <time datetime="2016-03-11T02:19:45.000Z" itemprop="datePublished">2016-03-11</time>
         </a>
     </div>
 
@@ -691,7 +476,7 @@ public void cleanDiskCache() {
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
+        <a class="tag-link" href="/tags/android/">android</a>
     </div>
 
                     </div>
@@ -702,89 +487,79 @@ public void cleanDiskCache() {
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p><strong>GlideModule使用</strong>：<br>　　GlideModule 是一个抽象方法，全局改变 Glide 行为的一个方式，通过全局GlideModule 配置Glide，用GlideBuilder设置选项，用Glide注册ModelLoader等。</p>
-<ol>
-<li><p>自定义一个GlideModule<br>public class MyGlideModule implements GlideModule {<br>@Override public void applyOptions (Context context, GlideBuilder builder){</p>
-<p>　　}<br>}<br>@Override public void registerComponents(Context context, Glide glide){</p>
-<p>　　}<br>}</p>
+            <ol>
+<li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
 </li>
-<li><p>&lt; mainfest …&gt;<br>　　&lt; application …&gt;<br>　　 　　&lt; meta-date<br>　　　　　android:name=”com.mypackage.MyGlideModule”<br>　　　　　android:value=”GlideModule” /&gt;<br>　　　&lt; / application&gt;<br>　&lt; / manifest&gt;</p>
+<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="external">就不要绘制它！</a></p>
 </li>
-<li><p>添加混淆处理<br>　　-keepnames class com.mypackage.MyGlideModule<br>　　# or more generally:<br>　　#-keep public class * implements com.bumptech.glide.module.GlideModule</p>
+<li><p>除非真的需要，否则别使用数据库；</p>
 </li>
-<li><p>多个GlideModule冲突问题<br>　　GlideModule不能指定调用顺序，所以应该避免不同的GlideModule之间有冲突的选项设置，可以考虑将所有的设置都放到一个GlideModule里面，或者排除掉某个manifest文件的某个Module，代码如下：<br>&lt; meta-data android:name=”com.mypackage.MyGlideModule” tools:node=”remove” / &gt;</p>
+<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="external">multidexing 可以拯救你</a>;</p>
+</li>
+<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
+</li>
+<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a> 可能是现在最佳的网络请求库；</p>
+</li>
+<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="external">Retrolambda</a>来简化你的代码；</p>
+</li>
+<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
+</li>
+<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
+</li>
+<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">包名按照功能来，而不是按分层来</a>;</p>
+</li>
+<li><p>把所有东西都移到 application thread之外；</p>
+</li>
+<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="external">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
+</li>
+<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">可能</a>的方式去加速它；</p>
+</li>
+<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">profile reports</a>，以便知道什么占据了编译时间；</p>
+</li>
+<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="external">有名的</a> 架构；</p>
+</li>
+<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="external">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
+</li>
+<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="external">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
+</li>
+<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="external">fragmented podcast</a> 将会让你受益；</p>
+</li>
+<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="external">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
+</li>
+<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="external">恰当的</a>输入类型；</p>
+</li>
+<li><p>Use analytics to find usage patterns and isolate bugs;</p>
+</li>
+<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="external">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="external">dryrun</a> 来快速查看它们的的效果）</p>
+</li>
+<li><p>你的service应该做你所需的事情，并且尽快死去；</p>
+</li>
+<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="external">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
+</li>
+<li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
+</li>
+<li><p>不要运行自己的CIserver，维护server是费时的事情，因为磁盘空间，安全问题，更新server以防止SSL攻击等等原因。使用circleci, travis 或者 shippable, 它们便宜，而且你也可以少担心一些事情；</p>
+</li>
+<li><p>Automate your deployments to the playstore;</p>
+</li>
+<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">proguard</a> ）；</p>
+</li>
+<li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
+</li>
+<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="external">考虑用SVG来替代PNG</a> ；</p>
+</li>
+<li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
+</li>
+<li><p>监控你的连接情况以及连接类型（wifi之下更新更多数据？）；</p>
+</li>
+<li><p>监控你的电源和电量（在充电的时候更新更多的数据？电量低的时候暂停更新？）；</p>
+</li>
+<li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
+</li>
+<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="external">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
 </li>
 </ol>
-<p><strong>GlideBuilder设置选项：</strong></p>
-<ol>
-<li>设置Glide内存缓存大小<br>　　int maxMemory = (int)Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小<br>int memoryCacheSize = maxMemory / 8 ;//设置图片内存缓存占用八分之一<br>//设置缓存大小<br>builder.setMemoryCache(new LruResourceCache(memoryCacheSize));</li>
-</ol>
-<p>　获取默认的内存使用计算函数<br>　MemorySizeCalculator calculator = new MemorySizeCalcylator(context);<br>　int defauleMemoryCacheSize = calculator.getMemoryCacheSize();<br>　int defaultBitmapPoolSize = calculator.getBitmapPoolSize();
-　</p>
-<ol>
-<li><p>设置Glide磁盘缓存大小<br>　　File cacheDir = context.getExternalCacheDir();//指定的是数据缓存地址<br>　　int disCacheSize = 1024 <em> 1024 </em>30 ;//最多可以缓存多少字节的数据<br>　　//设置磁盘缓存大小<br>　　builder.setDiskCache(new DiskLruCacheFactory(cacheDir.getPath(),”glide”,diskCacheSize));<br>也可以通过如下两种方式<br>//存放在data/data/xxxx/cache/<br>builder.setDiskCache(new InternalCacheDiskCacheFactory(context, “glide”, diskCacheSize));<br>//存放在外置文件浏览器<br>builder.setDiskCache(new ExternalCacheDiskCacheFactory(context, “glide”, diskCacheSize));</p>
-</li>
-<li><p>设置图片解码格式<br>//设置图片解码格式<br>builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);</p>
-</li>
-<li><p>设置缓存内存大小<br>//设置BitmapPool缓存内存大小<br>builder.setBitmapPool(new LruBitmapPool(memoryCacheSize));</p>
-</li>
-</ol>
-<ol>
-<li>设置一个用来检索cache中没有的Resource的ExecutorService<br>为了使缩略图请求正确工作，实现类必须把请求根据Priority优先级排好序。<br>builder.setDiskCacheService(ExecutorService service);<br>builder.setResizeService(ExecutorService service);</li>
-</ol>
-<p><strong>使用ModelLoader自定义数据源</strong>：<br>例如我们使用了七牛云存储，要根据不同的要求请求不同尺寸不同质量的图片，这时我们就可以使用自定义数据源</p>
-<ol>
-<li>定义处理URL接口</li>
-</ol>
-<p>public interface IDataModel {</p>
-<p>　　String buildDataModelUrl (int width , int height );</p>
-<p>}</p>
-<ol>
-<li><p>实现处理URL接口</p>
-<p>public class JpgDataModel implements IDataModel {</p>
-<p>　　private String dataModelUrl ;</p>
-<p>　　public JpgDataModel (String dataModelUrl){<br>　　<br>　　 　　this.dataModelUrl = dataModelUrl;</p>
-</li>
-</ol>
-<p>　　}</p>
-<p>　　@Override<br>　　public String buildDataModelUrl(int width , int height ){</p>
-<p> 　　 　　return String.format(<br>  　　 　　“%s?imageView2/1/w/%d/h/%d/format/jpg”,<br>  　　 　　dataModelUrl, width, height);<br> 　　 　　} 　　<br> 　　}    </p>
-<p>  public class WebpDataModel implements IDataModel {</p>
-<p> 　　private String dataModelUrl ;</p>
-<p> 　　public WebpDataModel (String dataModelUrl){<br> 　　<br>  　　 　　this.dataModelUrl = dataModelUrl;</p>
-<p>　　}</p>
-<p>　　@Override<br>　　public String buildDataModelUrl(int width , int height ){</p>
-<p> 　　 　　return String.format(<br>  　　 　　“%s?imageView2/1/w/%d/h/%d/format/webp”,<br>  　　 　　dataModelUrl, width, height);<br> 　　 　　} 　　<br> 　　}    </p>
-<ol>
-<li><p>实现ModelLoader</p>
-<p>public class MyDataLoader extends BaseGlideUrlLoader<idatamodel> {<br> public MyDataLoader(Context context) {</idatamodel></p>
-<p> 　super(context);</p>
-<p>}</p>
-<p>public MyDataLoader(ModelLoader<glideurl, inputstream=""> urlLoader) {</glideurl,></p>
-<p>　super(urlLoader, null);</p>
-<p>}</p>
-<p>@Override<br>protected String getUrl(IDataModel model, int width, int height) {<br>　<br>　　return model.buildDataModelUrl(width, height);</p>
-<p>}</p>
-<p>/<em>*
- </em>/<br>public static class Factory implements ModelLoaderFactory<idatamodel, inputstream=""> {<br>　 @Override<br>　 public ModelLoader<idatamodel, inputstream=""> build(Context context, GenericLoaderFactory factories) {<br>　　<br>　　return new MyDataLoader(factories.buildModelLoader(GlideUrl.class, InputStream.class));<br>　<br>　　　}<br>　　@Override<br>　　public void teardown() {<br>　　}<br>　}<br>}</idatamodel,></idatamodel,></p>
-</li>
-<li><p>根据不同的要求采用不同的策略加载图片</p>
-<p>　　//加载jpg图片<br>　　Glide.with(this).using(new MyDataLoader(this)).load(new JpgDataModel(imageUrl)).into(imageView);<br>　　//加载webp图片<br>　　Glide.with(this).using(new MyDataLoader(this)).load(new WebpDataModel(imageUrl)).into(imageView);</p>
-</li>
-<li><p>如何跳过.using()</p>
-</li>
-</ol>
-<p>　public class MyGlideModule implements GlideModule {<br>　　<br>　　　@Override<br>　　　public void registerComponents(Context context, Glide glide) {<br>　　　　glide.register(IDataModel.class, InputStream.class, new MyUrlLoader.Factory());<br>　<br>　　}<br>　}</p>
-<p>　　上面的实现跳过using()</p>
-<p>　　//加载jpg图片<br>　　Glide.with(this).load(new JpgDataModel(imageUrl)).into(imageView);<br>　　//加载webp图片<br>　　Glide.with(this).load(new WebpDataModel(imageUrl)).into(imageView);</p>
-<p>　　使用signature()实现自定义cacheKey：<br>　　Glide 以 url、viewwidth、viewheight、屏幕的分辨率等做为联合key，官方api中没有提供删除图片缓存的函数，官方提供了signature()方法，将一个附加的数据加入到缓存key当中，多媒体存储数据，可用MediaStoreSignature类作为标识符，会将文件的修改时间、mimeType等信息作为cacheKey的一部分，通过改变key来实现图片失效相当于软删除。</p>
-<p>　1.使用StringSignature</p>
-<p>　Glide.with(this).load(yourFileDataModel).signature(new StringSignature(“1.0.0”)).into(imageView);</p>
-<p>　2.使用MediaStoreSignature </p>
-<p>　Glide.with(this) .load(mediaStoreUri).signature(new MediaStoreSignature(mimeType, dateModified, orientation)).into(view);</p>
-<p>　3.使用自定义Signature</p>
-<p>　public class IntegerVersionSignature implements Key {<br>    　　　private int currentVersion;<br>    　　　public IntegerVersionSignature(int currentVersion) {<br>    　　　　　this.currentVersion = currentVersion;<br>　　}<br>　@Override<br>　public boolean equals(Object o) {<br>　　　if (o instanceof IntegerVersionSignature) {<br>　　　　IntegerVersionSignature other = (IntegerVersionSignature) o;<br>　　　　return currentVersion = other.currentVersion;<br>　　　}<br>　　　return false;<br>　}<br>  @Override<br>  public int hashCode() {<br>  　return currentVersion;<br>　}<br>　@Override<br>　public void updateDiskCacheKey(MessageDigest md) {<br>　<br>　　messageDigest.update(ByteBuffer.allocate(Integer.SIZE)<br>.putInt(signature).array());</p>
-<p>　}<br>}</p>
+<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="external">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
 
         
         </div>
@@ -797,7 +572,102 @@ public void cleanDiskCache() {
 
             
     
-        <a href="http://www.nearby.ren/2016/06/17/Android之Glide缓存/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/03/11/android开发的经验教训/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-设计模式中类的关系" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/02/24/设计模式中类的关系/">设计模式中类的关系</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/02/24/设计模式中类的关系/">
+            <time datetime="2016-02-24T07:28:13.000Z" itemprop="datePublished">2016-02-24</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/设计模式/">设计模式</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>在Java以及其他的面向对象设计模式中，类与类之间主要有6种关系，他们分别是：依赖、关联、聚合、组合、继承、实现。他们的耦合度依次增强。</p>
+<ul>
+<li>依赖（Dependence）<a href="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" target="_blank" rel="external"><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" alt=""></a><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml2.gif" alt=""><br>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。</li>
+</ul>
+<p><strong>代码样例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(Book book)</span></span>&#123;</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"读的书是"</span>+book.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>关联（Association）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml3.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml4.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml5.gif" alt=""><br><strong>单项关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml6.gif" alt=""><br><strong>双向关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml7.gif" alt=""></li>
+</ul>
+<p>对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。</p>
+<p><strong>代码样例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> </span>&#123;</div><div class="line"></div><div class="line">	Father father = <span class="keyword">new</span> Father();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"从"</span>+father.getName()+<span class="string">"获得礼物"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</div><div class="line"></div><div class="line">	Son son = <span class="keyword">new</span> Son();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"从"</span>+son.getName()+<span class="string">"获得礼物"</span>)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>聚合（Aggregation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml8.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml9.gif" alt=""></li>
+</ul>
+<p>聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。</p>
+<p><strong>代码样例：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</div><div class="line"></div><div class="line">	Car car;</div><div class="line"></div><div class="line">	House house;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.car = car;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHouse</span><span class="params">(House house)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.house = house;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">driver</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"车型号:"</span>+car.getType());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"我在房子里睡觉:"</span>+house.getAddress());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>组合（Composition）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml10.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml11.gif" alt=""></li>
+</ul>
+<p>相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</div><div class="line"></div><div class="line">	Soul soul;</div><div class="line"></div><div class="line">	Body body;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(Soul soul,Body body)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.soul = soul;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.body = body;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"学习要灵魂:"</span>+soul.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"吃饭需要身体:"</span>+body.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>继承（GeneraliZation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml12.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml13.gif" alt=""></li>
+</ul>
+<p>继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。</p>
+<ul>
+<li>实现（Implementation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml14.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml15.gif" alt=""></li>
+</ul>
+<p>表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/02/24/设计模式中类的关系/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -808,7 +678,7 @@ public void cleanDiskCache() {
 
 
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -823,7 +693,7 @@ public void cleanDiskCache() {
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/18/Git分支管理策略/" class="thumbnail">
+                            <a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -833,28 +703,9 @@ public void cleanDiskCache() {
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/git/">git</a></p>
-                            <p class="item-title"><a href="/2017/04/18/Git分支管理策略/" class="title">Git分支管理策略</a></p>
-                            <p class="item-date"><time datetime="2017-04-18T03:55:47.000Z" itemprop="datePublished">2017-04-18</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/17/设计模式中类的关系/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/java/">java</a></p>
-                            <p class="item-title"><a href="/2017/04/17/设计模式中类的关系/" class="title">设计模式中类的关系</a></p>
-                            <p class="item-date"><time datetime="2017-04-17T07:28:13.000Z" itemprop="datePublished">2017-04-17</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="title">androidHttps搭建与服务器Tomcat9.0配置</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:03:12.000Z" itemprop="datePublished">2017-06-08</time></p>
                         </div>
                     </li>
                 
@@ -880,25 +731,6 @@ public void cleanDiskCache() {
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="title">AndroidContext上下文你必须知道的一切</a></p>
-                            <p class="item-date"><time datetime="2017-02-21T02:21:19.000Z" itemprop="datePublished">2017-02-21</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/02/15/android6-0运行时权限列表/" class="thumbnail">
     
     
@@ -915,6 +747,44 @@ public void cleanDiskCache() {
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/07/android开发要避免的那些坑/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/07/android开发要避免的那些坑/" class="title">android开发要避免的那些坑</a></p>
+                            <p class="item-date"><time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/02/rxjava操作符/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/02/rxjava操作符/" class="title">rxjava操作符</a></p>
+                            <p class="item-date"><time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -924,7 +794,7 @@ public void cleanDiskCache() {
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -933,7 +803,7 @@ public void cleanDiskCache() {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -942,7 +812,7 @@ public void cleanDiskCache() {
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -951,7 +821,7 @@ public void cleanDiskCache() {
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 10px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
         </div>
     </div>
 

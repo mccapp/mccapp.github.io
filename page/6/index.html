@@ -145,7 +145,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                47
+                43
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -198,7 +198,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
             <section id="main">
-    <article id="post-Android之初识Glide" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-淘汰" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +206,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/06/16/Android之初识Glide/">Android之初识Glide</a>
+            <a class="article-title" href="/2015/12/17/淘汰/">淘汰</a>
         </h1>
     
 
@@ -215,8 +215,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/06/16/Android之初识Glide/">
-            <time datetime="2016-06-16T12:00:30.000Z" itemprop="datePublished">2016-06-16</time>
+        <a href="/2015/12/17/淘汰/">
+            <time datetime="2015-12-17T01:24:27.000Z" itemprop="datePublished">2015-12-17</time>
         </a>
     </div>
 
@@ -224,13 +224,13 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
+        <a class="article-category-link" href="/categories/文字/">文字</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
+        <a class="tag-link" href="/tags/歌曲/">歌曲</a>
     </div>
 
                     </div>
@@ -241,89 +241,13 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p><strong>Glide简介：</strong><br>　　　　　Glide 是 Google 员工的开源项目， Google I/O 上被推荐使用，一个高效、开源、Android设备上的媒体管理框架，它遵循BSD、MIT以及Apache 2.0协议发布。Glide具有获取、解码和展示视频剧照、图片、动画等功能，它还有灵活的API，这些API使开发者能够将Glide应用在几乎任何网络协议栈里。创建Glide的主要目的有两个，一个是实现平滑的图片列表滚动效果，另一个是支持远程图片的获取、大小调整和展示。</p>
-<p>gitHub地址：<a href="https://github.com/bumptech/glide" target="_blank" rel="external">https://github.com/bumptech/glide</a></p>
-<p><strong>Glide特点</strong></p>
-<ul>
-<li>使用简单</li>
-<li>可配置度高，自适应程度高</li>
-<li>支持常见图片格式Jpg png gif webp</li>
-<li>支持多种数据源网络、本地、资源、Assets 等</li>
-<li>高效缓存策略支持Memory和Disk图片缓存</li>
-<li>默认Bitmap格式采用RGB_565内存使用至少减少一半</li>
-<li>生命周期集成根据Activity/Fragment生命周期自动管理请求</li>
-<li>高效处理Bitmap使用Bitmap     Pool使Bitmap复用，主动调用recycle回收需要回收的Bitmap，减小系统回收压力</li>
-</ul>
-<p><strong>Glide简单使用</strong></p>
-<ol>
-<li><p>添加引用 build.gradle 中添加配置</p>
-<p> compile ‘com.github.bumptech.glide:glide:3.7.0’</p>
-</li>
-<li><p>设置绑定生命周期<br>我们可以更加高效的使用Glide提供的方式进行绑定，这样可以更好的让加载图片的请求的生命周期动态管理起来</p>
-<p> Glide.with(Context context);// 绑定Context<br> Glide.with(Activity activity);// 绑定Activity<br> Glide.with(FragmentActivity activity);// 绑定FragmentActivity<br> Glide.with(Fragment fragment);// 绑定Fragment</p>
-</li>
-<li><p>简单的加载图片实例</p>
-<p>Glide.with(this).load(imageUrl).into(imageView);</p>
-</li>
-<li><p>设置加载中以及加载失败图片<br>api里面对placeholder()、error()函数中有多态实现 用的时候可以具体的熟悉一下</p>
-<p>Glide.with(this).load(imageUrl).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);</p>
-</li>
-<li><p>设置跳过内存缓存</p>
-<p>Glide.with(this).load(imageUrl).into(imageView);</p>
-</li>
-<li><p>设置下载优先级</p>
-<p>Glide.with(this).load(imageUrl).priority(Priority.NORMAL).into(imageView);</p>
-</li>
-<li><p>设置缓存策略</p>
-<p>Glide.with(this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);</p>
-<p>策略解说：<br>all:缓存源资源和转换后的资源<br>none:不作任何磁盘缓存<br>source:缓存源资源<br>result：缓存转换后的资源</p>
-</li>
-<li><p>设置加载动画<br>api也提供了几个常用的动画：比如crossFade()</p>
-<p>Glide.with(this).load(imageUrl).animate(R.anim.item_alpha_in).into(imageView);</p>
-<p>R.anim.item_alpha_in</p>
-<p>  &lt; ? xml version=”1.0” encoding=”utf-8”?&gt;<br>  &lt; set xmlns:android=”<a href="http://schemas.android.com/apk/res/android&quot;&gt;" target="_blank" rel="external">http://schemas.android.com/apk/res/android&quot;&gt;</a><br>  　　&lt; alpha<br>  　　　　　android:duration=”500”<br>  　　　　　android:fromAlpha=”0.0”<br>  　　　　　android:toAlpha=”1.0”/&gt;<br>  &lt;/ set&gt;</p>
-</li>
-<li><p>设置缩略图支持<br>这样会先加载缩略图 然后在加载全图</p>
-<p>Glide.with(this).load(imageUrl).thumbnail(0.1f).into(imageView);</p>
-</li>
-<li><p>设置加载尺寸</p>
-<p>Glide.with(this).load(imageUrl).override(800, 800).into(imageView);</p>
-</li>
-<li><p>设置动态转换</p>
-<p>Glide.with(this).load(imageUrl).centerCrop().into(imageView);</p>
-<p>api提供了比如：centerCrop()、fitCenter()等函数也可以通过自定义Transformation，举例说明：比如一个人圆角转化器</p>
-<p>public class GlideRoundTransform extends BitmapTransformation{<br>private float radius = 0f;<br>public GlideRoundTransform(Context context) {<br>　　this(context, 4);</p>
-<p>}<br>public GlideRoundTransform(Context context, int dp) {<br>　　super(context);<br>　　this.radius = Resources.getSystem().getDisplayMetrics().density * dp;</p>
-<p>}<br>@Override<br>protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {<br>　　return roundCrop(pool, toTransform);<br>}<br>private Bitmap roundCrop(BitmapPool pool, Bitmap source) {<br>　　if (source == null) return null;</p>
-<p>　　   　　Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);</p>
-<p>　　if (result == null) {   　　</p>
-<p> 　　   　　result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);</p>
-<p>　　}</p>
-<p>　　Canvas canvas = new Canvas(result);<br>　　Paint paint = new Paint();<br>　　paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));<br>　　paint.setAntiAlias(true);<br>　　RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());<br>　　return result;</p>
-<p>}</p>
-<p>@Override<br>public String getId() {</p>
-<p>   return getClass().getName() + Math.round(radius);</p>
-<p>  　　}<br>}</p>
-<p>Glide.with(this).load(imageUrl).transform(new GlideRoundTransform(this)).into(imageView);</p>
-</li>
-<li><p>设置要加载的内容</p>
-<p>项目中有很多需要先下载图片然后再做一些合成的功能，比如项目中出现的图文混排，该如何实现目标下</p>
-<p>Glide.with(this).load(imageUrl).centerCrop().into(new SimpleTarget<glidedrawable>() {<br>   　　@Override<br>   　　public void onResourceReady(GlideDrawable resource, GlideAnimation&lt;? super GlideDrawable&gt; glideAnimation) {</glidedrawable></p>
-<p>　　imageView.setImageDrawable(resource);   　　</p>
-<p>　　}   　　<br>});<br>Glide.with(this).load(imageUrl).transform(new GlideRoundTransform(this)).into(imageView);</p>
-</li>
-<li><p>设置监听请求接口</p>
-<p>Glide.with(this).load(imageUrl).listener(new RequestListener<string, glidedrawable="">() {<br>  　　@Override<br>  　　public boolean onException(Exception e, String model, Target<glidedrawable> target, boolean isFirstResource) {<br>  　　   　　return false;<br>　　}<br>　　@Override<br>　　public boolean onResourceReady(GlideDrawable resource, String model, Target<glidedrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {</glidedrawable></glidedrawable></string,></p>
-<p> 　　//imageView.setImageDrawable(resource);</p>
-<p>　　 return false;</p>
-<p>　　}}).into(imageView);</p>
-</li>
-</ol>
-<p>设置监听的用处 可以用于监控请求发生错误来源，以及图片来源 是内存还是磁盘</p>
-<p> 14.设置动态GIF加载方式</p>
-<p>　　Glide.with(this).load(imageUrl).asBitmap().into(imageView);//显示gif静态图片<br>　　Glide.with(this).load(imageUrl).asGif().into(imageView);//显示gif动态图片</p>
-<p> 15.缓存的动态清理</p>
-<p>　　Glide.get(this).clearDiskCache();//清理磁盘缓存 需要在子线程中执行<br>　　Glide.get(this).clearMemory();//清理内存缓存  可以在UI主线程中进行</p>
+            <p>陈奕迅 - 淘汰<br>曲 : 周杰伦 词：周杰伦</p>
+<p>我说了 所有的谎<br>你全都相信<br>简单的 我爱你<br>你却老不信<br>你书里的剧情<br>我不想上演<br>因为我喜欢 喜剧收尾</p>
+<p>我试过 完美放弃<br>的确很踏实<br>醒来了<br>梦散了<br>你我都走散了<br>情歌歌词何必押韵<br>就算我是K歌之王<br>也不见得把 爱情唱得完美</p>
+<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
+<p>我试过完美放弃<br>的确很踏实<br>醒来了<br>梦散了<br>你我都走散了<br>情歌歌词何必押韵<br>就算我是K歌之王<br>也不见得把 爱情唱得完美</p>
+<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
+<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
 
         
         </div>
@@ -336,202 +260,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
     
-        <a href="http://www.nearby.ren/2016/06/16/Android之初识Glide/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-swiftype账号与教程" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/03/21/swiftype账号与教程/">swiftype账号与教程</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/03/21/swiftype账号与教程/">
-            <time datetime="2016-03-21T08:14:55.000Z" itemprop="datePublished">2016-03-21</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>　<br>首先，老一套的要去swiftype的网站<a href="https://swiftype.com注册一个账号，然后根据指引建立好自己网站对应的索引。" target="_blank" rel="external">https://swiftype.com注册一个账号，然后根据指引建立好自己网站对应的索引。</a><br>对了有人说注册以后是30天试用，这个没关系，网站给的是30天高级账户的使用<br>（那种有可以建立多个搜索引擎、多账户共同管理、一个引擎index多个域名的功能的账户），<br>30天到期后你可选择花钱继续用这个高级账户（土豪自便），或者选择降级成为免费的账户类型，<br>也就是我现在用的那种，所以，不用担心。<br>登陆后会自动切换到dashboard，一开始会有什么welcome to swiftype，不用搭理直接close即可。<br>然后下面的Create an engine选项便出现了，点吧，如图所示：</p>
-<p><a href="https://github.com/ppoffice/hexo-theme-icarus/wiki/Search" target="_blank" rel="external">https://github.com/ppoffice/hexo-theme-icarus/wiki/Search</a><br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/1.jpg" alt="此处输入图片的描述"><br>然后到下一步，给你的网站建立一个索引：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/2.jpg" alt="此处输入图片的描述"><br>接着让你输入网址，写吧：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/3.jpg" alt="此处输入图片的描述"><br>然后让你起个名字，起吧：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/4.jpg" alt="此处输入图片的描述"><br>然后他开始抓取你网站的数据，等等吧：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/5.jpg" alt="此处输入图片的描述"><br>抓好之后你的dashboard会变成这个样子：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/6.jpg" alt="此处输入图片的描述"><br>可以点进去看看抓了些什么数据：<br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/7.jpg" alt="此处输入图片的描述"><br><img src="http://www.jerryfu.net/img/search-engine-for-hexo-with-swiftype-v2/8.jpg" alt="此处输入图片的描述"><br>最后点击菜单的右边 interface 下的 install serarch<br>复制出key 即可。<br>然后打开 icarus配置搜索引擎的教程按教程即可<br><a href="https://github.com/ppoffice/hexo-theme-icarus/wiki/Search" target="_blank" rel="external">https://github.com/ppoffice/hexo-theme-icarus/wiki/Search</a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/03/21/swiftype账号与教程/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-android开发的经验教训" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/03/11/android开发的经验教训/">android开发的经验教训</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/03/11/android开发的经验教训/">
-            <time datetime="2016-03-11T02:19:45.000Z" itemprop="datePublished">2016-03-11</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <ol>
-<li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
-</li>
-<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="external">就不要绘制它！</a></p>
-</li>
-<li><p>除非真的需要，否则别使用数据库；</p>
-</li>
-<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="external">multidexing 可以拯救你</a>;</p>
-</li>
-<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
-</li>
-<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a> 可能是现在最佳的网络请求库；</p>
-</li>
-<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="external">Retrolambda</a>来简化你的代码；</p>
-</li>
-<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
-</li>
-<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
-</li>
-<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">包名按照功能来，而不是按分层来</a>;</p>
-</li>
-<li><p>把所有东西都移到 application thread之外；</p>
-</li>
-<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="external">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
-</li>
-<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">可能</a>的方式去加速它；</p>
-</li>
-<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">profile reports</a>，以便知道什么占据了编译时间；</p>
-</li>
-<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="external">有名的</a> 架构；</p>
-</li>
-<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="external">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
-</li>
-<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="external">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
-</li>
-<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="external">fragmented podcast</a> 将会让你受益；</p>
-</li>
-<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="external">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
-</li>
-<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="external">恰当的</a>输入类型；</p>
-</li>
-<li><p>Use analytics to find usage patterns and isolate bugs;</p>
-</li>
-<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="external">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="external">dryrun</a> 来快速查看它们的的效果）</p>
-</li>
-<li><p>你的service应该做你所需的事情，并且尽快死去；</p>
-</li>
-<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="external">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
-</li>
-<li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
-</li>
-<li><p>不要运行自己的CIserver，维护server是费时的事情，因为磁盘空间，安全问题，更新server以防止SSL攻击等等原因。使用circleci, travis 或者 shippable, 它们便宜，而且你也可以少担心一些事情；</p>
-</li>
-<li><p>Automate your deployments to the playstore;</p>
-</li>
-<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">proguard</a> ）；</p>
-</li>
-<li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
-</li>
-<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="external">考虑用SVG来替代PNG</a> ；</p>
-</li>
-<li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
-</li>
-<li><p>监控你的连接情况以及连接类型（wifi之下更新更多数据？）；</p>
-</li>
-<li><p>监控你的电源和电量（在充电的时候更新更多的数据？电量低的时候暂停更新？）；</p>
-</li>
-<li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
-</li>
-<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="external">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
-</li>
-</ol>
-<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="external">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/03/11/android开发的经验教训/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2015/12/17/淘汰/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -605,6 +334,165 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
             
     
         <a href="http://www.nearby.ren/2015/11/11/七友/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-gradle目录解析" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2015/11/10/gradle目录解析/">gradle目录解析</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/11/10/gradle目录解析/">
+            <time datetime="2015-11-10T05:40:09.000Z" itemprop="datePublished">2015-11-10</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/gradle/">gradle</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/gradle/">gradle</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p>Gradle目录解析</p>
+</blockquote>
+<p>Gradle 是以 Groovy 语言为基础，面向Java应用为主。基于DSL（领域特定语言）语法的自动化构建工具。<br>Gradle这个工具集成了构建，测试，发布和其他，比如软件打包，生成注释文档等功能。<br>之前eclipse使用ant进行软件的构建功能，需要配置一大堆的xml，但是在gradle中就不需要了。</p>
+<p>目前主流的打包方式有ant,maven,gradle。gradle是近几年发展起来的自动化构建工具，解决ant构建上的繁琐代码。<br>比如在ant上发布多渠道的包，你需要自己写脚本替换渠道名称，而在gradle中就不需要了。已经内建支持多渠道打包。</p>
+<blockquote>
+<p>Gradle的文件结构</p>
+</blockquote>
+<pre><code>./build.gradle
+./gradle.properties
+./gradlew
+./gradlew.bat
+./local.properties
+./setting.gradle
+./XXX.iml
+./app/build.gradle
+./app/app.iml
+./app/proguard-rules.pro
+</code></pre><p>./builld.gradle 和 ./app/build.grade</p>
+<p>gradle项目自动编译的时候要读取的配置文件。比如指定项目的依赖包等。<br>build.grade有两个，一个是全局的，一个是在模块里面。<br>全局的build.grade主要设置的是声明仓库源，gradle的版本号说明等。</p>
+<p>./build.gradle</p>
+<pre><code>buildscript {
+repositories {
+    // 声明仓库源，比如我们构建了一个安卓的库，现在想要把库上传到jcenter中供别人一起使用，则可以上传到jcenter中
+    // 具体上传步骤见：http://www.jcodecraeer.com/a/anzhuokaifa/Android_Studio/2015/0227/2502.html
+    jcenter()
+}
+dependencies {
+    // 说明gradle的版本号
+    classpath &apos;com.android.tools.build:gradle:1.3.0&apos;
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+}
+}
+</code></pre><p>// 所有项目都继承这个配置</p>
+<pre><code>    allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+}
+</code></pre><p>./app/build.grade 设置了模块的gradle构建配置</p>
+<pre><code>// 说明这个模块是安卓项目，如果是多模块开发，有可能有的值为java/war
+</code></pre><p>apply plugin: ‘com.android.application’</p>
+<p>// 配置了所有android构建的参数<br>android {<br>    // 编译使用SDK版本<br>    compileSdkVersion 23<br>    // 编译工具的版本<br>    buildToolsVersion “23.0.1”</p>
+<pre><code>defaultConfig {
+    // 包名
+    applicationId &quot;com.awesomeproject&quot;
+    // sdk最低支持版本
+    minSdkVersion 16
+    // 目标SDK版本，如果目标设备的API版本正好等于此数值，就不会为此程序开启兼容性检查判断的工作
+    targetSdkVersion 22
+    // 版本号
+    versionCode 1
+    versionName &quot;1.0&quot;
+    // 原生
+    ndk {
+        abiFilters &quot;armeabi-v7a&quot;, &quot;x86&quot;
+    }
+}
+buildTypes {
+    // 发布时候的设置
+    release {
+        // 是否进行混淆
+        minifyEnabled false
+        // 混淆使用文件
+        proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;
+    }
+}
+}
+// 依赖的工具包
+dependencies {
+compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])
+compile &apos;com.android.support:appcompat-v7:23.0.0&apos;
+compile &apos;com.facebook.react:react-native:0.11.+&apos;
+}
+
+./app/proguard-rules.pro
+这个和上面说的一样混淆文件
+
+./gradle.properties
+grade的运行环境配置，比如使用多少内存之类的。
+
+./gradlew 和 ./gradlew.bat
+自动完成 gradle 环境的脚本，在linux和mac下直接运行gradlew会自动完成gradle环境的搭建。
+
+./local.properties
+配置SDK或者NDK的环境路径，各个机器上这个变量可能都是不一样的，所以不应该进入版本库
+
+./setting.gradle
+整个项目的管理，比如这个项目包含哪些模块等。
+
+./XXX.iml 和 ./app/app.iml
+iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基于开源的Intellij IDEA开发出来的IDE。所以AndroidStudio有的IDE功能是需要有.iml才能使用的。比如我们删除了iml文件，可能就在Android Studio中看不到一些目录了。
+</code></pre>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2015/11/10/gradle目录解析/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -691,8 +579,230 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
 
 
 
+    <article id="post-android-正则表达式" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2015/09/22/android-正则表达式/">android 正则表达式</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/09/22/android-正则表达式/">
+            <time datetime="2015-09-22T01:52:37.000Z" itemprop="datePublished">2015-09-22</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <blockquote>
+<p>android正则表达式及Pattern Matcher使用</p>
+</blockquote>
+<pre><code>// 反斜杠
+/t 间隔 (&apos;/u0009&apos;)
+/n 换行 (&apos;/u000A&apos;)
+/r 回车 (&apos;/u000D&apos;)
+/d 数字 等价于[0-9]
+/D 非数字 等价于[^0-9]
+/s 空白符号 [/t/n/x0B/f/r]
+/S 非空白符号 [^/t/n/x0B/f/r]
+/w 单独字符 [a-zA-Z_0-9]
+/W 非单独字符 [^a-zA-Z_0-9]
+/f 换页符
+/e Escape
+/b 一个单词的边界
+/B 一个非单词的边界
+/G 前一个匹配的结束
+
+^为限制开头
+^java     条件限制为以Java为开头字符
+$为限制结尾
+java$     条件限制为以java为结尾字符
+.  条件限制除/n以外任意一个单独字符
+java..     条件限制为java后除换行外任意两个字符
+
+
+加入特定限制条件「[]」
+[a-z]     条件限制在小写a to z范围中一个字符
+[A-Z]     条件限制在大写A to Z范围中一个字符
+[a-zA-Z] 条件限制在小写a to z或大写A to Z范围中一个字符
+[0-9]     条件限制在小写0 to 9范围中一个字符
+[0-9a-z] 条件限制在小写0 to 9或a to z范围中一个字符
+[0-9[a-z]] 条件限制在小写0 to 9或a to z范围中一个字符(交集)
+
+[]中加入^后加再次限制条件「[^]」
+[^a-z]     条件限制在非小写a to z范围中一个字符
+[^A-Z]     条件限制在非大写A to Z范围中一个字符
+[^a-zA-Z] 条件限制在非小写a to z或大写A to Z范围中一个字符
+[^0-9]     条件限制在非小写0 to 9范围中一个字符
+[^0-9a-z] 条件限制在非小写0 to 9或a to z范围中一个字符
+[^0-9[a-z]] 条件限制在非小写0 to 9或a to z范围中一个字符(交集)
+
+在限制条件为特定字符出现0次以上时，可以使用「*」
+J*     0个以上J
+.*     0个以上任意字符
+J.*D     J与D之间0个以上任意字符
+
+在限制条件为特定字符出现1次以上时，可以使用「+」
+J+     1个以上J
+.+     1个以上任意字符
+J.+D     J与D之间1个以上任意字符
+
+在限制条件为特定字符出现有0或1次以上时，可以使用「?」JA? J或者JA出现
+
+限制为连续出现指定次数字符「{a}」
+J{2}     JJ
+J{3}     JJJ
+文字a个以上，并且「{a,}」
+J{3,}     JJJ,JJJJ,JJJJJ,???(3次以上J并存)
+文字个以上，b个以下「{a,b}」
+J{3,5}     JJJ或JJJJ或JJJJJ
+两者取一「|」
+J|A     J或A
+Java|Hello     Java或Hello
+</code></pre><blockquote>
+<p>比如，在字符串包含验证时</p>
+</blockquote>
+<pre><code>//查找以Java开头,任意结尾的字符串
+Pattern pattern  = Pattern.compile(&quot;^Java.*&quot;);
+Matcher matcher = pattern.matcher(&quot;Java棒棒的&quot;);
+boolean bool = matcher.matches();
+System.out.println(bool); //true
+
+//以多条件分割字符串时
+Pattern pattern = Pattern.compile(&quot;[,|]+&quot;);
+String[] strs = pattern.split(&quot;Java Hello World  Java,Hello,,World|Sun&quot;);
+for (int i=0;i&lt;strs.length;i++) {  
+ System.out.println(strs[i]);  
+ //Java Hello World  Java
+//Hello
+//World
+//Sun
+}  
+
+//文字替换（首次出现字符）
+Pattern pattern = Pattern.compile(&quot;正则表达式&quot;);  
+Matcher matcher = pattern.matcher(&quot;正则表达式 Hello World,正则表达式 Hello       World&quot;);  
+//替换第一个符合正则的数据  
+System.out.println(matcher.replaceFirst(&quot;Java&quot;));  
+//Java Hello World,正则表达式 Hello
+
+//文字替换（全部）
+Pattern pattern = Pattern.compile(&quot;正则表达式&quot;);  
+Matcher matcher = pattern.matcher(&quot;正则表达式 Hello World,正则表达式 Hello       World&quot;);  
+//替换第一个符合正则的数据  
+System.out.println(matcher.replaceAll(&quot;Java&quot;));  
+//Java Hello World,Java Hello
+
+
+//◆文字替换（置换字符）
+ Pattern pattern = Pattern.compile(&quot;正则表达式&quot;);
+ Matcher matcher = pattern.matcher(&quot;正则表达式 Hello World,正则表达式 Hello World &quot;);
+ StringBuffer sbr = new StringBuffer();
+ while (matcher.find()) {
+        matcher.appendReplacement(sbr, &quot;Java&quot;);
+ }
+ matcher.appendTail(sbr);
+ System.out.println(sbr.toString());
+ //Java Hello World,Java Hello World 
+
+
+ //验证是否为邮箱地址
+ String str=&quot;ceponline@yahoo.com.cn&quot;;  
+ Pattern pattern =  
+ Pattern.compile(&quot;[//w//.//-]+@([//w//-]+//.)+[//w//-]+&quot;,Pattern.CASE_INSENSI
+ TIVE);  
+ Matcher matcher = pattern.matcher(str);
+ System.out.println(matcher.matches());  //true
+
+//去除html标记
+ Pattern pattern = Pattern.compile(&quot;&lt;.+?&gt;&quot;, Pattern.DOTALL);  
+ Matcher matcher = pattern.matcher(&quot;&lt;a href=/&quot;index.html/&quot;&gt;主页&lt;/a&gt;&quot;);  
+ String string = matcher.replaceAll(&quot;&quot;);  
+ System.out.println(string); //主页
+
+//查找html中对应条件字符串
+Pattern pattern = Pattern.compile(&quot;href=\&quot;(.+?)\&quot;&quot;);
+Matcher matcher = pattern.matcher(&quot;&lt;a href=\&quot;index.html\&quot;&gt;主页&lt;/a&gt;&quot;);
+if(matcher.find())
+System.out.println(matcher.group(1));//index.html
+
+//截取http://地址
+Pattern pattern = Pattern.compile(&quot;(http://|https://){1}[//w//.//-/:]+&quot;);  
+Matcher matcher = pattern.matcher(&quot;dsdsds&lt;http://dsds//gfgffdfd&gt;fdf&quot;);  
+StringBuffer buffer = new StringBuffer();  
+while(matcher.find()){                
+buffer.append(matcher.group());          
+buffer.append(&quot;/r/n&quot;);                
+System.out.println(buffer.toString());  
+}  
+
+//替换指定{}中文字
+String str = &quot;Java目前的发展史是由{0}年-{1}年&quot;;  
+String[][] object={new String[]{&quot;//{0//}&quot;,&quot;1995&quot;},new 
+String[]{&quot;//{1//}&quot;,&quot;2007&quot;}};  
+System.out.println(replace(str,object));  
+public static String replace(final String sourceString,Object[] object) {  
+        String temp=sourceString;      
+        for(int i=0;i&lt;object.length;i++){  
+                  String[] result=(String[])object[i];  
+           Pattern    pattern = Pattern.compile(result[0]);  
+           Matcher matcher = pattern.matcher(temp);  
+           temp=matcher.replaceAll(result[1]);  
+        }  
+        return temp;  
+        }  //Java目前的发展史是由1995年-2007年
+</code></pre>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2015/09/22/android-正则表达式/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/5/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/5/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -707,7 +817,7 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/18/Git分支管理策略/" class="thumbnail">
+                            <a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -717,28 +827,9 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/git/">git</a></p>
-                            <p class="item-title"><a href="/2017/04/18/Git分支管理策略/" class="title">Git分支管理策略</a></p>
-                            <p class="item-date"><time datetime="2017-04-18T03:55:47.000Z" itemprop="datePublished">2017-04-18</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/17/设计模式中类的关系/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/java/">java</a></p>
-                            <p class="item-title"><a href="/2017/04/17/设计模式中类的关系/" class="title">设计模式中类的关系</a></p>
-                            <p class="item-date"><time datetime="2017-04-17T07:28:13.000Z" itemprop="datePublished">2017-04-17</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="title">androidHttps搭建与服务器Tomcat9.0配置</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:03:12.000Z" itemprop="datePublished">2017-06-08</time></p>
                         </div>
                     </li>
                 
@@ -764,25 +855,6 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="title">AndroidContext上下文你必须知道的一切</a></p>
-                            <p class="item-date"><time datetime="2017-02-21T02:21:19.000Z" itemprop="datePublished">2017-02-21</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/02/15/android6-0运行时权限列表/" class="thumbnail">
     
     
@@ -799,6 +871,44 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/07/android开发要避免的那些坑/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/07/android开发要避免的那些坑/" class="title">android开发要避免的那些坑</a></p>
+                            <p class="item-date"><time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/02/rxjava操作符/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/02/rxjava操作符/" class="title">rxjava操作符</a></p>
+                            <p class="item-date"><time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -808,7 +918,7 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -817,7 +927,7 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -826,7 +936,7 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -835,7 +945,7 @@ JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 10px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
         </div>
     </div>
 

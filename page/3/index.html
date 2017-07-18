@@ -145,7 +145,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                47
+                43
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -198,7 +198,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
             <section id="main">
-    <article id="post-android开发要避免的那些坑" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android视频播放总结" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +206,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/11/07/android开发要避免的那些坑/">android开发要避免的那些坑</a>
+            <a class="article-title" href="/2016/10/27/Android视频播放总结/">android视频播放总结</a>
         </h1>
     
 
@@ -215,8 +215,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/11/07/android开发要避免的那些坑/">
-            <time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time>
+        <a href="/2016/10/27/Android视频播放总结/">
+            <time datetime="2016-10-27T07:06:29.000Z" itemprop="datePublished">2016-10-27</time>
         </a>
     </div>
 
@@ -241,7 +241,116 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p><a href="http://blog.csdn.net/zhangke3016/article/details/51831122" target="_blank" rel="external">android开发要避免的那些坑</a></p>
+            <blockquote>
+<p>[Android] Android 视频播放总结</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">VideoView</div></pre></td></tr></table></figure>
+<p>VideoView 的使用非常简单，播放视频的步骤：</p>
+<ol>
+<li>在界面布局文件中定义VideoView组件，或在程序中创建VideoView组件</li>
+<li>调用VideoView的如下两个方法来加载指定的视频：</li>
+</ol>
+<ul>
+<li>setVideoPath(String path);加载path文件代表的视频</li>
+<li>setVideoURL(Uri uri);加载uri所对应的视频</li>
+</ul>
+<ol>
+<li>调用VideoView的start()、stop()、psuse()方法控制视频的播放<br><strong>Exoplayer</strong><br><a href="https://github.com/google/ExoPlayer.git" target="_blank" rel="external">ExoPlayer Git 地址</a></li>
+</ol>
+<p><strong>用法</strong><br>ExoPlayer开源项目包含了libray和示例：</p>
+<ul>
+<li>ExoPlayer library - 这部分是核心的库</li>
+<li><p>Demo app - 这部分是演示怎么使用ExoPlayer<br>ExoPlayer库的核心类是ExoPlayer类。该类维护了播放器的全局状态。比如如何获取媒体数据，如何缓冲以及是怎样编码格式。</p>
+<p>ExoPlayer基于MediaCodec和AudioTrack提供了默认的音视频的TrackRenderer实现。所有的renderers都需要SampleSource对象，Exoplayer从SampleSource获得media samples用于播放。下图展示了Exoplayer是如何配置组合这些组件用于播放音视频的。<br><img src="http://blog.qiji.tech/wp-content/uploads/2016/03/standard-model.png" alt="此处输入图片的描述"><br>ExoPlayer库提供了一些不同类型的SampleSource实例：</p>
+<ul>
+<li>ExtractorSampleSource – 用于 MP3，M4A，WebM，MPEG-TS 和 AAC；</li>
+<li>ChunkSampleSource – 用于 DASH 和平滑流的播放；</li>
+<li>HlsSampleSource – 用于 HLS 播放；</li>
+</ul>
+</li>
+</ul>
+<p> 在 ExoPlayer 的 Dome 中使用 DemoPlayer 对 ExoPlayer 进行了封装，并提供了使用上述几种 SampleSource 构建 TrackRenderer 的 Builder。</p>
+<ul>
+<li>SmoothStreamingRendererBuilder</li>
+<li>DashRendererBuilder</li>
+<li>ExtractorRendererBuilder<br>在使用的时候我们根据不同的需求创建对应的 RendererBuilder，然后将 RendererBuilder 传递给 DemoPlayer 然后调用 DemoPlayer 的 setPlayWhenReady 方法。</li>
+</ul>
+<p>优缺点</p>
+<p>ExoPlayer 相较于 MediaPlayer 有很多很多的优点：</p>
+<ul>
+<li>支持动态的自适应流 HTTP (DASH) 和 平滑流，任何目前 MediaPlayer </li>
+<li>支持的视频格式（同时它还支持 HTTP</li>
+<li>直播(HLS)，MP4，MP3，WebM，M4A，MPEG-TS 和 AAC）。 支持高级的 HLS 特性，例如正确处理EXT-X-DISCONTINUITY 标签； </li>
+<li>支持自定义和扩治你的使用场景。ExoPlayer 专门为此设计；</li>
+<li>便于随着 App的升级而升级。因为 ExoPlayer是一个包含在你的应用中的库，对于你使用哪个版本有完全的控制权，并且你可以简单的跟随应用的升级而升级； </li>
+<li>更少的适配性问题。</li>
+</ul>
+<p>ExoPlayer 的缺点：</p>
+<ul>
+<li>ExoPlayer 的音频和视频组件依赖 Android 的 MediaCodec 接口，该接口发布于 Android4.1（API 等级<br>16）。因此它不能工作于之前的Android 版本。</li>
+</ul>
+<p><strong>Vitamio</strong></p>
+<p><a href="https://github.com/yixia/VitamioBundle.git" target="_blank" rel="external">Vitamio demo 地址</a></p>
+<p><strong>用法</strong><br>Vitamio的使用步骤：  </p>
+<ol>
+<li>下载Vitamio库，并作为工程依赖。</li>
+<li><p>在Activity的onCreate方法中添加如下代码，初始化Vitamio的解码器</p>
+<p>@Override public void onCreate(Bundle icicle){</p>
+<pre><code>super.onCreate(icicle)
+if(!LibsChecker.checkVitamioLibs(this))
+return ;
+</code></pre><p>}</p>
+<ol>
+<li>在AndroidMainfest.xml中声明InitActivity</li>
+</ol>
+<p><activity android:name="io.vov.vitamio.activity.InitActivity" android:configchanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden" android:launchmode="singleTop" android:theme="@android:style/Theme.NoTitleBar" android:windowsoftinputmode="stateAlwaysHidden"> </activity></p>
+<ol>
+<li>其余步骤和使用 Android 原生的 VideoView 是一样的。</li>
+</ol>
+</li>
+</ol>
+<p><strong>优点</strong></p>
+<ul>
+<li>强大、支持超多格式视频和网络视频播放</li>
+<li>使用简单。调用非常简单，方便使用。</li>
+</ul>
+<p><strong>ijkplayer</strong> 【哔哔哩开源】<br><a href="https://github.com/Bilibili/ijkplayer.git" target="_blank" rel="external">ijkplayer 项目地址</a></p>
+<p><strong>用法</strong><br>1.clone ijkplayer 项目到本地</p>
+<p>2.编译 ijkplayer</p>
+<p>下面是我的编译环境</p>
+<ul>
+<li>编译环境 Mac OS X 10.10.5</li>
+<li>Android</li>
+<li>NDK — android-ndk-r10e</li>
+<li>Android Studio 1.3.1</li>
+<li><p>Gradle 2.4<br>编译之前要安装 homebrew, git, yasm。</p>
+<p> ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install" target="_blank" rel="external">https://raw.githubusercontent.com/Homebrew/install/master/install</a>)”<br>brew install git<br>brew install yasm</p>
+</li>
+</ul>
+<p>配置 NDK</p>
+<pre><code># add these lines to your ~/.bash_profile or ~/.profile
+# export ANDROID_SDK=&lt;your sdk path&gt;
+# export ANDROID_NDK=&lt;your ndk path&gt;
+</code></pre><p>clone 项目</p>
+<pre><code>git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android
+</code></pre><p>编译 ffmpeg    </p>
+<pre><code>cd ijkplayer-android 
+./init-android.sh 
+cd config
+rm module.sh
+ln -s module-default.sh module.sh
+cd android/contrib
+./compile-ffmpeg.sh clean
+./compile-ffmpeg.sh all
+</code></pre><p>ffmpeg 编译通过后，编译 ijkplayer </p>
+<pre><code>cd ..
+./compile-ijk.sh all
+</code></pre><p>编译通过后在 android 目录下有 ijkplayer 文件夹，这个是 ijkplayer 的 demo。导入 Android Studio 即可。ijkplayer 的 demo 中提供了 IjkVideoView 类，它封装了 Android 原生的 MediaPlayer 、ExoPlayer 和 IjkMediaPlayer。可根据需要选择。</p>
+<p><strong>优缺点</strong></p>
+<ul>
+<li>ijkplayer 最大的优点就是可以根据需要编译需要的解码器。在编译的时候通过 ln -s module-default.shmodule.sh 选择要编译的解码器。ijkplayer 在 config目录下提供了三种 module.sh 。也可自己修改module.sh 。</li>
+<li>ijkplayer 的缺点是库太大。加入项目后会大大增加你的 APP 的大小。</li>
+</ul>
 
         
         </div>
@@ -254,7 +363,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
     
-        <a href="http://www.nearby.ren/2016/11/07/android开发要避免的那些坑/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/10/27/Android视频播放总结/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -264,7 +373,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
 
 
-    <article id="post-rxjava操作符" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android开发职位分类" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -272,7 +381,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/11/02/rxjava操作符/">rxjava操作符</a>
+            <a class="article-title" href="/2016/10/24/Android开发职位分类/">Android开发职位分类</a>
         </h1>
     
 
@@ -281,8 +390,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/11/02/rxjava操作符/">
-            <time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time>
+        <a href="/2016/10/24/Android开发职位分类/">
+            <time datetime="2016-10-24T05:46:08.000Z" itemprop="datePublished">2016-10-24</time>
         </a>
     </div>
 
@@ -296,7 +405,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/rxandroid/">rxandroid</a>, <a class="tag-link" href="/tags/rxjava/">rxjava</a>
+        <a class="tag-link" href="/tags/android/">android</a>
     </div>
 
                     </div>
@@ -307,20 +416,31 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>操作符决策树</p>
-<p>直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）<br>创建操作</p>
-<p>用于创建Observable的操作符<br>Create<br>通过调用观察者的方法从头创建一个Observable<br>Empty/Never/Throw<br>创建行为受限的特殊Observable<br>Defer<br>在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable<br>Just<br>将对象或者对象集合转换为一个会发射这些对象的Observable<br>From<br>将其它的对象或数据结构转换为Observable<br>Range<br>创建发射指定范围的整数序列的Observable,range操作符,发射从start开始的count个数<br>Interval<br>间隔一定时间发送一个数字,从0开始.本身运行在Schedulers.computation() 线程内<br>Repeat<br>Repeat作用在Observable上,会对其重复发射count次<br>Timer<br>Timer会在指定时间后发射一个数字0，注意其也是运行在computation Scheduler<br>变换操作</p>
-<p>对Observable发射的数据进行变，能将数据转化为我们想要的格式，<br>Buffer<br>缓存，可以简单的理解为缓存，它定期从Observable收集数据到一个集合，然后把这些数据集合打包发射，而不是一次发射一个<br>FlatMap<br>扁平映射，将Observable发射的数据变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable，可以认为是一个将嵌套的数据结构展开的过程。<br>GroupBy<br>分组，将原来的Observable分拆为Observable集合，将原始Observable发射的数据按Key分组，每一个Observable发射一组不同的数据<br>Map<br>映射，通过对序列的每一项都应用一个函数变换Observable发射的数据，实质是对序列中的每一项执行一个函数，函数的参数就是这个数据项<br>Scan<br>扫描， 连续地对数据序列的每一项应用一个函数，然后连续发射结果,每一项结果基于之前的结果.累加器函数.<br>Window<br>窗口，定期将来自Observable的数据分拆成一些Observable窗口，然后发射这些窗口，而不是每次发射一项。类似于Buffer，但Buffer发射的是数据，Window发射的是Observable，每一个Observable发射原始Observable的数据的一个子集<br>toList<br>Returns an Observable that emits a single item, a list composed of all the items emitted by the source Observable. 将一个Observable转换为一个List.<br>过滤操作</p>
-<p>滤掉数据集合中我们不想要的数据。用于从Observable发射的数据中进行选择。<br>throttleWithTimeout<br>源Observable每次发射出来一个数据后就会进行计时,如果在设定好的时间结束前源Observable有新的数据发射出来，这个数据就会被丢弃，同时重新开始计时。<br>Debounce<br>只有在空闲了一段时间后才发射数据，通俗的说，就是如果一段时间没有操作，就执行一次操作.还可以根据一个函数来进行限流。这个函数的返回值是一个临时Observable，<br>如果源Observable在发射一个新的数据的时候，上一个数据根据函数所生成的临时Observable还没有结束,没有调用onComplete，那么上一个数据就会被过滤掉。如果是最后一个,还是会发射.<br>Distinct<br>去重，过滤掉所有的重复数据项<br>DistinctUtilChanged<br>过滤掉相邻的重复项<br>ElementAt<br>取值，取特定位置的数据项<br>Filter<br>过滤，过滤掉没有通过谓词测试的数据项，只发射通过测试的<br>First<br>取满足条件的第一个,如无满足条件数据抛出异常.可以使用takeFisrt(),仅会调动onComplete.<br>有null数据时会抛空指针异常,要判空处理.<br>只取满足条件的第一个数据.可以和BlockingObservable连用。可以Observable.toBlocking或者BlockingObservable.from方法来将一个Observable对象转化为BlockingObservable对象<br>Last<br>末项，只发射最后一条数据.<br>IgnoreElements<br>忽略所有的数据，只保留终止通知(onError或onCompleted)<br>Sample<br>取样，定期发射最新的数据，等于是数据抽样，有的实现里叫ThrottleFirst<br>throttleFirst<br>会定期发射这个时间段里源Observable发射的第一个数据<br>Skip<br>跳过前面的若干项数据<br>SkipLast<br>跳过后面的若干项数据<br>Take<br>只保留前面的若干项数据<br>TakeLast<br>只保留后面的若干项数据<br>takeFirst<br>有null数据时会抛空指针异常,要判空处理<br>和first一样，但在所有数据不满足条件时不会抛出异常，仅仅调用onComplete.<br>组合操作</p>
-<p>And/Then/When<br>通过模式(And条件)和计划(Then次序)组合两个或多个Observable发射的数据集<br>CombineLatest<br>当两个Observables中的任何一个发射了一个数据时，通过一个指定的函数组合每个Observable发射的最新数据（一共两个数据），然后发射这个函数的结果<br>必须满足两个条件:<br>1)所有的Observable都发射过数据。<br>2)满足条件1的时候任何一个Observable发射一个数据，就将所有Observable最新发射的数据按照提供的函数组装起来发射出去。<br>在这两个条件下,可能会忽略掉一些发射的数据.<br>Join<br>无论何时，如果一个Observable发射了一个数据项，只要在另一个Observable发射的数据项定义的时间窗口内，就将两个Observable发射的数据合并发射<br>参数说明:<br>1)源Observable所要组合的目标Observable<br>2)一个函数，就收从源Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了源Observable发射出来数据的有效期<br>3)一个函数，就收从目标Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了目标Observable发射出来数据的有效期<br>4)一个函数，接收从源Observable和目标Observable发射来的数据，并返回最终组合完的数据。<br>Merge<br>将两个Observable发射的数据组合并成一个<br>Merge可能会让合并的Observables发射的数据交错（可以使用Concat操作符,不会让数据交错，它会按顺序一个接着一个发射多个Observables的发射物）。<br>StartWith<br>在发射原来的Observable的数据序列之前，先发射一个指定的数据序列或数据项<br>在数据序列的开头插入一条指定的项<br>你也可以传递一个Observable给startWith，<br>它会将那个Observable的发射物插在原始Observable发射的数据序列之前.这可以看作是Concat的反转。<br>Switch，在RxJava的实现为SwitchOnNext<br>将一个发射Observable序列的Observable转换为这样一个Observable：它逐个发射那些Observable最近发射的数据<br>用来将一个发射多个小Observable的源Observable转化为一个Observable，然后发射这多个小Observable所发射的数据。<br>需要注意的就是，如果一个小的Observable正在发射数据的时候，源Observable又发射出一个新的小Observable，则前一个Observable发射的数据会被抛弃，直接发射新的小Observable所发射的数据。<br>Zip<br>zip zipWith<br>打包，使用一个指定的函数将多个Observable发射的数据组合在一起，然后将这个函数的结果作为单项数据发射<br>Zip操作符将多个Observable发射的数据按顺序组合起来，每个数据只能组合一次，而且都是有序的。<br>最终组合的数据的数量由发射数据最少的Observable来决定。<br>错误处理</p>
-<p>这些操作符用于从错误通知中恢复<br>Catch<br>捕获，继续序列操作，将错误替换为正常的数据，从onError通知中恢复<br>onErrorReturn<br>当发生错误的时候，让Observable发射一个预先定义好的数据并正常地终止,不会抛出异常 onErrorResumeNext<br>当发生错误的时候，由另外一个Observable来代替当前的Observable并继续发射数据 onExceptionResumeNext<br>类似于OnErrorResume,不同之处在于其会对onError抛出的数据类型做判断，<br>如果是Exception，也会使用另外一个Observable代替原Observable继续发射数据，<br>否则会将错误分发给Subscriber。<br>Retry<br>重试，如果Observable发射了一个错误通知，重新订阅它，期待它正常终止<br>retry<br>Retry操作符在发生错误的时候会重新进行订阅,而且可以重复多次，<br>所以发射的数据可能会产生重复。如果重复指定次数还有错误的话就会将错误返回给观察者,会掉onError retryWhen<br>当错误发生时，retryWhen会接收onError的throwable作为参数，并根据定义好的函数返回一个Observable，如果这个Observable发射一个数据，就会重新订阅。<br>需要注意的是使用retryWhen的时候,因为每次重新订阅都会产生错误，所以作为参数的obserbvable会不断地发射数据，使用zipWith操作符可以限制重新订阅的次数，否则会无限制地重新订阅。<br>会正常结束,调用onCompleted<br>辅助操作</p>
-<p>Delay<br>延迟一段时间发射结果数据<br>DelaySubscription<br>延迟注册到Observer上<br>Do<br>Do操作符就是给Observable的生命周期的各个阶段加上一系列的回调监听，当Observable执行到这个阶段的时候，这些回调就会被触发.<br>doOnEach<br>Observable每发射一个数据的时候就会触发这个回调，不仅包括onNext还包括onError和onCompleted。<br>doOnNext<br>只有onNext的时候才会被触发。<br>doOnSubscribe,doOnUnSubscribe<br>会在Subscriber进行订阅和反订阅的时候触发回调。<br>当一个Observable通过OnError或者OnCompleted结束的时候，会反订阅所有的Subscriber。在Android中和生命周期绑定起来,因为有些Observable执行不完啊.<br>doOnSubscribeOn<br>在开始注册前做一些工作。处于当前线程，而不是subscribeOn指定的线程。<br>DoOnError<br>在OnError发生的时候触发回调，并将Throwable对象作为参数传进回调函数里。<br>DoOnComplete<br>会在OnCompleted发生的时候触发回调。<br>DoOnTerminate<br>会在Observable结束前触发回调，无论是正常还是异常终止。<br>finallyDo,doAfterTerminate<br>会在Observable结束后触发回调，无论是正常还是异常终止。<br>Materialize,dematerialize<br>Meterialize操作符将OnNext/OnError/OnComplete都转化为一个Notification对象并按照原来的顺序发射出来,dematerialize相反<br>使用integerNotification.getValue() +”, ” + integerNotification.getKind()可以看到打印值和类型.<br>ObserveOn<br>指定Subscriber的调度程序（工作线程）<br>SubscribeOn<br>指定Observable应该在哪个调度程序上执行<br>Serialize<br>强制Observable按次序发射数据并且功能是有效的<br>Subscribe<br>收到Observable发射的数据和通知后执行的操作<br>TimeInterval<br>将一个Observable转换为发射两个数据之间所耗费时间的Observable<br>TimeInterval会拦截发射出来的数据，取代为前后两个发射两个数据的间隔时间。对于第一个发射的数据，其时间间隔为订阅后到首次发射的间隔。<br>Timeout<br>添加超时机制，如果过了指定的一段时间没有发射数据，就发射一个错误通知<br>Timeout操作符给Observable加上超时时间，每发射一个数据后就重置计时器，当超过预定的时间还没有发射下一个数据，就抛出一个超时的异常。<br>Rxjava将Timeout实现为很多不同功能的操作符，比如说超时后用一个备用的Observable继续发射数据等。<br>Timestamp<br>给Observable发射的每个数据项添加一个时间戳<br>TimeStamp会将每个数据项给重新包装一下，加上了一个时间戳来标明每次发射的时间<br>Using<br>创建一个只在Observable的生命周期内存在的一次性资源<br>Using操作符创建一个在Observable生命周期内存活的资源，也可以这样理解：<br>我们创建一个资源并使用它，用一个Observable来限制这个资源的使用时间，当这个Observable终止的时候，这个资源就会被销毁。<br>Using需要使用三个参数，分别是：<br>1)创建这个一次性资源的函数<br>2)创建Observable的函数<br>3)释放资源的函数<br>条件和布尔操作</p>
-<p>这些操作符可用于单个或多个数据项，也可用于Observable<br>All<br>判断Observable发射的所有的数据项是否都满足某个条件<br>All操作符根据一个函数对源Observable发射的所有数据进行判断，最终返回的结果就是这个判断结果。<br>对发射的所有数据应用这个函数,如果全部都满足则返回true，否则就返回false。<br>Amb<br>Amb操作符可以将至多9个Observable结合起来，让他们竞争。<br>哪个Observable首先发射了数据（包括onError和onComplete)就会继续发射这个Observable的数据，其他的Observable所发射的数据都会别丢弃。<br>Contains<br>判断Observable是否会发射一个指定的数据项<br>Contains操作符用来判断源Observable所发射的数据是否包含某一个数据，如果包含会返回true，如果源Observable已经结束了却还没有发射这个数据则返回false。<br>IsEmpty<br>IsEmpty操作符用来判断源Observable是否发射过数据，没有发射过数据返回true.<br>Null也是一个数据<br>DefaultIfEmpty<br>发射来自原始Observable的数据，如果原始Observable没有发射数据，就发射一个默认数据<br>会判断源Observable是否发射数据，如果源Observable发射了数据则正常发射这些数据，如果没有则发射一个默认的数据<br>SequenceEqual<br>判断两个Observable是否按相同的数据序列<br>SequenceEqual操作符用来判断两个Observable发射的数据序列是否相同（发射的数据相同，数据的序列相同，结束的状态相同），如果相同返回true，否则返回false<br>SkipUntil<br>SkipUnitl是根据一个标志Observable来判断的，当这个标志Observable没有发射数据的时候，所有源Observable发射的数据都会被跳过；当标志Observable发射了一个数据，则开始正常地发射数据。<br>一直等到skipUntil发射了数据才能发射源Observable的数据,并忽略了此段时间内的数据<br>SkipWhile<br>SkipWhile则是根据一个函数来判断是否跳过数据，当函数返回值为true的时候则一直跳过源Observable发射的数据；当函数返回false的时候则开始正常发射数据。<br>TakeUntil<br>和SkipUtil恰好相反,只获取takeUntil里的Observable之前的数据<br>TakeWhile<br>和SkipWhile相反,获取满足skipWhile的数据<br>算术和聚合操作</p>
-<p>Concat<br>将多个Observable结合成一个Observable并发射数据，并且严格按照先后顺序发射数据，前一个Observable的数据没有发射完，不发射后面Observable的数据<br>Count<br>Count操作符用来统计源Observable发射了多少个数据，最后将数目给发射出来；<br>如果源Observable发射错误，则会将错误直接报出来；在源Observable没有终止前，count是不会发射统计数据的。<br>Reduce<br>Reduce操作符应用一个函数接收Observable发射的数据和函数的计算结果作为下次计算的参数，输出最后的结果。<br>跟前面我们了解过的scan操作符很类似，只是scan会输出每次计算的结果，而reduce只会输出最后的结果。<br>Collect<br>collect用来将源Observable发射的数据给收集到一个数据结构里面，需要使用两个参数：<br>一个产生收集数据结构的函数<br>一个接收第一个函数产生的数据结构和源Observable发射的数据作为参数的函数。<br>连接操作</p>
-<p>一些有精确可控的订阅行为的特殊Observable<br>什么是Connectable Observable:<br>就是一种特殊的Observable对象，并不是Subscrib的时候就发射数据，而是只有对其应用connect操作符的时候才开始发射数据，<br>所以可以用来更灵活的控制数据发射的时机。<br>使用Publish操作符将Observable转换为Connectable Observable,然后可以通过connect控制何时发射.<br>Publish<br>将一个普通的Observable转换为可连接的<br>Publish操作符就是用来将一个普通的Observable对象转化为一个Connectable Observable。需要注意的是如果发射数据已经开始了再进行订阅只能接收以后发射的数据。<br>Connect<br>Connect操作符就是用来触发Connectable Observable发射数据的。<br>应用Connect操作符后会返回一个Subscription对象，通过这个Subscription对象，我们可以调用其unsubscribe方法来终止数据的发射。<br>另外，如果还没有订阅者订阅的时候就应用Connect操作符也是可以使其开始发射数据的。<br>RefCount<br>RefCount操作符就是将一个Connectable Observable 对象再重新转化为一个普通的Observable对象，这时候订阅者进行订阅时就会触发数据的发射。<br>Replay<br>Replay操作符返回一个Connectable Observable 对象并且可以缓存其发射过的数据，这样即使有订阅者在其发射数据之后进行订阅也能收到其之前发射过的数据。<br>不过使用Replay操作符我们最好还是限定其缓存的大小，否则缓存的数据太多了可会占用很大的一块内存。<br>对缓存的控制可以从空间和时间两个方面来实现。<br>直接返回一个connectable observable,不用publish<br>转换操作</p>
-<p>to<br>自定义操作符</p>
-<p>lift compose</p>
-<p><a href="http://blog.csdn.net/zhupumao/article/details/51932850" target="_blank" rel="external">rxjava汇总链接</a></p>
+            <p><strong>Android开发职位分类</strong></p>
+<blockquote>
+<p>Android开发分三类：</p>
+</blockquote>
+<ol>
+<li>驱动开发：需要熟悉Linux和C语言，了解嵌入式开发相关知识，最好有驱动开发经验；待遇普遍比后两类高。</li>
+<li>Android系统开发：基于Android系统的源码进行修改，修复bug或者对系统进行深度定制，重新设计并实现用户交互，主要是修改Android java层框架和Android系统自带的应用。需要应聘者熟练掌握JAVA语言，有移动开发经验或者J2ME开发经验。</li>
+<li>Android应用开发。<br>  前两类的工作一般是手机硬件制造商或者手机设计公司提供这些职位，如华为、中兴、魅族、联想Lephone；华为、中兴大多是做运营商定制，基本很少对系统层进行深度定制，主要是修改bug(Android系统每个版本都有大量的bug），做这一块不但积累对Android系统层的经验，而且也积累分析问题、解决问题的经验。<br>  Android应用开发这个职位，大部分PC软件或互联网公司已经或正在做Android平台的支持。<br>  对于没有JAVA经验的人，首先掌握J2SE，然后再学Android的应用开发。无论看书、看视频、上培训班最重要的都是练习。<br>  Android应用开发书籍推荐《Google Android开发入门与实战》、《Google Android SDK开发范例大全》这两本书。</li>
+</ol>
+<p>知识体系图<br><img src="http://s11.sinaimg.cn/mw690/001OQFNvgy6I1dfhI4Wea&amp;690" alt="知识体系图"><img src="http://s11.sinaimg.cn/mw690/001OQFNvgy6I1dfhI4Wea&amp;690" alt="Android 知识图谱"></p>
+<blockquote>
+<p>软件码工的修炼之路</p>
+</blockquote>
+<ol>
+<li>一门语言的语法，SDK的常用API，算法与数据结构；有了上面的知识，再加上一点实践，再从网上找一些笔试题做几套，基本可以过笔试这一关。</li>
+<li>编码规范、高性能编码经验技巧；要成为一个职业化的、专业化的程序员，首先要养成良好的习惯，良好的习惯从规范化的点滴日常工作开始。</li>
+<li>熟练掌握IDE、常用</li>
+<li>编程设计的原则；重点掌握面向对象的原则，如单一职责原则SRP、开放－封闭原则、替换原则LSP、依赖倒置原则DIP等。这些原则对后面内容理解的深入有很大帮助。不了解这些原则而去学设计模式会有空中楼阁、头重脚轻的感觉。</li>
+<li>重构：重构是在不改变软件功能的前提下改善代码的设计以提高可维护性。修改代码或者优化代码都需要用到重构技术。</li>
+<li>设计模式：基于一些常用的模式来学习如何使用设计模式。设计模式对于做框架开发的程序员比较有帮助。</li>
+<li>代码重构的艺术：最重要、最难，看上去却最简单的功夫。修改别人的代码开始是功夫，优化就是艺术。</li>
+<li>架构设计：这是步入殿堂必不可少的部分。</li>
+<li>软件工程：从CMM到敏捷的转变，个人是比较推崇敏捷开发的。</li>
+<li>质量管理：越往后越偏向管理了，开始是个人修炼，后面是站在组织、站在公司的角度来看软件。质量管理中有很多很好的理论和工具，不只可以应用到软件开发上，生活中也很有用的。</li>
+</ol>
 
         
         </div>
@@ -333,7 +453,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
     
-        <a href="http://www.nearby.ren/2016/11/02/rxjava操作符/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/10/24/Android开发职位分类/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -343,7 +463,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
 
 
-    <article id="post-android常用的算法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Git分支管理策略" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -351,7 +471,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/11/01/android常用的算法/">android常用的算法</a>
+            <a class="article-title" href="/2016/10/24/Git分支管理策略/">Git分支管理策略</a>
         </h1>
     
 
@@ -360,8 +480,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/11/01/android常用的算法/">
-            <time datetime="2016-11-01T08:20:48.000Z" itemprop="datePublished">2016-11-01</time>
+        <a href="/2016/10/24/Git分支管理策略/">
+            <time datetime="2016-10-24T03:55:47.000Z" itemprop="datePublished">2016-10-24</time>
         </a>
     </div>
 
@@ -369,13 +489,13 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
+        <a class="article-category-link" href="/categories/git/">git</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/算法/">算法</a>
+        <a class="tag-link" href="/tags/git/">git</a>
     </div>
 
                     </div>
@@ -386,230 +506,50 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <blockquote>
-<p> 1.插入排序算法</p>
-</blockquote>
-<pre><code>插入排序的基本思想是在遍历数组的过程中，假设在序号 i 之前的元素即 [0..i-1] 都已经排好序，本趟需要找到 i 对应的元素 x 的正确位置 k ，并且在寻找这个位置 k 的过程中逐个将比较过的元素往后移一位，为元素 x “腾位置”，最后将 k 对应的元素值赋为 x ，一般情况下，插入排序的时间复杂度和空间复杂度分别为 O(n2 ) 和 O(1)。
+            <p>Git分支管理策略</p>
+<p>1.主要分支：master</p>
+<pre><code>说明：代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支开发。
+</code></pre><p>2.开发分支：Develop</p>
+<pre><code>说明：主分支只用来分布重大版本，日常开发应该在另一个分支完成。我们把开发用的分支，叫做Develop
 
-public int []  sortInsert(int[] array){
-        for(int i = 1 ; i &lt; array.length; i++){
-            int temp = array[i];
-            int j ;
-            for ( j = i - 1; j &gt;= 0 &amp;&amp; temp &lt; array[j] ; j--){
-                array[ j + 1 ] = array[j];   
-            }
-            array[ j + i ] = temp;
-        }
-        return array;
-}
-</code></pre><blockquote>
-<p>2.选择排序算法</p>
-</blockquote>
-<pre><code>选择排序的基本思想是遍历数组的过程中，以 i 代表当前需要排序的序号，则需要在剩余的 [i…n-1] 中找出其中的最小值，然后将找到的最小值与 i 指向的值进行交换。因为每一趟确定元素的过程中都会有一个选择最大值的子流程，所以人们形象地称之为选择排序。选择排序的时间复杂度和空间复杂度分别为 O(n2 ) 和 O(1) 。
+命令：
 
-public int[] sortSelect(int[] arr){
-  for (int i = 0; i &lt; arr.length; i++) {
-        int miniPost = i;
-        for (int m = i + 1; m &lt; arr.length; m++) {
-              if (arr[m] &lt; arr[miniPost]) {
-                    miniPost = m;
-              }
-        }
+1.开启分支：git checkout -b  develop master
+2.将develop分支发布到Master分支命令：#切换到Master分支 git checkout master 
+#对Develop分支进行合并 git merge --no-ff develop -m&quot;合并分支信息&quot;
+</code></pre><p>3.临时分支：Feature/Release/Fixbug</p>
+<pre><code>1.Feature 功能分支：主要开发特定某功能，从Develop分支上面分出来。开发完成后，要再并入Develop。 
+命名格式采用 feature-* 创建一个临时分支 git checkout -b feature-x develop 
+开发完成后，将功能分支合并到develop分支。 
 
-        if (arr[i] &gt; arr[miniPost]) {
-              int temp;
-              temp = arr[i];
-              arr[i] = arr[miniPost];
-              arr[miniPost] = temp;
-       }
-  }
-  return arr;
-</code></pre><p> }</p>
-<blockquote>
-<p>3.冒泡排序算法</p>
-</blockquote>
-<pre><code>冒泡排序是將比較大的數字沉在最下面，较小的浮在上面
+1.git checkout develop  
+2.git merge --no-ff feature-x -m&quot;合并分支信息&quot; 
+3.git branch -d feature-x
 
-public int[] sortBubble(int[] array){
- int temp;
- // 第一层循环:表明比较的次数, 比如 length 个元素,比较次数为 length-1 次（肯定不需和自己比）
- for(int i=0;i&lt;array.length-1;i++){
-      for (int j = array.length - 1; j &gt; i; j--) {
-            if (array[j] &lt; array[j - 1]) {
-                 temp = array[j];
-                 array[j] = array[j - 1];
-                 array[j - 1] = temp;
-            }
-      }
- }
- return array;
-</code></pre><blockquote>
-<p>4.快速排序算法</p>
-</blockquote>
-<pre><code>通过一趟排序将待排记录分割成独立的两部分,其中一部分记录的关键字均比另一部分的关键字小,则可以分别对这两部分记录继续进行排序,已达到整个序列有序的目的，本质就是,找一个基位(枢轴,分水岭,作用是左边的都比它小,右边的都比它大.可随机,取名base，首先从序列最右边开始找比base小的,如果小,换位置,从而base移到刚才右边(比较时比base小)的位置(记为临时的high位),这样base右边的都比base大。然后,从序列的最左边开始找比base大的，如果大,换位置,从而base移动到刚才左边(比较时比base大)的位置(记为临时的low位),这样base左边的都比base小，循环以上两步,直到 low == heigh, 这使才真正的找到了枢轴,分水岭. 返回这个位置,分水岭左边和右边的序列,分别再来递归。
+2.Felease 预发分支：是指发布正式版之前（即合并到Master分支之前），我们可能需要一个预发布的版本进行测试。
+从Develop分支上面分出来。
+开发完成后，要再并入Develop和Master。
+命名格式采用 release-* 创建预发分支 git checkout -b release-1.2 develop 开发确认没问题后。 
+1.git checkout master 
+2.git merge --on-ff release-1.2 -m&quot;合并分支信息&quot; 
+#对合并的生成的新节点，做一个标签 git tag -a 1.2  
+#再合并到develop分支： 
 
+1.git checkout develop  
+2.git merge --no-ff release-1.2 -m&quot;合并分支信息&quot; 
+3.git branch -d release-1.2
 
-public int[] sortQuick(int[] array){
+3.Fixbug  bug分支：软件正式发布后，难免会出现bug，就需要创建一个分支，进行bug修补。
+从Master分支上面分出来的。修补结束以后，在合并到Master和Develop分支。
+命名格式fixbug-*  创建bug分支 git checkout -b fixbug-0.1 master 修复结束后 合并到master分支 
+1.git checkout master 
+2.git merge  --no-ff fixbug-0.1 -m&quot;合并分支信息&quot;  
+3.git tag -a 0.1.1 
 
- return quickSort(array, 0, array.length-1);
-
-}
-private int[] quickSort(int[] arr, int low, int heigh) {
-  if (low &lt; heigh) {
-       int division = partition(arr, low, heigh);
-       quickSort(arr, low, division - 1);
-       quickSort(arr, division + 1, heigh);
-  }
-  return arr;
-}
-</code></pre><p>// 分水岭,基位,左边的都比这个位置小,右边的都大    </p>
-<pre><code>private int partition(int[] arr, int low, int heigh) {
-  int base = arr[low]; //用子表的第一个记录做枢轴(分水岭)记录
-  while (low &lt; heigh) { //从表的两端交替向中间扫描
-        while (low &lt; heigh &amp;&amp; arr[heigh] &gt;= base) {
-             heigh--;
-        }
-        // base 赋值给 当前 heigh 位,base 挪到(互换)到了这里,heigh位右边的都比base大
-        swap(arr, heigh, low);
-        while (low &lt; heigh &amp;&amp; arr[low] &lt;= base) {
-              low++;
-        }
-        // 遇到左边比base值大的了,换位置
-        swap(arr, heigh, low);
-  }
-  // now low = heigh;
-  return low;
-  }
-
-    private void swap(int[] arr, int a, int b) {
-          int temp;
-          temp = arr[a];
-          arr[a] = arr[b];
-          arr[b] = temp;
-  }
-</code></pre><blockquote>
-<p>5.合并排序算法</p>
-</blockquote>
-<p>归并排序采用的是递归来实现，属于“分而治之”，将目标数组从中间一分为二，之后分别对这两个数组进行排序，排序完毕之后再将排好序的两个数组“归并”到一起，归并排序最重要的也就是这个“归并”的过程，归并的过程中需要额外的跟需要归并的两个数组长度一致的空间</p>
-<pre><code>private int[] sort(int[] nums, int low, int high) {
-  int mid = (low + high) / 2;
-  if (low &lt; high) {
-      // 左边
-      sort(nums, low, mid);
-      // 右边
-      sort(nums, mid + 1, high);
-      // 左右归并
-      merge(nums, low, mid, high);
- }
- return nums;
- }
- private void merge(int[] nums, int low, int mid, int high) {
-      int[] temp = new int[high - low + 1];
-      int i = low;// 左指针
-      int j = mid + 1;// 右指针
-      int k = 0;
-      // 把较小的数先移到新数组中
-      while (i &lt;= mid &amp;&amp; j &lt;= high) {
-          if (nums[i] &lt; nums[j]) {
-               temp[k++] = nums[i++];
-          } else {
-               temp[k++] = nums[j++];
-          }
-      }
-      // 把左边剩余的数移入数组
-      while (i &lt;= mid) {
-           temp[k++] = nums[i++];
-      }
-      // 把右边边剩余的数移入数组
-      while (j &lt;= high) {
-           temp[k++] = nums[j++];
-      }
-      // 把新数组中的数覆盖nums数组
-      for (int k2 = 0; k2 &lt; temp.length; k2++) {
-           nums[k2 + low] = temp[k2];
-      }
-  }
-  public int[] sortMerge(int[] array) {
-         return sort(array, 0, array.length - 1);
- }
-</code></pre><blockquote>
-<p>6.希尔排序算法</p>
-</blockquote>
-<p>希尔排序的诞生是由于插入排序在处理大规模数组的时候会遇到需要移动太多元素的问题。希尔排序的思想是将一个大的数组“分而治之”，划分为若干个小的数组，以 gap 来划分，比如数组 [1, 2, 3, 4, 5, 6, 7, 8] ，如果以 gap = 2 来划分，可以分为 [1, 3, 5, 7] 和 [2, 4, 6, 8] 两个数组（对应的，如 gap = 3 ， 则划分的数组为： [1, 4, 7] 、 [2, 5, 8] 、 [3, 6] ）然后分别对划分出来的数组进行插入排序，待各个子数组排序完毕之后再减小 gap 值重复进行之前的步骤，直至 gap = 1 ，即对整个数组进行插入排序，此时的数组已经基本上快排好序了，所以需要移动的元素会很小很小，解决了插入排序在处理大规模数组时较多移动次数的问题，</p>
-<p>希尔排序是插入排序的改进版，在数据量大的时候对效率的提升帮助很大，数据量小的时候建议直接使用插入排序就好了。</p>
-<pre><code>public int[] sortShell(int[] array) {
- // 取增量
- int step = array.length / 2;
- while (step &gt;= 1) {
-      for (int i = step; i &lt; array.length; i++) {
-           int temp = array[i];
-           int j = 0;
-           // 跟插入排序的区别就在这里
-           for (j = i - step; j &gt;= 0 &amp;&amp; temp &lt; array[j]; j -= step) {
-                 array[j + step] = array[j];
-           }
-           array[j + step] = temp;
-      }
-      step /= 2;
-     }
-     return array;
- }
-</code></pre><blockquote>
-<p>7.堆排序算法</p>
-</blockquote>
-<p>本质就是先构造一个大顶堆,parent比children大,root节点就是最大的节点 把最大的节点(root)与尾节点(最后一个节点,比较小)位置互换，剩下最后的尾节点,现在最大,其余的,从第一个元素开始到尾节点前一位,构造大顶堆递归。</p>
-<pre><code>public int[] sortHeap(int[] array) {
- buildHeap(array);// 构建堆
- int n = array.length;
- int i = 0;
- for (i = n - 1; i &gt;= 1; i--) {
-      swap(array, 0, i);
-      heapify(array, 0, i);
- }
- return array;
- }
-private void buildHeap(int[] array) {
-     int n = array.length;// 数组中元素的个数
-        for (int i = n / 2 - 1; i &gt;= 0; i--)
-          heapify(array, i, n);
-}
-private void heapify(int[] A, int idx, int max) {
-      int left = 2 * idx + 1;// 左孩子的下标（如果存在的话）
-      int right = 2 * idx + 2;// 左孩子的下标（如果存在的话）
-      int largest = 0;// 寻找3个节点中最大值节点的下标
-      if (left &lt; max &amp;&amp; A[left] &gt; A[idx])
-            largest = left;
-      else
-            largest = idx;
-      if (right &lt; max &amp;&amp; A[right] &gt; A[largest])
-            largest = right;
-            if (largest != idx) {
-                  swap(A, largest, idx);
-                  heapify(A, largest, max);
-            }
-      }
-  }
-</code></pre><p>// 建堆函数，认为【s，m】中只有 s<br>// 对应的关键字未满足大顶堆定义，通过调整使【s，m】成为大顶堆=====================================================</p>
-<pre><code>public static void heapAdjust(int[] array, int s, int m) {
-      // 用0下标元素作为暂存单元
-      array[0] = array[s];
-      // 沿孩子较大的结点向下筛选
-      for (int j = 2 * s; j &lt;= m; j *= 2) {
-            // 保证j为较大孩子结点的下标，j &lt; m 保证 j+1 &lt;= m ，不越界
-            if (j &lt; m &amp;&amp; array[j] &lt; array[j + 1]) {
-                   j++;
-            }
-            if (!(array[0] &lt; array[j])) {
-                   break;
-            }
-            // 若S位较小，应将较大孩子上移
-            array[s] = array[j];
-            // 较大孩子的值变成S位的较小值，可能引起顶堆的不平衡，故对其所在的堆进行筛选
-            s = j;
-      }
-      // 若S位较大，则值不变；否则，S位向下移动至2*s、4*s、。。。
-      array[s] = array[0];
-}
+#再合并到develop分支 
+1.git checkout develop 
+2.git merge --no-ff fixbug-0.1 -m&quot;合并分支信息&quot; 
+3.git branch -d fixbug-0.1    
 </code></pre>
         
         </div>
@@ -622,7 +562,7 @@ private void heapify(int[] A, int idx, int max) {
 
             
     
-        <a href="http://www.nearby.ren/2016/11/01/android常用的算法/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/10/24/Git分支管理策略/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -632,7 +572,7 @@ private void heapify(int[] A, int idx, int max) {
 
 
 
-    <article id="post-一路走来" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-gradle包含库出现的问题" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -640,7 +580,7 @@ private void heapify(int[] A, int idx, int max) {
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/11/01/一路走来/">一路走来</a>
+            <a class="article-title" href="/2016/10/21/gradle包含库出现的问题/">gradle包含库出现的问题</a>
         </h1>
     
 
@@ -649,8 +589,8 @@ private void heapify(int[] A, int idx, int max) {
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/11/01/一路走来/">
-            <time datetime="2016-11-01T01:26:17.000Z" itemprop="datePublished">2016-11-01</time>
+        <a href="/2016/10/21/gradle包含库出现的问题/">
+            <time datetime="2016-10-21T02:41:37.000Z" itemprop="datePublished">2016-10-21</time>
         </a>
     </div>
 
@@ -658,13 +598,80 @@ private void heapify(int[] A, int idx, int max) {
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/文字/">文字</a>
+        <a class="article-category-link" href="/categories/gradle/">gradle</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/文字/">文字</a>
+        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/gradle/">gradle</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Error:org.gradle.api.internal.changedetection.state.DefaultFileCollectionSnapshotter$FileCollectionSnapshotImpl cannot be cast to org.gradle.api.internal.changedetection.state.OutputFilesCollectionSnapshotter$OutputFilesSnapshot<br>Possible causes for this unexpected error include:<ul><li>Gradle’s dependency cache may be corrupt (this sometimes occurs after a network connection timeout.)<br><a href="syncProject">Re-download dependencies and sync project (requires network)</a></li><li>The state of a Gradle build process (daemon) may be corrupt. Stopping all Gradle daemons may solve this problem.<br><a href="stopGradleDaemons">Stop Gradle build processes (requires restart)</a></li><li>Your project may be using a third-party plugin which is not compatible with the other plugins in the project or the version of Gradle requested by the project.</li></ul>In the case of corrupt Gradle processes, you can also try closing the IDE and then killing all Java processes.</p>
+<p> 我直接把根目录的build删除，.gradle个文件夹也删除，然后gradle文件夹里面的版本再次提升一下版本就好了 </p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/10/21/gradle包含库出现的问题/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-Vuforia知识" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/10/20/Vuforia知识/">Vuforia知识</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/10/20/Vuforia知识/">
+            <time datetime="2016-10-20T02:21:47.000Z" itemprop="datePublished">2016-10-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/vuforia/">vuforia</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/vuforia/">vuforia</a>
     </div>
 
                     </div>
@@ -676,25 +683,65 @@ private void heapify(int[] A, int idx, int max) {
         
             
             <blockquote>
-<p>2014.07.10-12</p>
+<p>Vuforia示例应用提供了九种应用展示，介绍主要特点和表现出基本功能</p>
 </blockquote>
-<p>坐绿皮火车卧铺，学校同班几个伙伴，说说笑笑，经历两天的时间，抵达了梦寐已久的之都，深圳。【因为两年前的我，曾经说一句话，我毕业后第一站就是深圳。】</p>
-<blockquote>
-<p>2014.07.15-25</p>
-</blockquote>
-<p>那时的我们还带着学校的稚气，未毕业就踏入社会之门，我们以为社会应该跟学校差不多，其实错了，一开始我们以毕业生的姿态，拿着不是很起眼的学历，奔波于地铁、公交， 不断的求职，在一次一次挫折后，我们开始披上社会的面具，伪造假学历，毕业证书，说着不太切实际的话，职位才向我们敞开大门。这是我的第一份工作太突然，做了两个星期就离开，那时的我没自信，恐惧，加上没钱了跟爸妈提拿钱时，倒出了自己的离职，也被说一顿。</p>
-<blockquote>
-<p>2014.07.15-2015.06.31</p>
-</blockquote>
-<p>从上家公司离职后，突然大病一场，带着病找了一周时间，没找到面试的工作机会，那时真的很失望。这时同班的同学介绍我去她公司面试，我带自己的简历与在学校做的作品，终于敲开了入职之门。这是我的入职二家公司呆了一年。这里年的时间里，我学到很多很多东西，也是最深刻的一年，经历太多，种种原因，坚持到了合同结束，没有想过续签合同的就走了。</p>
-<blockquote>
-<p>2015.07.04-2016.06.31</p>
-</blockquote>
-<p>第三家公司，面试了几天两个off，第一个off，是早上去同学公司面试。第二个off下午自己找到的公司，这家也是我一年多以来最自信，最爽快的面试经历。在一天的考虑之中。最终还是去了同学的公司。然而没呆到合同结束就走人了。非常感谢自己的上司热情款待，部门老大的教育，带我们疯，带我们闹。</p>
-<blockquote>
-<p>2016.7.-至今</p>
-</blockquote>
-<p>第四家公司，突然来到这家公司是跳槽过来的，上家公司环境，待遇算可以，但是公司的产品迭代太慢，闲就是一个月以上，考虑一个星期多。最后还是选择跳槽来到了这家公司就为了两点，未接触过的技术点。待遇提升。</p>
+<p><strong>Image Targets （图像目标）</strong></p>
+<p> 图像目标示例显示如何检测图像的目标和渲染在它上面的一个简单的3D对象。主要功能包括：</p>
+<ol>
+<li>同时检测和多目标跟踪</li>
+<li>加载和激活多个设备中的数据</li>
+<li>激活扩展跟踪器</li>
+<li>管理相机功能：闪灯光和连续自动对焦</li>
+</ol>
+<p><strong>Cylinder Targets(圆柱跟踪)</strong><br>筒形靶样品显示了如何检测的圆筒形靶和围绕圆柱体的圆周运动3D对象。主要功能包括：</p>
+<ol>
+<li>检测气缸目标和跟踪</li>
+<li>遮挡处理</li>
+<li>激活扩展跟踪</li>
+<li>管理相机功能：闪灯光和连续自动对焦</li>
+</ol>
+<p><strong>Multi Targets(多目标)</strong><br> 多目标的示例显示了如何检测一个简单的长方体形状的三维动画和周边形状的3D对象。主要功能包括：</p>
+<ol>
+<li>检测与长方体形状的3D跟踪</li>
+<li>遮挡处理</li>
+<li>激活扩展跟踪</li>
+<li>管理相机功能：山灯光和连续自动对焦</li>
+</ol>
+<p><strong>User Defined Targets(用户自定义目标)</strong><br>用户定义的目标示例显示了如何捕获和从用户选择的摄像机的视频帧运行时创建一个图像的目标。包括主要功能：</p>
+<ol>
+<li>创建和管理用户的定义的图像目标</li>
+<li>激活扩展跟踪</li>
+<li>管理相机功能：闪灯光和连续自动对焦</li>
+</ol>
+<p><strong>Smart Terrain(智能地形)</strong><br> 智能地形示例应用程序演示了如何在一个目标让聪明的地形和使用重建网格渲染的内容。主要包括功能：</p>
+<ol>
+<li>从已知的目标初始化</li>
+<li>扫描表面找对象</li>
+<li>在主要绘制网格</li>
+<li>上主表面中找到的对象的渲染的箱</li>
+</ol>
+<p><strong>Cloud Recognition(云识别)</strong><br> 云Reco的示例显示了如何使用云识别服务识别位于云数据库的目标。 主要功能包括：</p>
+<ol>
+<li>管理检测基于云的图像目标跟踪</li>
+<li>激活扩展跟踪</li>
+<li>管理相机功能：闪光灯和连续自动对焦</li>
+</ol>
+<p><strong>Text Recognition (文字识别)</strong><br> 文本识别样本显示在相机画面的指定区域内的动态识别英语单词。 主要功能包括</p>
+<ol>
+<li>检测的英语单词和跟踪包含在默认的文字列表</li>
+<li>管理相机功能：闪光灯 </li>
+</ol>
+<p><strong>Frame Markers(帧标记)</strong><br> 帧标记示例演示如何检测帧标记，并呈现在上面一个简单的3D对象。 主要功能包括：</p>
+<ol>
+<li>检测和多帧标记追踪 </li>
+<li>管理相机功能：闪光灯和连续自动对焦</li>
+</ol>
+<p><strong>Virtual Button(虚拟按键)</strong><br> 虚弥按钮示例显示了如何开发人员可以在触发时间触及或闭塞得摄像机视图时，图像的目标定义的矩形区域。样品呈现，当虚拟按钮中的一个被触发改变的颜色的3D对象。主要功能包括：</p>
+<ol>
+<li>按钮遮挡事件处理</li>
+<li>多个虚拟按钮激活</li>
+<li>管理相机功能：闪光灯和连续自动对焦</li>
+</ol>
 
         
         </div>
@@ -707,113 +754,7 @@ private void heapify(int[] A, int idx, int max) {
 
             
     
-        <a href="http://www.nearby.ren/2016/11/01/一路走来/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-dagger2mvp架构使用" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/10/31/dagger2mvp架构使用/">dagger2mvp架构使用</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/10/31/dagger2mvp架构使用/">
-            <time datetime="2016-10-31T08:02:34.000Z" itemprop="datePublished">2016-10-31</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/mvp/">mvp</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/dagger2/">dagger2</a>, <a class="tag-link" href="/tags/mvp/">mvp</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>了解请点击<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0519/2892.html" target="_blank" rel="external">dagger2基础了解</a></p>
-<p>dagger2使用教程：<br>    根目录的build文件加入android-apt支持</p>
-<pre><code>环境配置：
-buildscript{
-    repositories{
-        jcenter()
-    }
-}
-dependencies{
-    classpath &apos;com.android.tools.build:gradle:x.x.x&apos;
-    classpath &apos;com.neenbedankt.gradle.plugins:android-apt:1.4&apos;
-}
-
-在app目录的build文件加入 apt plugin的支持
-
-plugin : &apos;com.neenbeankt.android-apt&apos;
-
- 加入dagger2 retrofit okhttp依赖
-
- compile &apos;com.google.dagger:dagger:2.0&apos;
- apt &apos;com.google.dagger:dagger-compiler:2.0&apos;
- provided &apos;org.glassfish:javax.annotation:10.0-b28&apos;
-
- 在Application中实践Dagger2
- 现在依赖已经加入，开始动手使用Dagger2，第一步考虑我们Application。
- 先创建AppApplication，并在AndroidMainfest.xml 注册好。
-
-
-public class AppApplication extends Application{
-    public void onCreate(){
-        super.onCreate();
-    }
-}
-
-&lt;application
-   android:name=&quot;.AppApplication&quot;
-   android:allowBackuo=&quot;true&quot;
-   android:icon=&quot;@mipmap/ic_lacuncher&quot;
-   android:label=&quot;@string/app_name&quot;
-   android:label=&quot;@string/app_name&quot;
-   /&gt;
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2016/10/31/dagger2mvp架构使用/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2016/10/20/Vuforia知识/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -824,7 +765,7 @@ public class AppApplication extends Application{
 
 
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -839,7 +780,7 @@ public class AppApplication extends Application{
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/18/Git分支管理策略/" class="thumbnail">
+                            <a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -849,28 +790,9 @@ public class AppApplication extends Application{
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/git/">git</a></p>
-                            <p class="item-title"><a href="/2017/04/18/Git分支管理策略/" class="title">Git分支管理策略</a></p>
-                            <p class="item-date"><time datetime="2017-04-18T03:55:47.000Z" itemprop="datePublished">2017-04-18</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/17/设计模式中类的关系/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/java/">java</a></p>
-                            <p class="item-title"><a href="/2017/04/17/设计模式中类的关系/" class="title">设计模式中类的关系</a></p>
-                            <p class="item-date"><time datetime="2017-04-17T07:28:13.000Z" itemprop="datePublished">2017-04-17</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="title">androidHttps搭建与服务器Tomcat9.0配置</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:03:12.000Z" itemprop="datePublished">2017-06-08</time></p>
                         </div>
                     </li>
                 
@@ -896,25 +818,6 @@ public class AppApplication extends Application{
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="title">AndroidContext上下文你必须知道的一切</a></p>
-                            <p class="item-date"><time datetime="2017-02-21T02:21:19.000Z" itemprop="datePublished">2017-02-21</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/02/15/android6-0运行时权限列表/" class="thumbnail">
     
     
@@ -931,6 +834,44 @@ public class AppApplication extends Application{
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/07/android开发要避免的那些坑/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/07/android开发要避免的那些坑/" class="title">android开发要避免的那些坑</a></p>
+                            <p class="item-date"><time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/02/rxjava操作符/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/02/rxjava操作符/" class="title">rxjava操作符</a></p>
+                            <p class="item-date"><time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -940,7 +881,7 @@ public class AppApplication extends Application{
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -949,7 +890,7 @@ public class AppApplication extends Application{
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -958,7 +899,7 @@ public class AppApplication extends Application{
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -967,7 +908,7 @@ public class AppApplication extends Application{
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 10px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
         </div>
     </div>
 

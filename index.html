@@ -145,7 +145,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                47
+                43
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -198,7 +198,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
             <section id="main">
-    <article id="post-Git分支管理策略" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-androidHttps搭建与服务器Tomcat9-0配置" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -206,7 +206,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/04/18/Git分支管理策略/">Git分支管理策略</a>
+            <a class="article-title" href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/">androidHttps搭建与服务器Tomcat9.0配置</a>
         </h1>
     
 
@@ -215,8 +215,8 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/04/18/Git分支管理策略/">
-            <time datetime="2017-04-18T03:55:47.000Z" itemprop="datePublished">2017-04-18</time>
+        <a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/">
+            <time datetime="2017-06-08T08:03:12.000Z" itemprop="datePublished">2017-06-08</time>
         </a>
     </div>
 
@@ -224,13 +224,13 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/git/">git</a>
+        <a class="article-category-link" href="/categories/android/">android</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/git/">git</a>
+        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/https/">https</a>
     </div>
 
                     </div>
@@ -241,145 +241,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>Git分支管理策略</p>
-<p>1.主要分支：master</p>
-<pre><code>说明：代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支开发。
-</code></pre><p>2.开发分支：Develop</p>
-<pre><code>说明：主分支只用来分布重大版本，日常开发应该在另一个分支完成。我们把开发用的分支，叫做Develop
-
-命令：
-
-1.开启分支：git checkout -b  develop master
-2.将develop分支发布到Master分支命令：#切换到Master分支 git checkout master 
-#对Develop分支进行合并 git merge --no-ff develop -m&quot;合并分支信息&quot;
-</code></pre><p>3.临时分支：Feature/Release/Fixbug</p>
-<pre><code>1.Feature 功能分支：主要开发特定某功能，从Develop分支上面分出来。开发完成后，要再并入Develop。 
-命名格式采用 feature-* 创建一个临时分支 git checkout -b feature-x develop 
-开发完成后，将功能分支合并到develop分支。 
-
-1.git checkout develop  
-2.git merge --no-ff feature-x -m&quot;合并分支信息&quot; 
-3.git branch -d feature-x
-
-2.Felease 预发分支：是指发布正式版之前（即合并到Master分支之前），我们可能需要一个预发布的版本进行测试。
-从Develop分支上面分出来。
-开发完成后，要再并入Develop和Master。
-命名格式采用 release-* 创建预发分支 git checkout -b release-1.2 develop 开发确认没问题后。 
-1.git checkout master 
-2.git merge --on-ff release-1.2 -m&quot;合并分支信息&quot; 
-#对合并的生成的新节点，做一个标签 git tag -a 1.2  
-#再合并到develop分支： 
-
-1.git checkout develop  
-2.git merge --no-ff release-1.2 -m&quot;合并分支信息&quot; 
-3. git branch -d release-1.2
-
-3.Fixbug  bug分支：软件正式发布后，难免会出现bug，就需要创建一个分支，进行bug修补。
-从Master分支上面分出来的。修补结束以后，在合并到Master和Develop分支。
-命名格式fixbug-*  创建bug分支 git checkout -b fixbug-0.1 master 修复结束后 合并到master分支 
-1.git checkout master 
-2.git merge  --no-ff fixbug-0.1 -m&quot;合并分支信息&quot;  
-3.git tag -a 0.1.1 
-
-#再合并到develop分支 
-1.git checkout develop 
-2.git merge --no-ff fixbug-0.1 -m&quot;合并分支信息&quot; 
-3.git branch -d fixbug-0.1    
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2017/04/18/Git分支管理策略/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-设计模式中类的关系" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/04/17/设计模式中类的关系/">设计模式中类的关系</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/04/17/设计模式中类的关系/">
-            <time datetime="2017-04-17T07:28:13.000Z" itemprop="datePublished">2017-04-17</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/设计模式/">设计模式</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>在Java以及其他的面向对象设计模式中，类与类之间主要有6种关系，他们分别是：依赖、关联、聚合、组合、继承、实现。他们的耦合度依次增强。</p>
-<ul>
-<li>依赖（Dependence）<a href="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" target="_blank" rel="external"><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" alt=""></a><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml2.gif" alt=""><br>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。</li>
-</ul>
-<p><strong>代码样例：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(Book book)</span></span>&#123;</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"读的书是"</span>+book.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>关联（Association）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml3.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml4.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml5.gif" alt=""><br><strong>单项关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml6.gif" alt=""><br><strong>双向关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml7.gif" alt=""></li>
-</ul>
-<p>对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。</p>
-<p><strong>代码样例：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> </span>&#123;</div><div class="line"></div><div class="line">	Father father = <span class="keyword">new</span> Father();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"从"</span>+father.getName()+<span class="string">"获得礼物"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</div><div class="line"></div><div class="line">	Son son = <span class="keyword">new</span> Son();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"从"</span>+son.getName()+<span class="string">"获得礼物"</span>)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>聚合（Aggregation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml8.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml9.gif" alt=""></li>
-</ul>
-<p>聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。</p>
-<p><strong>代码样例：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</div><div class="line"></div><div class="line">	Car car;</div><div class="line"></div><div class="line">	House house;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.car = car;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHouse</span><span class="params">(House house)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.house = house;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">driver</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"车型号:"</span>+car.getType());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"我在房子里睡觉:"</span>+house.getAddress());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>组合（Composition）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml10.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml11.gif" alt=""></li>
-</ul>
-<p>相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</div><div class="line"></div><div class="line">	Soul soul;</div><div class="line"></div><div class="line">	Body body;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(Soul soul,Body body)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.soul = soul;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.body = body;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"学习要灵魂:"</span>+soul.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"吃饭需要身体:"</span>+body.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>继承（GeneraliZation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml12.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml13.gif" alt=""></li>
-</ul>
-<p>继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。</p>
-<ul>
-<li>实现（Implementation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml14.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml15.gif" alt=""></li>
-</ul>
-<p>表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。</p>
+            <p><a href="http://www.jianshu.com/p/64172ccfb73b" target="_blank" rel="external">http://www.jianshu.com/p/64172ccfb73b</a><br><a href="http://www.cnblogs.com/LoganChen/p/6369774.html" target="_blank" rel="external">http://www.cnblogs.com/LoganChen/p/6369774.html</a></p>
 
         
         </div>
@@ -392,7 +254,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
             
     
-        <a href="http://www.nearby.ren/2017/04/17/设计模式中类的关系/#comments" class="article-comment-link">评论</a>
+        <a href="http://www.nearby.ren/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -464,61 +326,6 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
             
     
         <a href="http://www.nearby.ren/2017/03/30/androidStudio编译与运行常见问题/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-AndroidContext上下文你必须知道的一切" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/02/21/AndroidContext上下文你必须知道的一切/">AndroidContext上下文你必须知道的一切</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/21/AndroidContext上下文你必须知道的一切/">
-            <time datetime="2017-02-21T02:21:19.000Z" itemprop="datePublished">2017-02-21</time>
-        </a>
-    </div>
-
-
-                        
-                        
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://www.nearby.ren/2017/02/21/AndroidContext上下文你必须知道的一切/#comments" class="article-comment-link">评论</a>
     
 
         </footer>
@@ -606,8 +413,153 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
 
 
 
+    <article id="post-android开发要避免的那些坑" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/11/07/android开发要避免的那些坑/">android开发要避免的那些坑</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/11/07/android开发要避免的那些坑/">
+            <time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><a href="http://blog.csdn.net/zhangke3016/article/details/51831122" target="_blank" rel="external">android开发要避免的那些坑</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/11/07/android开发要避免的那些坑/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-rxjava操作符" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/11/02/rxjava操作符/">rxjava操作符</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/11/02/rxjava操作符/">
+            <time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/rxandroid/">rxandroid</a>, <a class="tag-link" href="/tags/rxjava/">rxjava</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>操作符决策树</p>
+<p>直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）<br>创建操作</p>
+<p>用于创建Observable的操作符<br>Create<br>通过调用观察者的方法从头创建一个Observable<br>Empty/Never/Throw<br>创建行为受限的特殊Observable<br>Defer<br>在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable<br>Just<br>将对象或者对象集合转换为一个会发射这些对象的Observable<br>From<br>将其它的对象或数据结构转换为Observable<br>Range<br>创建发射指定范围的整数序列的Observable,range操作符,发射从start开始的count个数<br>Interval<br>间隔一定时间发送一个数字,从0开始.本身运行在Schedulers.computation() 线程内<br>Repeat<br>Repeat作用在Observable上,会对其重复发射count次<br>Timer<br>Timer会在指定时间后发射一个数字0，注意其也是运行在computation Scheduler<br>变换操作</p>
+<p>对Observable发射的数据进行变，能将数据转化为我们想要的格式，<br>Buffer<br>缓存，可以简单的理解为缓存，它定期从Observable收集数据到一个集合，然后把这些数据集合打包发射，而不是一次发射一个<br>FlatMap<br>扁平映射，将Observable发射的数据变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable，可以认为是一个将嵌套的数据结构展开的过程。<br>GroupBy<br>分组，将原来的Observable分拆为Observable集合，将原始Observable发射的数据按Key分组，每一个Observable发射一组不同的数据<br>Map<br>映射，通过对序列的每一项都应用一个函数变换Observable发射的数据，实质是对序列中的每一项执行一个函数，函数的参数就是这个数据项<br>Scan<br>扫描， 连续地对数据序列的每一项应用一个函数，然后连续发射结果,每一项结果基于之前的结果.累加器函数.<br>Window<br>窗口，定期将来自Observable的数据分拆成一些Observable窗口，然后发射这些窗口，而不是每次发射一项。类似于Buffer，但Buffer发射的是数据，Window发射的是Observable，每一个Observable发射原始Observable的数据的一个子集<br>toList<br>Returns an Observable that emits a single item, a list composed of all the items emitted by the source Observable. 将一个Observable转换为一个List.<br>过滤操作</p>
+<p>滤掉数据集合中我们不想要的数据。用于从Observable发射的数据中进行选择。<br>throttleWithTimeout<br>源Observable每次发射出来一个数据后就会进行计时,如果在设定好的时间结束前源Observable有新的数据发射出来，这个数据就会被丢弃，同时重新开始计时。<br>Debounce<br>只有在空闲了一段时间后才发射数据，通俗的说，就是如果一段时间没有操作，就执行一次操作.还可以根据一个函数来进行限流。这个函数的返回值是一个临时Observable，<br>如果源Observable在发射一个新的数据的时候，上一个数据根据函数所生成的临时Observable还没有结束,没有调用onComplete，那么上一个数据就会被过滤掉。如果是最后一个,还是会发射.<br>Distinct<br>去重，过滤掉所有的重复数据项<br>DistinctUtilChanged<br>过滤掉相邻的重复项<br>ElementAt<br>取值，取特定位置的数据项<br>Filter<br>过滤，过滤掉没有通过谓词测试的数据项，只发射通过测试的<br>First<br>取满足条件的第一个,如无满足条件数据抛出异常.可以使用takeFisrt(),仅会调动onComplete.<br>有null数据时会抛空指针异常,要判空处理.<br>只取满足条件的第一个数据.可以和BlockingObservable连用。可以Observable.toBlocking或者BlockingObservable.from方法来将一个Observable对象转化为BlockingObservable对象<br>Last<br>末项，只发射最后一条数据.<br>IgnoreElements<br>忽略所有的数据，只保留终止通知(onError或onCompleted)<br>Sample<br>取样，定期发射最新的数据，等于是数据抽样，有的实现里叫ThrottleFirst<br>throttleFirst<br>会定期发射这个时间段里源Observable发射的第一个数据<br>Skip<br>跳过前面的若干项数据<br>SkipLast<br>跳过后面的若干项数据<br>Take<br>只保留前面的若干项数据<br>TakeLast<br>只保留后面的若干项数据<br>takeFirst<br>有null数据时会抛空指针异常,要判空处理<br>和first一样，但在所有数据不满足条件时不会抛出异常，仅仅调用onComplete.<br>组合操作</p>
+<p>And/Then/When<br>通过模式(And条件)和计划(Then次序)组合两个或多个Observable发射的数据集<br>CombineLatest<br>当两个Observables中的任何一个发射了一个数据时，通过一个指定的函数组合每个Observable发射的最新数据（一共两个数据），然后发射这个函数的结果<br>必须满足两个条件:<br>1)所有的Observable都发射过数据。<br>2)满足条件1的时候任何一个Observable发射一个数据，就将所有Observable最新发射的数据按照提供的函数组装起来发射出去。<br>在这两个条件下,可能会忽略掉一些发射的数据.<br>Join<br>无论何时，如果一个Observable发射了一个数据项，只要在另一个Observable发射的数据项定义的时间窗口内，就将两个Observable发射的数据合并发射<br>参数说明:<br>1)源Observable所要组合的目标Observable<br>2)一个函数，就收从源Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了源Observable发射出来数据的有效期<br>3)一个函数，就收从目标Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了目标Observable发射出来数据的有效期<br>4)一个函数，接收从源Observable和目标Observable发射来的数据，并返回最终组合完的数据。<br>Merge<br>将两个Observable发射的数据组合并成一个<br>Merge可能会让合并的Observables发射的数据交错（可以使用Concat操作符,不会让数据交错，它会按顺序一个接着一个发射多个Observables的发射物）。<br>StartWith<br>在发射原来的Observable的数据序列之前，先发射一个指定的数据序列或数据项<br>在数据序列的开头插入一条指定的项<br>你也可以传递一个Observable给startWith，<br>它会将那个Observable的发射物插在原始Observable发射的数据序列之前.这可以看作是Concat的反转。<br>Switch，在RxJava的实现为SwitchOnNext<br>将一个发射Observable序列的Observable转换为这样一个Observable：它逐个发射那些Observable最近发射的数据<br>用来将一个发射多个小Observable的源Observable转化为一个Observable，然后发射这多个小Observable所发射的数据。<br>需要注意的就是，如果一个小的Observable正在发射数据的时候，源Observable又发射出一个新的小Observable，则前一个Observable发射的数据会被抛弃，直接发射新的小Observable所发射的数据。<br>Zip<br>zip zipWith<br>打包，使用一个指定的函数将多个Observable发射的数据组合在一起，然后将这个函数的结果作为单项数据发射<br>Zip操作符将多个Observable发射的数据按顺序组合起来，每个数据只能组合一次，而且都是有序的。<br>最终组合的数据的数量由发射数据最少的Observable来决定。<br>错误处理</p>
+<p>这些操作符用于从错误通知中恢复<br>Catch<br>捕获，继续序列操作，将错误替换为正常的数据，从onError通知中恢复<br>onErrorReturn<br>当发生错误的时候，让Observable发射一个预先定义好的数据并正常地终止,不会抛出异常 onErrorResumeNext<br>当发生错误的时候，由另外一个Observable来代替当前的Observable并继续发射数据 onExceptionResumeNext<br>类似于OnErrorResume,不同之处在于其会对onError抛出的数据类型做判断，<br>如果是Exception，也会使用另外一个Observable代替原Observable继续发射数据，<br>否则会将错误分发给Subscriber。<br>Retry<br>重试，如果Observable发射了一个错误通知，重新订阅它，期待它正常终止<br>retry<br>Retry操作符在发生错误的时候会重新进行订阅,而且可以重复多次，<br>所以发射的数据可能会产生重复。如果重复指定次数还有错误的话就会将错误返回给观察者,会掉onError retryWhen<br>当错误发生时，retryWhen会接收onError的throwable作为参数，并根据定义好的函数返回一个Observable，如果这个Observable发射一个数据，就会重新订阅。<br>需要注意的是使用retryWhen的时候,因为每次重新订阅都会产生错误，所以作为参数的obserbvable会不断地发射数据，使用zipWith操作符可以限制重新订阅的次数，否则会无限制地重新订阅。<br>会正常结束,调用onCompleted<br>辅助操作</p>
+<p>Delay<br>延迟一段时间发射结果数据<br>DelaySubscription<br>延迟注册到Observer上<br>Do<br>Do操作符就是给Observable的生命周期的各个阶段加上一系列的回调监听，当Observable执行到这个阶段的时候，这些回调就会被触发.<br>doOnEach<br>Observable每发射一个数据的时候就会触发这个回调，不仅包括onNext还包括onError和onCompleted。<br>doOnNext<br>只有onNext的时候才会被触发。<br>doOnSubscribe,doOnUnSubscribe<br>会在Subscriber进行订阅和反订阅的时候触发回调。<br>当一个Observable通过OnError或者OnCompleted结束的时候，会反订阅所有的Subscriber。在Android中和生命周期绑定起来,因为有些Observable执行不完啊.<br>doOnSubscribeOn<br>在开始注册前做一些工作。处于当前线程，而不是subscribeOn指定的线程。<br>DoOnError<br>在OnError发生的时候触发回调，并将Throwable对象作为参数传进回调函数里。<br>DoOnComplete<br>会在OnCompleted发生的时候触发回调。<br>DoOnTerminate<br>会在Observable结束前触发回调，无论是正常还是异常终止。<br>finallyDo,doAfterTerminate<br>会在Observable结束后触发回调，无论是正常还是异常终止。<br>Materialize,dematerialize<br>Meterialize操作符将OnNext/OnError/OnComplete都转化为一个Notification对象并按照原来的顺序发射出来,dematerialize相反<br>使用integerNotification.getValue() +”, ” + integerNotification.getKind()可以看到打印值和类型.<br>ObserveOn<br>指定Subscriber的调度程序（工作线程）<br>SubscribeOn<br>指定Observable应该在哪个调度程序上执行<br>Serialize<br>强制Observable按次序发射数据并且功能是有效的<br>Subscribe<br>收到Observable发射的数据和通知后执行的操作<br>TimeInterval<br>将一个Observable转换为发射两个数据之间所耗费时间的Observable<br>TimeInterval会拦截发射出来的数据，取代为前后两个发射两个数据的间隔时间。对于第一个发射的数据，其时间间隔为订阅后到首次发射的间隔。<br>Timeout<br>添加超时机制，如果过了指定的一段时间没有发射数据，就发射一个错误通知<br>Timeout操作符给Observable加上超时时间，每发射一个数据后就重置计时器，当超过预定的时间还没有发射下一个数据，就抛出一个超时的异常。<br>Rxjava将Timeout实现为很多不同功能的操作符，比如说超时后用一个备用的Observable继续发射数据等。<br>Timestamp<br>给Observable发射的每个数据项添加一个时间戳<br>TimeStamp会将每个数据项给重新包装一下，加上了一个时间戳来标明每次发射的时间<br>Using<br>创建一个只在Observable的生命周期内存在的一次性资源<br>Using操作符创建一个在Observable生命周期内存活的资源，也可以这样理解：<br>我们创建一个资源并使用它，用一个Observable来限制这个资源的使用时间，当这个Observable终止的时候，这个资源就会被销毁。<br>Using需要使用三个参数，分别是：<br>1)创建这个一次性资源的函数<br>2)创建Observable的函数<br>3)释放资源的函数<br>条件和布尔操作</p>
+<p>这些操作符可用于单个或多个数据项，也可用于Observable<br>All<br>判断Observable发射的所有的数据项是否都满足某个条件<br>All操作符根据一个函数对源Observable发射的所有数据进行判断，最终返回的结果就是这个判断结果。<br>对发射的所有数据应用这个函数,如果全部都满足则返回true，否则就返回false。<br>Amb<br>Amb操作符可以将至多9个Observable结合起来，让他们竞争。<br>哪个Observable首先发射了数据（包括onError和onComplete)就会继续发射这个Observable的数据，其他的Observable所发射的数据都会别丢弃。<br>Contains<br>判断Observable是否会发射一个指定的数据项<br>Contains操作符用来判断源Observable所发射的数据是否包含某一个数据，如果包含会返回true，如果源Observable已经结束了却还没有发射这个数据则返回false。<br>IsEmpty<br>IsEmpty操作符用来判断源Observable是否发射过数据，没有发射过数据返回true.<br>Null也是一个数据<br>DefaultIfEmpty<br>发射来自原始Observable的数据，如果原始Observable没有发射数据，就发射一个默认数据<br>会判断源Observable是否发射数据，如果源Observable发射了数据则正常发射这些数据，如果没有则发射一个默认的数据<br>SequenceEqual<br>判断两个Observable是否按相同的数据序列<br>SequenceEqual操作符用来判断两个Observable发射的数据序列是否相同（发射的数据相同，数据的序列相同，结束的状态相同），如果相同返回true，否则返回false<br>SkipUntil<br>SkipUnitl是根据一个标志Observable来判断的，当这个标志Observable没有发射数据的时候，所有源Observable发射的数据都会被跳过；当标志Observable发射了一个数据，则开始正常地发射数据。<br>一直等到skipUntil发射了数据才能发射源Observable的数据,并忽略了此段时间内的数据<br>SkipWhile<br>SkipWhile则是根据一个函数来判断是否跳过数据，当函数返回值为true的时候则一直跳过源Observable发射的数据；当函数返回false的时候则开始正常发射数据。<br>TakeUntil<br>和SkipUtil恰好相反,只获取takeUntil里的Observable之前的数据<br>TakeWhile<br>和SkipWhile相反,获取满足skipWhile的数据<br>算术和聚合操作</p>
+<p>Concat<br>将多个Observable结合成一个Observable并发射数据，并且严格按照先后顺序发射数据，前一个Observable的数据没有发射完，不发射后面Observable的数据<br>Count<br>Count操作符用来统计源Observable发射了多少个数据，最后将数目给发射出来；<br>如果源Observable发射错误，则会将错误直接报出来；在源Observable没有终止前，count是不会发射统计数据的。<br>Reduce<br>Reduce操作符应用一个函数接收Observable发射的数据和函数的计算结果作为下次计算的参数，输出最后的结果。<br>跟前面我们了解过的scan操作符很类似，只是scan会输出每次计算的结果，而reduce只会输出最后的结果。<br>Collect<br>collect用来将源Observable发射的数据给收集到一个数据结构里面，需要使用两个参数：<br>一个产生收集数据结构的函数<br>一个接收第一个函数产生的数据结构和源Observable发射的数据作为参数的函数。<br>连接操作</p>
+<p>一些有精确可控的订阅行为的特殊Observable<br>什么是Connectable Observable:<br>就是一种特殊的Observable对象，并不是Subscrib的时候就发射数据，而是只有对其应用connect操作符的时候才开始发射数据，<br>所以可以用来更灵活的控制数据发射的时机。<br>使用Publish操作符将Observable转换为Connectable Observable,然后可以通过connect控制何时发射.<br>Publish<br>将一个普通的Observable转换为可连接的<br>Publish操作符就是用来将一个普通的Observable对象转化为一个Connectable Observable。需要注意的是如果发射数据已经开始了再进行订阅只能接收以后发射的数据。<br>Connect<br>Connect操作符就是用来触发Connectable Observable发射数据的。<br>应用Connect操作符后会返回一个Subscription对象，通过这个Subscription对象，我们可以调用其unsubscribe方法来终止数据的发射。<br>另外，如果还没有订阅者订阅的时候就应用Connect操作符也是可以使其开始发射数据的。<br>RefCount<br>RefCount操作符就是将一个Connectable Observable 对象再重新转化为一个普通的Observable对象，这时候订阅者进行订阅时就会触发数据的发射。<br>Replay<br>Replay操作符返回一个Connectable Observable 对象并且可以缓存其发射过的数据，这样即使有订阅者在其发射数据之后进行订阅也能收到其之前发射过的数据。<br>不过使用Replay操作符我们最好还是限定其缓存的大小，否则缓存的数据太多了可会占用很大的一块内存。<br>对缓存的控制可以从空间和时间两个方面来实现。<br>直接返回一个connectable observable,不用publish<br>转换操作</p>
+<p>to<br>自定义操作符</p>
+<p>lift compose</p>
+<p><a href="http://blog.csdn.net/zhupumao/article/details/51932850" target="_blank" rel="external">rxjava汇总链接</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://www.nearby.ren/2016/11/02/rxjava操作符/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -622,7 +574,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/04/18/Git分支管理策略/" class="thumbnail">
+                            <a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -632,28 +584,9 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/git/">git</a></p>
-                            <p class="item-title"><a href="/2017/04/18/Git分支管理策略/" class="title">Git分支管理策略</a></p>
-                            <p class="item-date"><time datetime="2017-04-18T03:55:47.000Z" itemprop="datePublished">2017-04-18</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/04/17/设计模式中类的关系/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/java/">java</a></p>
-                            <p class="item-title"><a href="/2017/04/17/设计模式中类的关系/" class="title">设计模式中类的关系</a></p>
-                            <p class="item-date"><time datetime="2017-04-17T07:28:13.000Z" itemprop="datePublished">2017-04-17</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2017/06/08/androidHttps搭建与服务器Tomcat9-0配置/" class="title">androidHttps搭建与服务器Tomcat9.0配置</a></p>
+                            <p class="item-date"><time datetime="2017-06-08T08:03:12.000Z" itemprop="datePublished">2017-06-08</time></p>
                         </div>
                     </li>
                 
@@ -679,25 +612,6 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/21/AndroidContext上下文你必须知道的一切/" class="title">AndroidContext上下文你必须知道的一切</a></p>
-                            <p class="item-date"><time datetime="2017-02-21T02:21:19.000Z" itemprop="datePublished">2017-02-21</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/02/15/android6-0运行时权限列表/" class="thumbnail">
     
     
@@ -714,6 +628,44 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/07/android开发要避免的那些坑/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/07/android开发要避免的那些坑/" class="title">android开发要避免的那些坑</a></p>
+                            <p class="item-date"><time datetime="2016-11-07T07:21:19.000Z" itemprop="datePublished">2016-11-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/11/02/rxjava操作符/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2016/11/02/rxjava操作符/" class="title">rxjava操作符</a></p>
+                            <p class="item-date"><time datetime="2016-11-02T02:53:49.000Z" itemprop="datePublished">2016-11-02</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -723,7 +675,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -732,7 +684,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -741,7 +693,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -750,7 +702,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 12.5px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 10px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 10px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/文字/" style="font-size: 10px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
         </div>
     </div>
 

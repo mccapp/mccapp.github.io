@@ -6,21 +6,18 @@
     <title>rxjava操作符 | Nearby | 25s</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="操作符决策树
-直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）创建操作
-用于创建Observable的操作符Create通过调用">
+直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）创建操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rxjava操作符">
 <meta property="og:url" content="http://www.nearby.ren/2016/11/02/rxjava操作符/index.html">
 <meta property="og:site_name" content="Nearby | 25s">
 <meta property="og:description" content="操作符决策树
-直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）创建操作
-用于创建Observable的操作符Create通过调用">
-<meta property="og:updated_time" content="2016-11-21T14:59:36.000Z">
+直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）创建操作">
+<meta property="og:updated_time" content="2017-10-10T07:40:52.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rxjava操作符">
 <meta name="twitter:description" content="操作符决策树
-直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）创建操作
-用于创建Observable的操作符Create通过调用">
+直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）创建操作">
     
 
     
@@ -248,8 +245,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         
             
             <p>操作符决策树</p>
-<p>直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）<br>创建操作</p>
-<p>用于创建Observable的操作符<br>Create<br>通过调用观察者的方法从头创建一个Observable<br>Empty/Never/Throw<br>创建行为受限的特殊Observable<br>Defer<br>在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable<br>Just<br>将对象或者对象集合转换为一个会发射这些对象的Observable<br>From<br>将其它的对象或数据结构转换为Observable<br>Range<br>创建发射指定范围的整数序列的Observable,range操作符,发射从start开始的count个数<br>Interval<br>间隔一定时间发送一个数字,从0开始.本身运行在Schedulers.computation() 线程内<br>Repeat<br>Repeat作用在Observable上,会对其重复发射count次<br>Timer<br>Timer会在指定时间后发射一个数字0，注意其也是运行在computation Scheduler<br>变换操作</p>
+<p>直接创建一个Observable（创建操作） 组合多个Observable（组合操作） 对Observable发射的数据执行变换操作（变换操作） 从Observable发射的数据中取特定的值（过滤操作） 转发Observable的部分值（条件/布尔/过滤操作） 对Observable发射的数据序列求值（算术/聚合操作）<br>创建操作<br><a id="more"></a><br>用于创建Observable的操作符<br>Create<br>通过调用观察者的方法从头创建一个Observable<br>Empty/Never/Throw<br>创建行为受限的特殊Observable<br>Defer<br>在观察者订阅之前不创建这个Observable，为每一个观察者创建一个新的Observable<br>Just<br>将对象或者对象集合转换为一个会发射这些对象的Observable<br>From<br>将其它的对象或数据结构转换为Observable<br>Range<br>创建发射指定范围的整数序列的Observable,range操作符,发射从start开始的count个数<br>Interval<br>间隔一定时间发送一个数字,从0开始.本身运行在Schedulers.computation() 线程内<br>Repeat<br>Repeat作用在Observable上,会对其重复发射count次<br>Timer<br>Timer会在指定时间后发射一个数字0，注意其也是运行在computation Scheduler<br>变换操作</p>
 <p>对Observable发射的数据进行变，能将数据转化为我们想要的格式，<br>Buffer<br>缓存，可以简单的理解为缓存，它定期从Observable收集数据到一个集合，然后把这些数据集合打包发射，而不是一次发射一个<br>FlatMap<br>扁平映射，将Observable发射的数据变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable，可以认为是一个将嵌套的数据结构展开的过程。<br>GroupBy<br>分组，将原来的Observable分拆为Observable集合，将原始Observable发射的数据按Key分组，每一个Observable发射一组不同的数据<br>Map<br>映射，通过对序列的每一项都应用一个函数变换Observable发射的数据，实质是对序列中的每一项执行一个函数，函数的参数就是这个数据项<br>Scan<br>扫描， 连续地对数据序列的每一项应用一个函数，然后连续发射结果,每一项结果基于之前的结果.累加器函数.<br>Window<br>窗口，定期将来自Observable的数据分拆成一些Observable窗口，然后发射这些窗口，而不是每次发射一项。类似于Buffer，但Buffer发射的是数据，Window发射的是Observable，每一个Observable发射原始Observable的数据的一个子集<br>toList<br>Returns an Observable that emits a single item, a list composed of all the items emitted by the source Observable. 将一个Observable转换为一个List.<br>过滤操作</p>
 <p>滤掉数据集合中我们不想要的数据。用于从Observable发射的数据中进行选择。<br>throttleWithTimeout<br>源Observable每次发射出来一个数据后就会进行计时,如果在设定好的时间结束前源Observable有新的数据发射出来，这个数据就会被丢弃，同时重新开始计时。<br>Debounce<br>只有在空闲了一段时间后才发射数据，通俗的说，就是如果一段时间没有操作，就执行一次操作.还可以根据一个函数来进行限流。这个函数的返回值是一个临时Observable，<br>如果源Observable在发射一个新的数据的时候，上一个数据根据函数所生成的临时Observable还没有结束,没有调用onComplete，那么上一个数据就会被过滤掉。如果是最后一个,还是会发射.<br>Distinct<br>去重，过滤掉所有的重复数据项<br>DistinctUtilChanged<br>过滤掉相邻的重复项<br>ElementAt<br>取值，取特定位置的数据项<br>Filter<br>过滤，过滤掉没有通过谓词测试的数据项，只发射通过测试的<br>First<br>取满足条件的第一个,如无满足条件数据抛出异常.可以使用takeFisrt(),仅会调动onComplete.<br>有null数据时会抛空指针异常,要判空处理.<br>只取满足条件的第一个数据.可以和BlockingObservable连用。可以Observable.toBlocking或者BlockingObservable.from方法来将一个Observable对象转化为BlockingObservable对象<br>Last<br>末项，只发射最后一条数据.<br>IgnoreElements<br>忽略所有的数据，只保留终止通知(onError或onCompleted)<br>Sample<br>取样，定期发射最新的数据，等于是数据抽样，有的实现里叫ThrottleFirst<br>throttleFirst<br>会定期发射这个时间段里源Observable发射的第一个数据<br>Skip<br>跳过前面的若干项数据<br>SkipLast<br>跳过后面的若干项数据<br>Take<br>只保留前面的若干项数据<br>TakeLast<br>只保留后面的若干项数据<br>takeFirst<br>有null数据时会抛空指针异常,要判空处理<br>和first一样，但在所有数据不满足条件时不会抛出异常，仅仅调用onComplete.<br>组合操作</p>
 <p>And/Then/When<br>通过模式(And条件)和计划(Then次序)组合两个或多个Observable发射的数据集<br>CombineLatest<br>当两个Observables中的任何一个发射了一个数据时，通过一个指定的函数组合每个Observable发射的最新数据（一共两个数据），然后发射这个函数的结果<br>必须满足两个条件:<br>1)所有的Observable都发射过数据。<br>2)满足条件1的时候任何一个Observable发射一个数据，就将所有Observable最新发射的数据按照提供的函数组装起来发射出去。<br>在这两个条件下,可能会忽略掉一些发射的数据.<br>Join<br>无论何时，如果一个Observable发射了一个数据项，只要在另一个Observable发射的数据项定义的时间窗口内，就将两个Observable发射的数据合并发射<br>参数说明:<br>1)源Observable所要组合的目标Observable<br>2)一个函数，就收从源Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了源Observable发射出来数据的有效期<br>3)一个函数，就收从目标Observable发射来的数据，并返回一个Observable，这个Observable的生命周期决定了目标Observable发射出来数据的有效期<br>4)一个函数，接收从源Observable和目标Observable发射来的数据，并返回最终组合完的数据。<br>Merge<br>将两个Observable发射的数据组合并成一个<br>Merge可能会让合并的Observables发射的数据交错（可以使用Concat操作符,不会让数据交错，它会按顺序一个接着一个发射多个Observables的发射物）。<br>StartWith<br>在发射原来的Observable的数据序列之前，先发射一个指定的数据序列或数据项<br>在数据序列的开头插入一条指定的项<br>你也可以传递一个Observable给startWith，<br>它会将那个Observable的发射物插在原始Observable发射的数据序列之前.这可以看作是Concat的反转。<br>Switch，在RxJava的实现为SwitchOnNext<br>将一个发射Observable序列的Observable转换为这样一个Observable：它逐个发射那些Observable最近发射的数据<br>用来将一个发射多个小Observable的源Observable转化为一个Observable，然后发射这多个小Observable所发射的数据。<br>需要注意的就是，如果一个小的Observable正在发射数据的时候，源Observable又发射出一个新的小Observable，则前一个Observable发射的数据会被抛弃，直接发射新的小Observable所发射的数据。<br>Zip<br>zip zipWith<br>打包，使用一个指定的函数将多个Observable发射的数据组合在一起，然后将这个函数的结果作为单项数据发射<br>Zip操作符将多个Observable发射的数据按顺序组合起来，每个数据只能组合一次，而且都是有序的。<br>最终组合的数据的数量由发射数据最少的Observable来决定。<br>错误处理</p>

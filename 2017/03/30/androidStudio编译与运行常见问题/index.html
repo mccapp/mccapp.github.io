@@ -13,7 +13,7 @@
 <meta property="og:description" content="最近开发公司一个项目，环信客服SDK的demo接入。android5.0的手机大部分可以正确使用，其他之下的手机会报java.lang.VerifyError.。之前以为环信客服SDK的兼容问题，后来把融云屏蔽掉，后面又接连报错，才意思到是我项目出问题，百度了一些资料，才发现java.lang.VerifyError有几种情况会报错;google的官方说法是：java.lang.VerifyErr">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/005zrb37gy1fe4ts34rolj30fy08v0ta.jpg">
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/005zrb37gy1fe4ttmdlavj30jq06iwen.jpg">
-<meta property="og:updated_time" content="2017-03-30T05:59:51.502Z">
+<meta property="og:updated_time" content="2017-11-22T02:02:29.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="androidStudio编译与运行常见问题">
 <meta name="twitter:description" content="最近开发公司一个项目，环信客服SDK的demo接入。android5.0的手机大部分可以正确使用，其他之下的手机会报java.lang.VerifyError.。之前以为环信客服SDK的兼容问题，后来把融云屏蔽掉，后面又接连报错，才意思到是我项目出问题，百度了一些资料，才发现java.lang.VerifyError有几种情况会报错;google的官方说法是：java.lang.VerifyErr">
@@ -244,7 +244,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>最近开发公司一个项目，环信客服SDK的demo接入。android5.0的手机大部分可以正确使用，<br>其他之下的手机会报java.lang.VerifyError.。之前以为环信客服SDK的兼容问题，后来把融云屏蔽掉，<br>后面又接连报错，才意思到是我项目出问题，百度了一些资料，才发现java.lang.VerifyError有几种情况会报错;<br>google的官方说法是：java.lang.VerifyError是adt与jdk的不同版本的不同，进入架包之类的会报错各种不同的错误，是无法机器无法解决的。<br>解决方法一<br><img src="http://wx1.sinaimg.cn/mw690/005zrb37gy1fe4ts34rolj30fy08v0ta.jpg" alt="此处输入图片的描述"></p>
+            <p>最近开发公司一个项目，环信客服SDK的demo接入。android5.0的手机大部分可以正确使用，<br>其他之下的手机会报java.lang.VerifyError.。之前以为环信客服SDK的兼容问题，后来把融云屏蔽掉，<br>后面又接连报错，才意思到是我项目出问题，百度了一些资料，才发现java.lang.VerifyError有几种情况会报错;<br>google的官方说法是：java.lang.VerifyError是adt与jdk的不同版本的不同，进入架包之类的会报错各种不同的错误，是无法机器无法解决的。<br><a id="more"></a><br>解决方法一<br><img src="http://wx1.sinaimg.cn/mw690/005zrb37gy1fe4ts34rolj30fy08v0ta.jpg" alt="此处输入图片的描述"></p>
 <p>但是，不要忘记，这只是让你app的编辑文件分成2分，你软件运行有可能只运行第一个软件，它是默认运行的，有可能会报VerifyError。<br>Apk在运行的时候，有一个dexpathlist，而Multidex的源码中，会根据你的系统版本号对dexpathlist做修改，将所有的dex都添加到dexpathlist中.<br>接下来集成有两个步骤:<br>一. 从sdk\extras\android\support\multidex\library\libs 目录将android-support-multidex.jar导入工程中<br>二. 如果你的工程中已经含有Application类,那么让它继承android.support.multidex.MultiDexApplication类,<br>     如果你的Application已经继承了其他类并且不想做改动，那么还有另外一种使用方式,覆写attachBaseContext()方法:</p>
 <p><img src="http://wx4.sinaimg.cn/mw690/005zrb37gy1fe4ttmdlavj30jq06iwen.jpg" alt="此处输入图片的描述">     </p>
 <p>网上的一些解释是：app项目过大，必须分成2个Dex文件，Android studio才会运行正常。</p>
@@ -334,25 +334,6 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/08/android os文件的兼容和适配/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
-                            <p class="item-title"><a href="/2017/11/08/android os文件的兼容和适配/" class="title">Android SO文件的兼容和适配</a></p>
-                            <p class="item-date"><time datetime="2017-11-08T08:03:12.000Z" itemprop="datePublished">2017-11-08</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/11/08/vue 目录解析/" class="thumbnail">
     
     
@@ -365,6 +346,25 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/web/">web</a></p>
                             <p class="item-title"><a href="/2017/11/08/vue 目录解析/" class="title">vue 目录解析</a></p>
+                            <p class="item-date"><time datetime="2017-11-08T08:03:12.000Z" itemprop="datePublished">2017-11-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/08/android os文件的兼容和适配/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
+                            <p class="item-title"><a href="/2017/11/08/android os文件的兼容和适配/" class="title">Android SO文件的兼容和适配</a></p>
                             <p class="item-date"><time datetime="2017-11-08T08:03:12.000Z" itemprop="datePublished">2017-11-08</time></p>
                         </div>
                     </li>

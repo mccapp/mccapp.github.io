@@ -103,35 +103,38 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="st-default-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
         <button type="submit" class="search-form-submit"></button>
     </form>
-    <script type="text/javascript">
-(function(w,d,t,u,n,s,e) {w['SwiftypeObject']=n;w[n]=w[n]||function() {
-(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-_st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
-<style>
-    .st-ui-injected-overlay-container,
-    .st-ui-injected-overlay-container *:not(select) {
-        font-family: inherit !important;
-    }
-    section.st-ui-content.st-search-results a.st-ui-result .st-ui-type-heading {
-        color: undefined !important;
-    }
-    .st-ui-injected-overlay-container .st-ui-header input[type="text"]:focus {
-        border-bottom: 2px solid undefined;
-    }
-    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link {
-        color: undefined;
-    }
-    .st-ui-injected-overlay-container .st-ui-footer a.st-ui-pagination-link span.st-ui-arrow {
-        border-color: undefined;
-    }
-</style>
+<script src="/js/insight.js"></script>
 
 </div>
         </div>
@@ -149,7 +152,7 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="st-default-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
     </div>
 
                 </td>
@@ -364,25 +367,6 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/08/前段Ui框架/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/web/">web</a></p>
-                            <p class="item-title"><a href="/2017/11/08/前段Ui框架/" class="title">前段UI框架</a></p>
-                            <p class="item-date"><time datetime="2017-11-08T08:03:12.000Z" itemprop="datePublished">2017-11-08</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2017/11/08/android os文件的兼容和适配/" class="thumbnail">
     
     
@@ -395,6 +379,25 @@ _st('install','yZdFdRak_TKurwCxNX6g','2.0.0');
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/android/">android</a></p>
                             <p class="item-title"><a href="/2017/11/08/android os文件的兼容和适配/" class="title">Android SO文件的兼容和适配</a></p>
+                            <p class="item-date"><time datetime="2017-11-08T08:03:12.000Z" itemprop="datePublished">2017-11-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/08/前段Ui框架/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/web/">web</a></p>
+                            <p class="item-title"><a href="/2017/11/08/前段Ui框架/" class="title">前段UI框架</a></p>
                             <p class="item-date"><time datetime="2017-11-08T08:03:12.000Z" itemprop="datePublished">2017-11-08</time></p>
                         </div>
                     </li>

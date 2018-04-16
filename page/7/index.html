@@ -158,11 +158,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                52
+                56
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                26
+                27
                 <span>标签</span>
             </div>
         </div>
@@ -211,6 +211,491 @@
 
             
             <section id="main">
+    <article id="post-Android之Glide缓存" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/06/17/Android之Glide缓存/">Android之Glide缓存</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/06/17/Android之Glide缓存/">
+            <time datetime="2016-06-17T12:31:28.000Z" itemprop="datePublished">2016-06-17</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><strong>GlideModule使用</strong>：<br>　　GlideModule 是一个抽象方法，全局改变 Glide 行为的一个方式，通过全局GlideModule 配置Glide，用GlideBuilder设置选项，用Glide注册ModelLoader等。</p>
+<ol>
+<li><p>自定义一个GlideModule<br>public class MyGlideModule implements GlideModule {<br>@Override public void applyOptions (Context context, GlideBuilder builder){</p>
+<p>　　}<br>}<br>@Override public void registerComponents(Context context, Glide glide){</p>
+<p>　　}<br>}</p>
+</li>
+<li><p>&lt; mainfest …&gt;<br>　　&lt; application …&gt;<br>　　 　　&lt; meta-date<br>　　　　　android:name=”com.mypackage.MyGlideModule”<br>　　　　　android:value=”GlideModule” /&gt;<br>　　　&lt; / application&gt;<br>　&lt; / manifest&gt;</p>
+</li>
+<li><p>添加混淆处理<br>　　-keepnames class com.mypackage.MyGlideModule<br>　　# or more generally:<br>　　#-keep public class * implements com.bumptech.glide.module.GlideModule</p>
+</li>
+<li><p>多个GlideModule冲突问题<br>　　GlideModule不能指定调用顺序，所以应该避免不同的GlideModule之间有冲突的选项设置，可以考虑将所有的设置都放到一个GlideModule里面，或者排除掉某个manifest文件的某个Module，代码如下：<br>&lt; meta-data android:name=”com.mypackage.MyGlideModule” tools:node=”remove” / &gt;</p>
+</li>
+</ol>
+<p><strong>GlideBuilder设置选项：</strong></p>
+<ol>
+<li>设置Glide内存缓存大小<br>　　int maxMemory = (int)Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小<br>int memoryCacheSize = maxMemory / 8 ;//设置图片内存缓存占用八分之一<br>//设置缓存大小<br>builder.setMemoryCache(new LruResourceCache(memoryCacheSize));</li>
+</ol>
+<p>　获取默认的内存使用计算函数<br>　MemorySizeCalculator calculator = new MemorySizeCalcylator(context);<br>　int defauleMemoryCacheSize = calculator.getMemoryCacheSize();<br>　int defaultBitmapPoolSize = calculator.getBitmapPoolSize();
+　</p>
+<ol>
+<li><p>设置Glide磁盘缓存大小<br>　　File cacheDir = context.getExternalCacheDir();//指定的是数据缓存地址<br>　　int disCacheSize = 1024 <em> 1024 </em>30 ;//最多可以缓存多少字节的数据<br>　　//设置磁盘缓存大小<br>　　builder.setDiskCache(new DiskLruCacheFactory(cacheDir.getPath(),”glide”,diskCacheSize));<br>也可以通过如下两种方式<br>//存放在data/data/xxxx/cache/<br>builder.setDiskCache(new InternalCacheDiskCacheFactory(context, “glide”, diskCacheSize));<br>//存放在外置文件浏览器<br>builder.setDiskCache(new ExternalCacheDiskCacheFactory(context, “glide”, diskCacheSize));</p>
+</li>
+<li><p>设置图片解码格式<br>//设置图片解码格式<br>builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);</p>
+</li>
+<li><p>设置缓存内存大小<br>//设置BitmapPool缓存内存大小<br>builder.setBitmapPool(new LruBitmapPool(memoryCacheSize));</p>
+</li>
+</ol>
+<ol>
+<li>设置一个用来检索cache中没有的Resource的ExecutorService<br>为了使缩略图请求正确工作，实现类必须把请求根据Priority优先级排好序。<br>builder.setDiskCacheService(ExecutorService service);<br>builder.setResizeService(ExecutorService service);</li>
+</ol>
+<p><strong>使用ModelLoader自定义数据源</strong>：<br>例如我们使用了七牛云存储，要根据不同的要求请求不同尺寸不同质量的图片，这时我们就可以使用自定义数据源</p>
+<ol>
+<li>定义处理URL接口</li>
+</ol>
+<p>public interface IDataModel {</p>
+<p>　　String buildDataModelUrl (int width , int height );</p>
+<p>}</p>
+<ol>
+<li><p>实现处理URL接口</p>
+<p>public class JpgDataModel implements IDataModel {</p>
+<p>　　private String dataModelUrl ;</p>
+<p>　　public JpgDataModel (String dataModelUrl){<br>　　<br>　　 　　this.dataModelUrl = dataModelUrl;</p>
+</li>
+</ol>
+<p>　　}</p>
+<p>　　@Override<br>　　public String buildDataModelUrl(int width , int height ){</p>
+<p> 　　 　　return String.format(<br>  　　 　　“%s?imageView2/1/w/%d/h/%d/format/jpg”,<br>  　　 　　dataModelUrl, width, height);<br> 　　 　　} 　　<br> 　　}    </p>
+<p>  public class WebpDataModel implements IDataModel {</p>
+<p> 　　private String dataModelUrl ;</p>
+<p> 　　public WebpDataModel (String dataModelUrl){<br> 　　<br>  　　 　　this.dataModelUrl = dataModelUrl;</p>
+<p>　　}</p>
+<p>　　@Override<br>　　public String buildDataModelUrl(int width , int height ){</p>
+<p> 　　 　　return String.format(<br>  　　 　　“%s?imageView2/1/w/%d/h/%d/format/webp”,<br>  　　 　　dataModelUrl, width, height);<br> 　　 　　} 　　<br> 　　}    </p>
+<ol>
+<li><p>实现ModelLoader</p>
+<p>public class MyDataLoader extends BaseGlideUrlLoader<idatamodel> {<br> public MyDataLoader(Context context) {</idatamodel></p>
+<p> 　super(context);</p>
+<p>}</p>
+<p>public MyDataLoader(ModelLoader<glideurl, inputstream=""> urlLoader) {</glideurl,></p>
+<p>　super(urlLoader, null);</p>
+<p>}</p>
+<p>@Override<br>protected String getUrl(IDataModel model, int width, int height) {<br>　<br>　　return model.buildDataModelUrl(width, height);</p>
+<p>}</p>
+<p>/<em>*
+ </em>/<br>public static class Factory implements ModelLoaderFactory<idatamodel, inputstream=""> {<br>　 @Override<br>　 public ModelLoader<idatamodel, inputstream=""> build(Context context, GenericLoaderFactory factories) {<br>　　<br>　　return new MyDataLoader(factories.buildModelLoader(GlideUrl.class, InputStream.class));<br>　<br>　　　}<br>　　@Override<br>　　public void teardown() {<br>　　}<br>　}<br>}</idatamodel,></idatamodel,></p>
+</li>
+<li><p>根据不同的要求采用不同的策略加载图片</p>
+<p>　　//加载jpg图片<br>　　Glide.with(this).using(new MyDataLoader(this)).load(new JpgDataModel(imageUrl)).into(imageView);<br>　　//加载webp图片<br>　　Glide.with(this).using(new MyDataLoader(this)).load(new WebpDataModel(imageUrl)).into(imageView);</p>
+</li>
+<li><p>如何跳过.using()</p>
+</li>
+</ol>
+<p>　public class MyGlideModule implements GlideModule {<br>　　<br>　　　@Override<br>　　　public void registerComponents(Context context, Glide glide) {<br>　　　　glide.register(IDataModel.class, InputStream.class, new MyUrlLoader.Factory());<br>　<br>　　}<br>　}</p>
+<p>　　上面的实现跳过using()</p>
+<p>　　//加载jpg图片<br>　　Glide.with(this).load(new JpgDataModel(imageUrl)).into(imageView);<br>　　//加载webp图片<br>　　Glide.with(this).load(new WebpDataModel(imageUrl)).into(imageView);</p>
+<p>　　使用signature()实现自定义cacheKey：<br>　　Glide 以 url、viewwidth、viewheight、屏幕的分辨率等做为联合key，官方api中没有提供删除图片缓存的函数，官方提供了signature()方法，将一个附加的数据加入到缓存key当中，多媒体存储数据，可用MediaStoreSignature类作为标识符，会将文件的修改时间、mimeType等信息作为cacheKey的一部分，通过改变key来实现图片失效相当于软删除。</p>
+<p>　1.使用StringSignature</p>
+<p>　Glide.with(this).load(yourFileDataModel).signature(new StringSignature(“1.0.0”)).into(imageView);</p>
+<p>　2.使用MediaStoreSignature </p>
+<p>　Glide.with(this) .load(mediaStoreUri).signature(new MediaStoreSignature(mimeType, dateModified, orientation)).into(view);</p>
+<p>　3.使用自定义Signature</p>
+<p>　public class IntegerVersionSignature implements Key {<br>    　　　private int currentVersion;<br>    　　　public IntegerVersionSignature(int currentVersion) {<br>    　　　　　this.currentVersion = currentVersion;<br>　　}<br>　@Override<br>　public boolean equals(Object o) {<br>　　　if (o instanceof IntegerVersionSignature) {<br>　　　　IntegerVersionSignature other = (IntegerVersionSignature) o;<br>　　　　return currentVersion = other.currentVersion;<br>　　　}<br>　　　return false;<br>　}<br>  @Override<br>  public int hashCode() {<br>  　return currentVersion;<br>　}<br>　@Override<br>　public void updateDiskCacheKey(MessageDigest md) {<br>　<br>　　messageDigest.update(ByteBuffer.allocate(Integer.SIZE)<br>.putInt(signature).array());</p>
+<p>　}<br>}</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/06/17/Android之Glide缓存/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-Android之初识Glide" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/06/16/Android之初识Glide/">Android之初识Glide</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/06/16/Android之初识Glide/">
+            <time datetime="2016-06-16T12:00:30.000Z" itemprop="datePublished">2016-06-16</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><strong>Glide简介：</strong><br>　　　　　Glide 是 Google 员工的开源项目， Google I/O 上被推荐使用，一个高效、开源、Android设备上的媒体管理框架，它遵循BSD、MIT以及Apache 2.0协议发布。Glide具有获取、解码和展示视频剧照、图片、动画等功能，它还有灵活的API，这些API使开发者能够将Glide应用在几乎任何网络协议栈里。创建Glide的主要目的有两个，一个是实现平滑的图片列表滚动效果，另一个是支持远程图片的获取、大小调整和展示。</p>
+<p>gitHub地址：<a href="https://github.com/bumptech/glide" target="_blank" rel="external">https://github.com/bumptech/glide</a></p>
+<p><strong>Glide特点</strong></p>
+<ul>
+<li>使用简单</li>
+<li>可配置度高，自适应程度高</li>
+<li>支持常见图片格式Jpg png gif webp</li>
+<li>支持多种数据源网络、本地、资源、Assets 等</li>
+<li>高效缓存策略支持Memory和Disk图片缓存</li>
+<li>默认Bitmap格式采用RGB_565内存使用至少减少一半</li>
+<li>生命周期集成根据Activity/Fragment生命周期自动管理请求</li>
+<li>高效处理Bitmap使用Bitmap     Pool使Bitmap复用，主动调用recycle回收需要回收的Bitmap，减小系统回收压力</li>
+</ul>
+<p><strong>Glide简单使用</strong></p>
+<ol>
+<li><p>添加引用 build.gradle 中添加配置</p>
+<p> compile ‘com.github.bumptech.glide:glide:3.7.0’</p>
+</li>
+<li><p>设置绑定生命周期<br>我们可以更加高效的使用Glide提供的方式进行绑定，这样可以更好的让加载图片的请求的生命周期动态管理起来</p>
+<p> Glide.with(Context context);// 绑定Context<br> Glide.with(Activity activity);// 绑定Activity<br> Glide.with(FragmentActivity activity);// 绑定FragmentActivity<br> Glide.with(Fragment fragment);// 绑定Fragment</p>
+</li>
+<li><p>简单的加载图片实例</p>
+<p>Glide.with(this).load(imageUrl).into(imageView);</p>
+</li>
+<li><p>设置加载中以及加载失败图片<br>api里面对placeholder()、error()函数中有多态实现 用的时候可以具体的熟悉一下</p>
+<p>Glide.with(this).load(imageUrl).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);</p>
+</li>
+<li><p>设置跳过内存缓存</p>
+<p>Glide.with(this).load(imageUrl).into(imageView);</p>
+</li>
+<li><p>设置下载优先级</p>
+<p>Glide.with(this).load(imageUrl).priority(Priority.NORMAL).into(imageView);</p>
+</li>
+<li><p>设置缓存策略</p>
+<p>Glide.with(this).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);</p>
+<p>策略解说：<br>all:缓存源资源和转换后的资源<br>none:不作任何磁盘缓存<br>source:缓存源资源<br>result：缓存转换后的资源</p>
+</li>
+<li><p>设置加载动画<br>api也提供了几个常用的动画：比如crossFade()</p>
+<p>Glide.with(this).load(imageUrl).animate(R.anim.item_alpha_in).into(imageView);</p>
+<p>R.anim.item_alpha_in</p>
+<p>  &lt; ? xml version=”1.0” encoding=”utf-8”?&gt;<br>  &lt; set xmlns:android=”<a href="http://schemas.android.com/apk/res/android&quot;&gt;" target="_blank" rel="external">http://schemas.android.com/apk/res/android&quot;&gt;</a><br>  　　&lt; alpha<br>  　　　　　android:duration=”500”<br>  　　　　　android:fromAlpha=”0.0”<br>  　　　　　android:toAlpha=”1.0”/&gt;<br>  &lt;/ set&gt;</p>
+</li>
+<li><p>设置缩略图支持<br>这样会先加载缩略图 然后在加载全图</p>
+<p>Glide.with(this).load(imageUrl).thumbnail(0.1f).into(imageView);</p>
+</li>
+<li><p>设置加载尺寸</p>
+<p>Glide.with(this).load(imageUrl).override(800, 800).into(imageView);</p>
+</li>
+<li><p>设置动态转换</p>
+<p>Glide.with(this).load(imageUrl).centerCrop().into(imageView);</p>
+<p>api提供了比如：centerCrop()、fitCenter()等函数也可以通过自定义Transformation，举例说明：比如一个人圆角转化器</p>
+<p>public class GlideRoundTransform extends BitmapTransformation{<br>private float radius = 0f;<br>public GlideRoundTransform(Context context) {<br>　　this(context, 4);</p>
+<p>}<br>public GlideRoundTransform(Context context, int dp) {<br>　　super(context);<br>　　this.radius = Resources.getSystem().getDisplayMetrics().density * dp;</p>
+<p>}<br>@Override<br>protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {<br>　　return roundCrop(pool, toTransform);<br>}<br>private Bitmap roundCrop(BitmapPool pool, Bitmap source) {<br>　　if (source == null) return null;</p>
+<p>　　   　　Bitmap result = pool.get(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);</p>
+<p>　　if (result == null) {   　　</p>
+<p> 　　   　　result = Bitmap.createBitmap(source.getWidth(), source.getHeight(), Bitmap.Config.ARGB_8888);</p>
+<p>　　}</p>
+<p>　　Canvas canvas = new Canvas(result);<br>　　Paint paint = new Paint();<br>　　paint.setShader(new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));<br>　　paint.setAntiAlias(true);<br>　　RectF rectF = new RectF(0f, 0f, source.getWidth(), source.getHeight());<br>　　return result;</p>
+<p>}</p>
+<p>@Override<br>public String getId() {</p>
+<p>   return getClass().getName() + Math.round(radius);</p>
+<p>  　　}<br>}</p>
+<p>Glide.with(this).load(imageUrl).transform(new GlideRoundTransform(this)).into(imageView);</p>
+</li>
+<li><p>设置要加载的内容</p>
+<p>项目中有很多需要先下载图片然后再做一些合成的功能，比如项目中出现的图文混排，该如何实现目标下</p>
+<p>Glide.with(this).load(imageUrl).centerCrop().into(new SimpleTarget<glidedrawable>() {<br>   　　@Override<br>   　　public void onResourceReady(GlideDrawable resource, GlideAnimation&lt;? super GlideDrawable&gt; glideAnimation) {</glidedrawable></p>
+<p>　　imageView.setImageDrawable(resource);   　　</p>
+<p>　　}   　　<br>});<br>Glide.with(this).load(imageUrl).transform(new GlideRoundTransform(this)).into(imageView);</p>
+</li>
+<li><p>设置监听请求接口</p>
+<p>Glide.with(this).load(imageUrl).listener(new RequestListener<string, glidedrawable="">() {<br>  　　@Override<br>  　　public boolean onException(Exception e, String model, Target<glidedrawable> target, boolean isFirstResource) {<br>  　　   　　return false;<br>　　}<br>　　@Override<br>　　public boolean onResourceReady(GlideDrawable resource, String model, Target<glidedrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {</glidedrawable></glidedrawable></string,></p>
+<p> 　　//imageView.setImageDrawable(resource);</p>
+<p>　　 return false;</p>
+<p>　　}}).into(imageView);</p>
+</li>
+</ol>
+<p>设置监听的用处 可以用于监控请求发生错误来源，以及图片来源 是内存还是磁盘</p>
+<p> 14.设置动态GIF加载方式</p>
+<p>　　Glide.with(this).load(imageUrl).asBitmap().into(imageView);//显示gif静态图片<br>　　Glide.with(this).load(imageUrl).asGif().into(imageView);//显示gif动态图片</p>
+<p> 15.缓存的动态清理</p>
+<p>　　Glide.get(this).clearDiskCache();//清理磁盘缓存 需要在子线程中执行<br>　　Glide.get(this).clearMemory();//清理内存缓存  可以在UI主线程中进行</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/06/16/Android之初识Glide/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-androidstudio项目目录结构解析" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/04/10/androidstudio项目目录结构解析/">androidstudio项目目录结构解析</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/04/10/androidstudio项目目录结构解析/">
+            <time datetime="2016-04-10T02:35:56.000Z" itemprop="datePublished">2016-04-10</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>首先先上图<br><img src="http://ww1.sinaimg.cn/mw690/005zrb37gw1f9mtxo22gnj30bj0kngo7.jpg" alt="此处输入图片的描述"></p>
+<p>大家看到的是android studio 创建的项目清单【图方便，就用完整的项目来做示例 - - 】<br>app/build app模块build编译输出的目录( 关于上传svn或github需要忽略的文件待会说明)<br>app/build.gradle (主要配置 编译sdk版本、编译工具    、包名、sdk最低支持版本、目标sdk版本、app版本号、app版本名称、ndk等等)<br>app/app.iml app模块的配置文件(Intellij模块文件，很重要但是基本不用管，大家都知道Intellij是AndroidStudio的亲妈的嘛，所以有这个文件是正常的)<br>app/proguard-rules.pro app模块proguard文件(混淆配置文件,主要用于打包签名apk配置混淆代码[是否混淆是可选的])<br>build.gradle 项目的build.gradle编译文件，主要就是申明仓库地址和版本号<br>settings.gradle定义项目包含哪些模块[指引用了哪些外库]<br>local.properties 配置SDK/NDK<br>nearby.iml 项目的配置文件<br>External Libraries 项目依赖的Lib, 编译时自动下载的</p>
+<blockquote>
+<p>AndroidStudio自动忽略</p>
+</blockquote>
+<pre><code>现在的AndroidStudio已经很智能了，当创建项目的时候自动给我们创建了一个
+上传svn或git需要忽略的文件如下：
+.gitignore 并给我们忽略了一些文件
+
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
+手动忽略
+1、.idea文件
+2、.gradle文件夹
+3、所有的build文件夹
+4、所有的.iml文件
+5、local.properties文件
+</code></pre>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/04/10/androidstudio项目目录结构解析/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">
+            <time datetime="2016-03-28T01:37:48.000Z" itemprop="datePublished">2016-03-28</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p> 　自2014年以来，SaaS、CRM、OA、ERP、HR、APM、进销存、财务系统等，这些名词大量出现在微信朋友圈、电视楼宇广告和千百万融资资讯中。它们到底是什么意思？相互之间又有什么区别？在这个飞速发展的互联网时代，再不知道这些可就OUT了！</p>
+<p>　　SaaS、CRM、OA、ERP、HR、进销存究竟是什么？<br>　　<img src="http://img.mp.itc.cn/upload/20160409/7daac8961ba14a06af4f77edb2889702_th.jpg?_=5776061" alt="此处输入图片的描述"><br>SaaS模式就像用自来水</p>
+<p>　　2015年被媒体和IT从业人员称为SaaS元年。什么是SaaS呢？SaaS是Software-as-a-Service（软件即服务）的简称，“软件即服务”，简单理解也就是“按需租用别人提供的软件服务”，它是一种软件交付模式。SaaS这个说法是区别于以往软件购买和交付方式而提出的。</p>
+<p>　　在以往，如果你的公司需要使用一款软件来管理财务记账，作为公司管理者，你需要向软件提供公司说明需求、支付购买软件的费用并提供安装软件的硬件环境，然后软件公司就会上门安装调试软件，调试完后就可以正式投入使用了。</p>
+<p>　　这里有一个很显著的特点是，软件都安装在你指定的地方，你拥有100%的管控权，相应的，你后续还需要继续投入人员和资源来维护系统的正常运行。</p>
+<p>　　SaaS的模式就不一样了，在客户还没有到来之前，软件提供公司就自己提服务器、数据库等硬件，把软件安装发布好，这样作为软件使用方的你就变得轻松很多，一上来就可以直接进行体验，体验之后，你觉得哪些功能合适你的，就挑选出来，按月支付比较低廉的费用就可以正式使用了。后续的升级、维护也由软件公司负责。简而言之，SaaS模式就是软件提供公司事先把所有的软件相关工作都归类准备好了，用户直接过来挑选自己需要的用就OK了。</p>
+<p>　　业内有一个很恰当的比喻：一开始的时候，各家都是自己挖井抽水蓄水，挖井抽水蓄水的技术是有专业的公司提供，但总的来说喝水这个事情是自家管自家的，这是传统软件的供水模式。在SaaS模式下，挖井抽水蓄水净水修水管这些工作对使用方来说都是透明的，你有需要的时候就打开水龙头取水就OK了，然后每月自来水公司会过来跟你结算。同样的，优缺点很明显，优点是按需用水省事了，成本变低了，缺点是水由水务公司完全控制，供水稳定性、供水质量取决于水务公司实力。</p>
+<p>　　CRM是什么呢？追踪客户的</p>
+<p>　　CRM是英文Customer Relationship Management （客户关系管理）的简称。这个比较好理解，就是用来管理客户的。</p>
+<p>　　一般来说，CRM客户管理系统由客户信息管理、销售过程自动化（SFA）、营销自动化（MA）、客户服务与支持（CSS）管理、客户分析（CA）系统这5大主要功能模块组成。</p>
+<p>　　通俗一点说，CRM系统特别是移动CRM系统能帮助你及你的同事很方便地记录客户信息、跟踪分析新老客户、挖掘潜在客户。</p>
+<p>　　OA是什么呢？管办公室活动的</p>
+<p>　　OA是Office Automation（办公自动化）的简称，本来OA涵盖的范围非常广泛，基本上所有和办公相关的系统都可以称作是OA，但现在大都数公司都把OA系统定义为企业内部的协作沟通系统，一般提供的功能有流程审批（请假报销等）、即时沟通、文档管理、内部论坛、任务管理、会议管理、通讯录、问卷调查等。</p>
+<p>　　ERP是什么呢？生产制造一条龙全包</p>
+<p>　　ERP是Enterprise Resource Planning（企业资源计划）的简称，从字面上理解，各企业的资源、计划相关的管理都可以算在ERP的范畴里，比如员工、生产、制造、财务、销售、采购、仓储、分销、质量等等，只要是用于企业管理的软件都属于ERP的范畴。由于越来越多的细分系统的出现，行业内人们为了做区分，一般把功能比较全面（往往包含从原料到生产到仓储到销售一系列）的偏生产制造的管理系统才定义为ERP系统，而其中某项细分功能的系统虽然原则上属于ERP，但一般不称为ERP。</p>
+<p>　　HR软件是什么？管员工的</p>
+<p>　　HR软件是human resource software（人力资源软件）的简称，就是用来管理人事相关的系统，比如招聘管理、职工管理、劳动合同、奖惩管理、办公用品、培训管理、绩效管理、考勤管理、社保管理等。</p>
+<p>　　什么是进销存？</p>
+<p>　　进销存是指企业管理过程中采购（进货）→入库（库存）→销售（销货）的三个管理过程。这三个过程是一般企业特别是中小商户的核心经营过程，用来管理这三个过程的系统就是进销存系统，简称进销存。</p>
+<p>　　什么是财务系统？</p>
+<p>　　财务系统是指专门用于完成会计工作的管理系统。财务系统一般包含：总账管理、固定资产管理、资金管理、客户及应收应付管理、报表管理、财务分析、核算系统等。</p>
+<p>　　SaaS、CRM、OA、ERP、HR、进销存、财务系统的区别在哪里？</p>
+<p>　　SaaS是一种软件交付（交易）模式，以这种“按需租用”模式提供服务的软件称为SaaS，目前大部分的软件都采取这种模式，也就是说大部分的OA、ERP、HR、进销存、财务系统都可以叫作SaaS软件。由于ERP系统覆盖的链条很长，一般需要深度定制，所以比较少是以SaaS提供的。</p>
+<p>　　现在的CRM、OA、HR、进销存、财务系统一般都以SaaS方式提供，CRM更专注于销售方面的管理，OA更专注于企业内部的协作沟通，HR更专注于人力管理，进销存专注于仓库相关的管理、财务系统专注资产、预算相关的管理。</p>
+<p>　　由于它们涉及到企业不同时间段、不同角色、不同业务等各个方面，同时也因为各企业的规模、经营方式几乎完全不同，所以目前没有哪一款产品能囊括CRM、OA、HR、进销存等这些功能，目前市面上的产品能还处于在自己专注的领域深耕发展的阶段。</p>
+<p>　　当然为了更快地拉开同竞争对手的差距，它们往往选择开放相互对接的方式，比较钉钉这些OA系统就提供了开放平台，用于对接进销存、财务系统。</p>
+<p>　　CRM、OA、ERP、HR、进销存、财务系统目前有哪些代表产品？</p>
+<p>　　CRM的标杆是美国的Salesforce，国内有纷享逍客、销售易、红圈营销、八百客等。</p>
+<p>　　OA在国内有钉钉、云之家、今目标、微信企业号、企业微信（即将上线）这几个产品，有很多稍微大一点的企业内部会自建OA系统，等内部使用实施成熟后也会开放出来供外部使用。</p>
+<p>　　ERP和财务系统，素来有“南金蝶北用友”之称，这两家拿下中国大部分市场份额，SAP则是全球最成功是ERP厂商，据称85%的世界500强公司都有使用SAP系统，但这套系统非常昂贵非常复杂，不适用于中小企业。</p>
+<p>　　HR。有北森、dayHR、金柚等，由于单纯的HR系统很容易被OA或进销存击穿，现在的HR往往做得非常深，人才评测、招聘等都会涉及。</p>
+<p>　　进销存系统，有管家婆、智慧记、云销城、秦丝生意通等，在采购、销售、库存这三个最核心的管理环节需求会非常强烈，但对于操作速度要求很高，一般软件很难满足，所以目前来说进销存的普及率还不到8%。</p>
+<p>　　2016年CRM、OA、ERP、HR、进销存、财务系统的趋势是怎么样的？</p>
+<p>　　1、SaaS化。对于提供方而言标准化的SaaS产品更具有爆发性，对于消费方而言SaaS具有低成本、随时随地接入访问这些特性，再加上IT基础设施、安全技术等方面的成熟，SaaS将成为以后最主要的软件模式。</p>
+<p>　　2、移动化。金蝶创始人徐少春在发布云之家的时候，把笔记本直接扔进垃圾桶了，说以后只使用手机办公，这虽然是一个噱头，但确实说明移动办公是个大趋势。</p>
+<p>　　3、垂直化。前面说过，不同规模、不同阶段、不同行业的企业对企业应用的需求千差万别，企业内部中不同岗位、不同时段、不同职别的员工对企业应用的需求同样也千差万别，往往需要垂直细分到具体的行业才有可能做精，做更好的体验。</p>
+<p>　　4、免费化。SaaS化、竞争白热化、周边资源可整合、软件边际成本趋零等这些原因会使得免费的企业级应用会越来越多。</p>
+<p>　　5、合纵连横化。条件成熟，创业公司有机会崛起，BAT头巨头大举进入，在这个巨大的看似类似却又碎片化的领域，接下来我们会看到一场场合纵连横的好戏会不断上演。</p>
+<p>　　6、更普及。以前信息化系统成本很高，往往只有大企业才有能力使用，现在条件成熟，投资机构热钱及创业者的热情投入，企业级应用空前繁荣，企业无论大小都能选择一款适合自己的应用。</p>
+<p>　　涨姿势：几个概念</p>
+<p>　　企业级应用。是指为商业组织、企业服务的应用系统，业内一般称为To B类应用，用于区别对个人类的应用（To C）。</p>
+<p>　　APM是Application Performance Management &amp; Monitoring（应用性能管理 &amp; 监控）的简称，是用来监控和管理应用软件是否有效运行的，为上面据说的系统提供相关的监控。</p>
+<p>　　EIP 是Enterprise Information Portal（企业信息门户）的简称，当一公司把前面所提到的OA、进销存、财务等等系统都使用上之后，使用人员需要在各个系统之间来回切换，非常麻烦低效，于是EIP就出现了，它就是把各种应用系统统一集成到一个入口系统中，在一平台时管理各个业务。</p>
+<p>　　客服系统可以说是CRM系统的延伸，主要提供在线客服聊天、机器人客服、帮助文档、客户反馈等功能。</p>
+<p>  <a href="http://www.cnblogs.com/tuyile006/p/5776061.html" target="_blank" rel="external">原文地址</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-swiftype账号与教程" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -268,386 +753,8 @@
 
 
 
-    <article id="post-android开发的经验教训" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/03/11/android开发的经验教训/">android开发的经验教训</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/03/11/android开发的经验教训/">
-            <time datetime="2016-03-11T02:19:45.000Z" itemprop="datePublished">2016-03-11</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <ol>
-<li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
-</li>
-<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="external">就不要绘制它！</a></p>
-</li>
-<li><p>除非真的需要，否则别使用数据库；</p>
-</li>
-<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="external">multidexing 可以拯救你</a>;</p>
-</li>
-<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
-</li>
-<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a> 可能是现在最佳的网络请求库；</p>
-</li>
-<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="external">Retrolambda</a>来简化你的代码；</p>
-</li>
-<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
-</li>
-<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
-</li>
-<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">包名按照功能来，而不是按分层来</a>;</p>
-</li>
-<li><p>把所有东西都移到 application thread之外；</p>
-</li>
-<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="external">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
-</li>
-<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">可能</a>的方式去加速它；</p>
-</li>
-<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">profile reports</a>，以便知道什么占据了编译时间；</p>
-</li>
-<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="external">有名的</a> 架构；</p>
-</li>
-<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="external">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
-</li>
-<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="external">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
-</li>
-<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="external">fragmented podcast</a> 将会让你受益；</p>
-</li>
-<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="external">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
-</li>
-<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="external">恰当的</a>输入类型；</p>
-</li>
-<li><p>Use analytics to find usage patterns and isolate bugs;</p>
-</li>
-<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="external">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="external">dryrun</a> 来快速查看它们的的效果）</p>
-</li>
-<li><p>你的service应该做你所需的事情，并且尽快死去；</p>
-</li>
-<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="external">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
-</li>
-<li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
-</li>
-<li><p>不要运行自己的CIserver，维护server是费时的事情，因为磁盘空间，安全问题，更新server以防止SSL攻击等等原因。使用circleci, travis 或者 shippable, 它们便宜，而且你也可以少担心一些事情；</p>
-</li>
-<li><p>Automate your deployments to the playstore;</p>
-</li>
-<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">proguard</a> ）；</p>
-</li>
-<li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
-</li>
-<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="external">考虑用SVG来替代PNG</a> ；</p>
-</li>
-<li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
-</li>
-<li><p>监控你的连接情况以及连接类型（wifi之下更新更多数据？）；</p>
-</li>
-<li><p>监控你的电源和电量（在充电的时候更新更多的数据？电量低的时候暂停更新？）；</p>
-</li>
-<li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
-</li>
-<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="external">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
-</li>
-</ol>
-<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="external">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2016/03/11/android开发的经验教训/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-设计模式中类的关系" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/02/24/设计模式中类的关系/">设计模式中类的关系</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/02/24/设计模式中类的关系/">
-            <time datetime="2016-02-24T07:28:13.000Z" itemprop="datePublished">2016-02-24</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/设计模式/">设计模式</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>在Java以及其他的面向对象设计模式中，类与类之间主要有6种关系，他们分别是：依赖、关联、聚合、组合、继承、实现。他们的耦合度依次增强。</p>
-<ul>
-<li>依赖（Dependence）<a href="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" target="_blank" rel="external"><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" alt=""></a><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml2.gif" alt=""><br>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。</li>
-</ul>
-<p><strong>代码样例：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(Book book)</span></span>&#123;</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"读的书是"</span>+book.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>关联（Association）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml3.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml4.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml5.gif" alt=""><br><strong>单项关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml6.gif" alt=""><br><strong>双向关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml7.gif" alt=""></li>
-</ul>
-<p>对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。</p>
-<p><strong>代码样例：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> </span>&#123;</div><div class="line"></div><div class="line">	Father father = <span class="keyword">new</span> Father();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"从"</span>+father.getName()+<span class="string">"获得礼物"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</div><div class="line"></div><div class="line">	Son son = <span class="keyword">new</span> Son();</div><div class="line"></div><div class="line">	System.out.println(<span class="string">"从"</span>+son.getName()+<span class="string">"获得礼物"</span>)</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>聚合（Aggregation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml8.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml9.gif" alt=""></li>
-</ul>
-<p>聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。</p>
-<p><strong>代码样例：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</div><div class="line"></div><div class="line">	Car car;</div><div class="line"></div><div class="line">	House house;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.car = car;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHouse</span><span class="params">(House house)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.house = house;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">driver</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"车型号:"</span>+car.getType());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"我在房子里睡觉:"</span>+house.getAddress());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>组合（Composition）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml10.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml11.gif" alt=""></li>
-</ul>
-<p>相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</div><div class="line"></div><div class="line">	Soul soul;</div><div class="line"></div><div class="line">	Body body;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(Soul soul,Body body)</span></span>&#123;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.soul = soul;</div><div class="line"></div><div class="line">			<span class="keyword">this</span>.body = body;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"学习要灵魂:"</span>+soul.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">			System.out.println(<span class="string">"吃饭需要身体:"</span>+body.getName());</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>继承（GeneraliZation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml12.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml13.gif" alt=""></li>
-</ul>
-<p>继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。</p>
-<ul>
-<li>实现（Implementation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml14.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml15.gif" alt=""></li>
-</ul>
-<p>表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2016/02/24/设计模式中类的关系/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-淘汰" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/12/17/淘汰/">淘汰</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/12/17/淘汰/">
-            <time datetime="2015-12-17T01:24:27.000Z" itemprop="datePublished">2015-12-17</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/文字/">文字</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/歌曲/">歌曲</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>陈奕迅 - 淘汰<br>曲 : 周杰伦 词：周杰伦</p>
-<p>我说了 所有的谎<br>你全都相信<br>简单的 我爱你<br>你却老不信<br>你书里的剧情<br>我不想上演<br>因为我喜欢 喜剧收尾</p>
-<p>我试过 完美放弃<br>的确很踏实<br>醒来了<br>梦散了<br>你我都走散了<br>情歌歌词何必押韵<br>就算我是K歌之王<br>也不见得把 爱情唱得完美</p>
-<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
-<p>我试过完美放弃<br>的确很踏实<br>醒来了<br>梦散了<br>你我都走散了<br>情歌歌词何必押韵<br>就算我是K歌之王<br>也不见得把 爱情唱得完美</p>
-<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
-<p>只能说我输了<br>也许是你怕了<br>我们的回忆 没有皱褶<br>你却用离开烫下句点<br>只能说我认了<br>你的不安赢得你信任<br>我却得到你 安慰的淘汰</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2015/12/17/淘汰/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-七友" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/11/11/七友/">七友</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/11/11/七友/">
-            <time datetime="2015-11-11T03:50:28.000Z" itemprop="datePublished">2015-11-11</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/文字/">文字</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/歌曲/">歌曲</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>梁汉文 - 七友<br>曲 : 雷颂德 词：林夕</p>
-<p>为了她又再勉强去谈天论爱<br>又再振作去慰解他人<br>如难复合便尽早放开<br>凡事看开<br>又再讲没有情人时还可自爱<br>忘掉或是为自己感慨<br>笑住说沉沦那些苦海<br>会有害</p>
-<p>因为我坚强到利用自己的痛心<br>转换成爱心<br>抵我对她操心<br>已记不起我也有权利爱人</p>
-<p>谁人曾照顾过我的感受<br>待我温柔吻过我伤口<br>能得到的安慰是失恋者得救后<br>很感激忠诚的狗<br>谁人曾介意我也不好受<br>为我出头碰过我的手<br>重生者走得的都走<br>谁人又为天使忧愁<br>甜言蜜语没有但却有我这个好友</p>
-<p>直到她又再告诉我重新被爱<br>又再看透了我的将来<br>完成任务后大可喝采<br>无谓搭台<br>别怪她就怪我永远难得被爱<br>然后自虐地赞她可爱<br>往日最彷徨那刻<br>好彩有我在</p>
-<p>因为我坚强到利用自己的痛心<br>转换成爱心<br>抵我对她操心<br>已记不起我也有权利爱人</p>
-<p>谁人曾照顾过我的感受<br>待我温柔吻过我伤口<br>能得到的安慰是失恋者得救后<br>很感激忠诚的狗<br>谁人曾介意我也不好受<br>为我出头碰过我的手<br>重生者走得的都走<br>谁人又为天使忧愁<br>甜言蜜语没有但却有我这个好友</p>
-<p>白雪公主不多<br>认命扮矮人的有太多个<br>早有六个<br>多我这个不多<br>我太好心还是太傻<br>未问过她有没有理我的感受<br>待我温柔吻过我伤口<br>能得到的安慰是失恋者得救后<br>很感激忠诚的狗<br>谁人曾介意我也不好受<br>为我出头碰过我的手<br>重生者走得的都走<br>谁人又为天使忧愁<br>甜言蜜语没有但却有我这个好友</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2015/11/11/七友/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/6/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/6/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -763,7 +870,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android-studio/">android studio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rxjava/">rxjava</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android-studio/">android studio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rxjava/">rxjava</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -772,7 +879,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -781,7 +888,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -790,7 +897,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 12.5px;">https</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 15px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 12.5px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 12.5px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/文字/" style="font-size: 10px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/https/" style="font-size: 12.5px;">https</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 12.5px;">mvp</a> <a href="/tags/resume/" style="font-size: 15px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 12.5px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 12.5px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
         </div>
     </div>
 

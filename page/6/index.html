@@ -602,7 +602,7 @@
 
 
 
-    <article id="post-androidstudiosvn设置忽略" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-androidstudiogit设置忽略" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -610,7 +610,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2016/09/21/androidstudiosvn设置忽略/">androidstudiosvn设置忽略</a>
+            <a class="article-title" href="/2016/09/21/androidstudiogit设置忽略/">androidstudiogit设置忽略</a>
         </h1>
     
 
@@ -619,7 +619,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/09/21/androidstudiosvn设置忽略/">
+        <a href="/2016/09/21/androidstudiogit设置忽略/">
             <time datetime="2016-09-21T04:13:18.000Z" itemprop="datePublished">2016-09-21</time>
         </a>
     </div>
@@ -645,8 +645,9 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <p>一、Android Studio创建的Android项目一般需要忽略<br>1、.idea文件夹<br>2、.gradle文件夹<br>3、所有的build文件夹<br>4、所有的.iml文件<br>5、local.properties文件。<br>方法一、在项目的.idea/workspace.xml的文件里设置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;    </div><div class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span>    </div><div class="line">    <span class="tag">&lt;<span class="name">component</span> <span class="attr">name</span>=<span class="string">"ChangeListManager"</span>&gt;</span>    </div><div class="line">        ...    </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">".gradle/"</span> /&gt;</span>     </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">".idea/"</span> /&gt;</span>     </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradle/"</span> /&gt;</span>   </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"项目名/build/"</span> /&gt;</span>    </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradlew"</span> /&gt;</span>    </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradlew.bat"</span> /&gt;</span>    </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">mask</span>=<span class="string">"*.iml"</span> /&gt;</span>     </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"local.properties"</span> /&gt;</span>    </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"build/"</span> /&gt;</span>   </div><div class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">mask</span>=<span class="string">"*.apk"</span> /&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">component</span>&gt;</span>    </div><div class="line">    ...    </div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><a href="http://a1.eoeandroid.com/attachment/forum/201607/18/172122qdxadmdcidnzabmb.png" target="_blank" rel="external"><img src="http://a1.eoeandroid.com/attachment/forum/201607/18/172122qdxadmdcidnzabmb.png" alt=""></a></p>
+            <p>要忽略的文件<br>-.idea文件夹<br>-.gradle文件夹<br>-所有文的build文件夹<br>-所有的.iml文件<br>-loca.properties文件</p>
+<p>所以：<br>跟目录的<br>.gitignore<br>.gradle<br>/local.properties<br>/.idea/workspace.xml<br>/.idea/libraries<br>.DS_Store<br>/build<br>/captures<br>.idea<br>*.iml</p>
+<p>module目录下的.gitignore<br>/build<br>*.iml</p>
 
         
         </div>
@@ -659,7 +660,7 @@
 
             
     
-        <a href="http://b.nearby.ren/2016/09/21/androidstudiosvn设置忽略/#comments" class="article-comment-link">评论</a>
+        <a href="http://b.nearby.ren/2016/09/21/androidstudiogit设置忽略/#comments" class="article-comment-link">评论</a>
     
 
         </footer>

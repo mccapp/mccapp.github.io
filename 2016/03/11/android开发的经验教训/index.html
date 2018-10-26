@@ -1,64 +1,30 @@
 <!DOCTYPE html>
-<html lang=zh>
-<head>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>android开发的经验教训 | Nearby.ren</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？
-
-如果一个东西用户看不到，就不要绘制它！
-
-除非真的需要，否则别使用数据库；
-
-达到65k方法数限制来的非常快，真的，非常快！不过 multidexing 可以拯救你;
-
-RxJava 是 AsyncTasks 以及其它杂碎的最佳替代者；
-
-Retrofit 可能是现在最佳的网络请求库；
-
-使用 Retrolambda来简化你的">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？  如果一个东西用户看不到，就不要绘制它！  除非真的需要，否则别使用数据库；  达到65k方法数限制来的非常快，真的，非常快！不过 multidexing 可以拯救你;  RxJava 是 AsyncTasks 以及其它杂碎的最佳替代者；  Retrofit 可能是现在最佳的网络请求库；  使用 Retrolambda来简化你的">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android开发的经验教训">
 <meta property="og:url" content="http://b.nearby.ren/2016/03/11/android开发的经验教训/index.html">
 <meta property="og:site_name" content="Nearby.ren">
-<meta property="og:description" content="在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？
-
-如果一个东西用户看不到，就不要绘制它！
-
-除非真的需要，否则别使用数据库；
-
-达到65k方法数限制来的非常快，真的，非常快！不过 multidexing 可以拯救你;
-
-RxJava 是 AsyncTasks 以及其它杂碎的最佳替代者；
-
-Retrofit 可能是现在最佳的网络请求库；
-
-使用 Retrolambda来简化你的">
+<meta property="og:description" content="在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？  如果一个东西用户看不到，就不要绘制它！  除非真的需要，否则别使用数据库；  达到65k方法数限制来的非常快，真的，非常快！不过 multidexing 可以拯救你;  RxJava 是 AsyncTasks 以及其它杂碎的最佳替代者；  Retrofit 可能是现在最佳的网络请求库；  使用 Retrolambda来简化你的">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-12-21T09:05:34.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android开发的经验教训">
-<meta name="twitter:description" content="在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？
-
-如果一个东西用户看不到，就不要绘制它！
-
-除非真的需要，否则别使用数据库；
-
-达到65k方法数限制来的非常快，真的，非常快！不过 multidexing 可以拯救你;
-
-RxJava 是 AsyncTasks 以及其它杂碎的最佳替代者；
-
-Retrofit 可能是现在最佳的网络请求库；
-
-使用 Retrolambda来简化你的">
+<meta name="twitter:description" content="在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？  如果一个东西用户看不到，就不要绘制它！  除非真的需要，否则别使用数据库；  达到65k方法数限制来的非常快，真的，非常快！不过 multidexing 可以拯救你;  RxJava 是 AsyncTasks 以及其它杂碎的最佳替代者；  Retrofit 可能是现在最佳的网络请求库；  使用 Retrolambda来简化你的">
     
 
     
-        <link rel="alternate" href="/atom.xml" title="Nearby.ren" type="application/atom+xml" />
+        <link rel="alternate" href="/atom.xml" title="Nearby.ren" type="application/atom+xml">
     
 
     
-        <link rel="icon" href="/css/images/Smile.png# path to favicon" />
+        <link rel="icon" href="/css/images/Smile.png# path to favicon">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -81,7 +47,7 @@ Retrofit 可能是现在最佳的网络请求库；
 
 
 </head>
-
+</html>
 <body>
     <div id="container">
         <header id="header">
@@ -109,7 +75,7 @@ Retrofit 可能是现在最佳的网络请求库；
                 <nav id="sub-nav">
                     <div class="profile" id="profile-nav">
                         <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
+                            <img class="avatar" src="/css/images/avatar.png">
                             <i class="fa fa-caret-down"></i>
                         </a>
                     </div>
@@ -118,14 +84,14 @@ Retrofit 可能是现在最佳的网络请求库；
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -171,7 +137,7 @@ Retrofit 可能是现在最佳的网络请求库；
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
     </div>
 
                 </td>
@@ -187,7 +153,7 @@ Retrofit 可能是现在最佳的网络请求库；
 <aside id="profile">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
+            <img id="avatar" src="/css/images/avatar.png">
             <h2 id="name">ARONG</h2>
             <h3 id="title">Android server web</h3>
             <span id="location"><i class="fa fa-map-marker"></i>china, Hainan</span>
@@ -210,31 +176,31 @@ Retrofit 可能是现在最佳的网络请求库；
                     
                     
                     <td>
-                        <a href="https://github.com/mccapp/" target="_blank" title="github" >
+                        <a href="https://github.com/mccapp/" target="_blank" title="github">
                             <i class="fa fa-github"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="https://twitter.com/" target="_blank" title="twitter" >
+                        <a href="https://twitter.com/" target="_blank" title="twitter">
                             <i class="fa fa-twitter"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="https://www.facebook.com/" target="_blank" title="facebook" >
+                        <a href="https://www.facebook.com/" target="_blank" title="facebook">
                             <i class="fa fa-facebook"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="https://dribbble.com/" target="_blank" title="dribbble" >
+                        <a href="https://dribbble.com/" target="_blank" title="dribbble">
                             <i class="fa fa-dribbble"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="/atom.xml" target="_blank" title="rss" >
+                        <a href="/atom.xml" target="_blank" title="rss">
                             <i class="fa fa-rss"></i>
                         </a>
                     </td>
@@ -247,7 +213,7 @@ Retrofit 可能是现在最佳的网络请求库；
 </aside>
 
             
-            <section id="main"><article id="post-android开发的经验教训" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-android开发的经验教训" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -293,51 +259,51 @@ Retrofit 可能是现在最佳的网络请求库；
             <ol>
 <li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
 </li>
-<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="external">就不要绘制它！</a></p>
+<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="noopener">就不要绘制它！</a></p>
 </li>
 <li><p>除非真的需要，否则别使用数据库；</p>
 </li>
-<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="external">multidexing 可以拯救你</a>;</p>
+<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="noopener">multidexing 可以拯救你</a>;</p>
 </li>
-<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="external">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
+<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="noopener">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
 </li>
-<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="external">Retrofit</a> 可能是现在最佳的网络请求库；</p>
+<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="noopener">Retrofit</a> 可能是现在最佳的网络请求库；</p>
 </li>
-<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="external">Retrolambda</a>来简化你的代码；</p>
+<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="noopener">Retrolambda</a>来简化你的代码；</p>
 </li>
-<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="external">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
+<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="noopener">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
 </li>
-<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
+<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
 </li>
-<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="external">包名按照功能来，而不是按分层来</a>;</p>
+<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="noopener">包名按照功能来，而不是按分层来</a>;</p>
 </li>
 <li><p>把所有东西都移到 application thread之外；</p>
 </li>
-<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="external">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
+<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="noopener">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
 </li>
-<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">可能</a>的方式去加速它；</p>
+<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="noopener">可能</a>的方式去加速它；</p>
 </li>
-<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="external">profile reports</a>，以便知道什么占据了编译时间；</p>
+<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="noopener">profile reports</a>，以便知道什么占据了编译时间；</p>
 </li>
-<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="external">有名的</a> 架构；</p>
+<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="noopener">有名的</a> 架构；</p>
 </li>
-<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="external">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
+<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="noopener">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
 </li>
-<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="external">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
+<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="noopener">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
 </li>
-<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="external">fragmented podcast</a> 将会让你受益；</p>
+<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="noopener">fragmented podcast</a> 将会让你受益；</p>
 </li>
-<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="external">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
+<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="noopener">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
 </li>
-<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="external">恰当的</a>输入类型；</p>
+<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="noopener">恰当的</a>输入类型；</p>
 </li>
 <li><p>Use analytics to find usage patterns and isolate bugs;</p>
 </li>
-<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="external">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="external">dryrun</a> 来快速查看它们的的效果）</p>
+<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="noopener">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="noopener">dryrun</a> 来快速查看它们的的效果）</p>
 </li>
 <li><p>你的service应该做你所需的事情，并且尽快死去；</p>
 </li>
-<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="external">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
+<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="noopener">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
 </li>
 <li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
 </li>
@@ -345,11 +311,11 @@ Retrofit 可能是现在最佳的网络请求库；
 </li>
 <li><p>Automate your deployments to the playstore;</p>
 </li>
-<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="external">proguard</a> ）；</p>
+<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="noopener">proguard</a> ）；</p>
 </li>
 <li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
 </li>
-<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="external">考虑用SVG来替代PNG</a> ；</p>
+<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="noopener">考虑用SVG来替代PNG</a> ；</p>
 </li>
 <li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
 </li>
@@ -359,10 +325,10 @@ Retrofit 可能是现在最佳的网络请求库；
 </li>
 <li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
 </li>
-<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="external">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
+<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="noopener">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
 </li>
 </ol>
-<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="external">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
+<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="noopener">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
 
         
         </div>

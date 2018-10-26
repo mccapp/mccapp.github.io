@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang=zh>
-<head>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>android基于HLS和TRMP协议的第三方SDK选择 | Nearby.ren</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。
-
-提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:https://github.com/yixia/VitamioB">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。  提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:https://github.com/yixia/VitamioB">
+<meta name="keywords" content="android,直播">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android基于HLS和TRMP协议的第三方SDK选择">
 <meta property="og:url" content="http://b.nearby.ren/2016/10/28/android基于HLS和TRMP协议的第三方SDK选择/index.html">
 <meta property="og:site_name" content="Nearby.ren">
-<meta property="og:description" content="协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。
-
-提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:https://github.com/yixia/VitamioB">
+<meta property="og:description" content="协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。  提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:https://github.com/yixia/VitamioB">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-11-21T14:59:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android基于HLS和TRMP协议的第三方SDK选择">
-<meta name="twitter:description" content="协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。
-
-提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:https://github.com/yixia/VitamioB">
+<meta name="twitter:description" content="协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。  提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:https://github.com/yixia/VitamioB">
     
 
     
-        <link rel="alternate" href="/atom.xml" title="Nearby.ren" type="application/atom+xml" />
+        <link rel="alternate" href="/atom.xml" title="Nearby.ren" type="application/atom+xml">
     
 
     
-        <link rel="icon" href="/css/images/Smile.png# path to favicon" />
+        <link rel="icon" href="/css/images/Smile.png# path to favicon">
     
 
     <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
@@ -51,7 +47,7 @@
 
 
 </head>
-
+</html>
 <body>
     <div id="container">
         <header id="header">
@@ -79,7 +75,7 @@
                 <nav id="sub-nav">
                     <div class="profile" id="profile-nav">
                         <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
+                            <img class="avatar" src="/css/images/avatar.png">
                             <i class="fa fa-caret-down"></i>
                         </a>
                     </div>
@@ -88,14 +84,14 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -141,7 +137,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
     </div>
 
                 </td>
@@ -157,7 +153,7 @@
 <aside id="profile">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
+            <img id="avatar" src="/css/images/avatar.png">
             <h2 id="name">ARONG</h2>
             <h3 id="title">Android server web</h3>
             <span id="location"><i class="fa fa-map-marker"></i>china, Hainan</span>
@@ -180,31 +176,31 @@
                     
                     
                     <td>
-                        <a href="https://github.com/mccapp/" target="_blank" title="github" >
+                        <a href="https://github.com/mccapp/" target="_blank" title="github">
                             <i class="fa fa-github"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="https://twitter.com/" target="_blank" title="twitter" >
+                        <a href="https://twitter.com/" target="_blank" title="twitter">
                             <i class="fa fa-twitter"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="https://www.facebook.com/" target="_blank" title="facebook" >
+                        <a href="https://www.facebook.com/" target="_blank" title="facebook">
                             <i class="fa fa-facebook"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="https://dribbble.com/" target="_blank" title="dribbble" >
+                        <a href="https://dribbble.com/" target="_blank" title="dribbble">
                             <i class="fa fa-dribbble"></i>
                         </a>
                     </td>
                     
                     <td>
-                        <a href="/atom.xml" target="_blank" title="rss" >
+                        <a href="/atom.xml" target="_blank" title="rss">
                             <i class="fa fa-rss"></i>
                         </a>
                     </td>
@@ -217,7 +213,7 @@
 </aside>
 
             
-            <section id="main"><article id="post-android基于HLS和TRMP协议的第三方SDK选择" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-android基于HLS和TRMP协议的第三方SDK选择" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -262,11 +258,11 @@
             
             <p>协议的详解网上资料都太多了，我就不赘述了。Android上3.0开始支持hls，但在4.0以后就支持的不太好了。而对rtmp来说，Android是默认不支持的。网上有一些第三方库支持这两种协议，下面就我找到的第三方库列出并做出比较。</p>
 <ul>
-<li>提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:<br><a href="https://github.com/yixia/VitamioBundle" target="_blank" rel="external">https://github.com/yixia/VitamioBundle</a>.</li>
-<li>B站开源出来的 ijkplayer<br>.项目维护及时，许多大公司都在用。网易云音乐，斗鱼TV，火猫TV等等，影响力可见一斑。支持RTMP，HLS。项目地址:<a href="https://github.com/Bilibili/ijkplayer" target="_blank" rel="external">https://github.com/Bilibili/ijkplayer</a>.<br>七牛开源出来的 PLDroidPlayer. 这个是基于B站的 ijkplayer<br>进行二次开发的。项目维护也很及时，你去上边提issue，很快就会有人回复你。同样支持RTMP,HLS。继承步骤简单，有wiki，我现在用的就是这个;)<br>,但以后收不收费就不一定了。项目地址:<a href="https://github.com/pili-engineering/PLDroidPlayer" target="_blank" rel="external">https://github.com/pili-engineering/PLDroidPlayer</a>.</li>
-<li>大牛直播出品的 SmarterStreaming.<br>个人使用免费，项目地址:<a href="https://github.com/daniulive/SmarterStreaming" target="_blank" rel="external">https://github.com/daniulive/SmarterStreaming</a>.</li>
-<li><p>新浪开源出来的 sinavideo_playersdk.<br>完全免费，你甚至可以修改备注。不过只支持hls协议，定制简单。项目地址:<a href="https://github.com/SinaVDDeveloper/sinavideo_playersdk" target="_blank" rel="external">https://github.com/SinaVDDeveloper/sinavideo_playersdk</a>.</p>
-<p><a href="http://isunxu.xyz/android/between-rtmp-and-hls-third-party-choice/" target="_blank" rel="external">原文地址</a></p>
+<li>提到流播放就不得不提到 Vitamio .协议支持全面，嵌入项目简单，对个人开发者免费。项目地址:<br><a href="https://github.com/yixia/VitamioBundle" target="_blank" rel="noopener">https://github.com/yixia/VitamioBundle</a>.</li>
+<li>B站开源出来的 ijkplayer<br>.项目维护及时，许多大公司都在用。网易云音乐，斗鱼TV，火猫TV等等，影响力可见一斑。支持RTMP，HLS。项目地址:<a href="https://github.com/Bilibili/ijkplayer" target="_blank" rel="noopener">https://github.com/Bilibili/ijkplayer</a>.<br>七牛开源出来的 PLDroidPlayer. 这个是基于B站的 ijkplayer<br>进行二次开发的。项目维护也很及时，你去上边提issue，很快就会有人回复你。同样支持RTMP,HLS。继承步骤简单，有wiki，我现在用的就是这个;)<br>,但以后收不收费就不一定了。项目地址:<a href="https://github.com/pili-engineering/PLDroidPlayer" target="_blank" rel="noopener">https://github.com/pili-engineering/PLDroidPlayer</a>.</li>
+<li>大牛直播出品的 SmarterStreaming.<br>个人使用免费，项目地址:<a href="https://github.com/daniulive/SmarterStreaming" target="_blank" rel="noopener">https://github.com/daniulive/SmarterStreaming</a>.</li>
+<li><p>新浪开源出来的 sinavideo_playersdk.<br>完全免费，你甚至可以修改备注。不过只支持hls协议，定制简单。项目地址:<a href="https://github.com/SinaVDDeveloper/sinavideo_playersdk" target="_blank" rel="noopener">https://github.com/SinaVDDeveloper/sinavideo_playersdk</a>.</p>
+<p><a href="http://isunxu.xyz/android/between-rtmp-and-hls-third-party-choice/" target="_blank" rel="noopener">原文地址</a></p>
 </li>
 </ul>
 

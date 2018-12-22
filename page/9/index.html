@@ -159,7 +159,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                60
+                62
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -212,6 +212,239 @@
 
             
             <section id="main">
+    <article id="post-android开发的经验教训" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/03/11/android开发的经验教训/">android开发的经验教训</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/03/11/android开发的经验教训/">
+            <time datetime="2016-03-11T02:19:45.000Z" itemprop="datePublished">2016-03-11</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <ol>
+<li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
+</li>
+<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="noopener">就不要绘制它！</a></p>
+</li>
+<li><p>除非真的需要，否则别使用数据库；</p>
+</li>
+<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="noopener">multidexing 可以拯救你</a>;</p>
+</li>
+<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="noopener">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
+</li>
+<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="noopener">Retrofit</a> 可能是现在最佳的网络请求库；</p>
+</li>
+<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="noopener">Retrolambda</a>来简化你的代码；</p>
+</li>
+<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="noopener">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
+</li>
+<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
+</li>
+<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="noopener">包名按照功能来，而不是按分层来</a>;</p>
+</li>
+<li><p>把所有东西都移到 application thread之外；</p>
+</li>
+<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="noopener">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
+</li>
+<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="noopener">可能</a>的方式去加速它；</p>
+</li>
+<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="noopener">profile reports</a>，以便知道什么占据了编译时间；</p>
+</li>
+<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="noopener">有名的</a> 架构；</p>
+</li>
+<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="noopener">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
+</li>
+<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="noopener">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
+</li>
+<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="noopener">fragmented podcast</a> 将会让你受益；</p>
+</li>
+<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="noopener">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
+</li>
+<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="noopener">恰当的</a>输入类型；</p>
+</li>
+<li><p>Use analytics to find usage patterns and isolate bugs;</p>
+</li>
+<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="noopener">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="noopener">dryrun</a> 来快速查看它们的的效果）</p>
+</li>
+<li><p>你的service应该做你所需的事情，并且尽快死去；</p>
+</li>
+<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="noopener">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
+</li>
+<li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
+</li>
+<li><p>不要运行自己的CIserver，维护server是费时的事情，因为磁盘空间，安全问题，更新server以防止SSL攻击等等原因。使用circleci, travis 或者 shippable, 它们便宜，而且你也可以少担心一些事情；</p>
+</li>
+<li><p>Automate your deployments to the playstore;</p>
+</li>
+<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="noopener">proguard</a> ）；</p>
+</li>
+<li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
+</li>
+<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="noopener">考虑用SVG来替代PNG</a> ；</p>
+</li>
+<li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
+</li>
+<li><p>监控你的连接情况以及连接类型（wifi之下更新更多数据？）；</p>
+</li>
+<li><p>监控你的电源和电量（在充电的时候更新更多的数据？电量低的时候暂停更新？）；</p>
+</li>
+<li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
+</li>
+<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="noopener">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
+</li>
+</ol>
+<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="noopener">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/03/11/android开发的经验教训/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-设计模式中类的关系" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/02/24/设计模式中类的关系/">设计模式中类的关系</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/02/24/设计模式中类的关系/">
+            <time datetime="2016-02-24T07:28:13.000Z" itemprop="datePublished">2016-02-24</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/设计模式/">设计模式</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>在Java以及其他的面向对象设计模式中，类与类之间主要有6种关系，他们分别是：依赖、关联、聚合、组合、继承、实现。他们的耦合度依次增强。</p>
+<ul>
+<li>依赖（Dependence）<a href="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" target="_blank" rel="noopener"><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml1.gif" alt=""></a><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml2.gif" alt=""><br>依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。</li>
+</ul>
+<p><strong>代码样例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(Book book)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"读的书是"</span>+book.getName());</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关联（Association）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml3.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml4.gif" alt=""><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml5.gif" alt=""><br><strong>单项关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml6.gif" alt=""><br><strong>双向关联：</strong><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml7.gif" alt=""></li>
+</ul>
+<p>对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。</p>
+<p><strong>代码样例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	Father father = <span class="keyword">new</span> Father();</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"从"</span>+father.getName()+<span class="string">"获得礼物"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	Son son = <span class="keyword">new</span> Son();</span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"从"</span>+son.getName()+<span class="string">"获得礼物"</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>聚合（Aggregation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml8.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml9.gif" alt=""></li>
+</ul>
+<p>聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。</p>
+<p><strong>代码样例：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	Car car;</span><br><span class="line"></span><br><span class="line">	House house;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCar</span><span class="params">(Car car)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.car = car;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHouse</span><span class="params">(House house)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.house = house;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">driver</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			System.out.println(<span class="string">"车型号:"</span>+car.getType());</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			System.out.println(<span class="string">"我在房子里睡觉:"</span>+house.getAddress());</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>组合（Composition）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml10.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml11.gif" alt=""></li>
+</ul>
+<p>相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	Soul soul;</span><br><span class="line"></span><br><span class="line">	Body body;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">People</span><span class="params">(Soul soul,Body body)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.soul = soul;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">this</span>.body = body;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">study</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			System.out.println(<span class="string">"学习要灵魂:"</span>+soul.getName());</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			System.out.println(<span class="string">"吃饭需要身体:"</span>+body.getName());</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继承（GeneraliZation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml12.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml13.gif" alt=""></li>
+</ul>
+<p>继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。</p>
+<ul>
+<li>实现（Implementation）<img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml14.gif" alt=""><br><img src="https://github.com/mccappcom/DesignPattern/raw/master/assets/uml15.gif" alt=""></li>
+</ul>
+<p>表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/02/24/设计模式中类的关系/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-淘汰" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -516,307 +749,8 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
 
 
 
-    <article id="post-java对象四大引用" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/09/22/java对象四大引用/">java对象四大引用</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/09/22/java对象四大引用/">
-            <time datetime="2015-09-22T03:47:38.000Z" itemprop="datePublished">2015-09-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/java/">java</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/java/">java</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p>强引用、软引用、弱引用、虚引用总结</p>
-</blockquote>
-<pre><code>总结：
-</code></pre><ol>
-<li>强引用(StrongReference)：普通new对象的引用<pre><code>Person person  = new Person();
-JVM宁愿抛出OutOfMenory异常也不会去回收该对象。
-</code></pre></li>
-<li>软引用(SoftReference)：<br> SoftReference引用的装饰对象，该对象的强引用应该赋值空<br>这里配合SoftReferenceQueue使用(也可以配合),因为SoftRefereceQueue本身也是new了一个对象，当它把别人的问题解决掉以后，也需要自己的问题解决，所有jvm把软引用对象回收后，就会把自己的对象引用放到这个队列中，我们可以通过队列的poll()方法查看,如果存在该ReferenceQueue引用也赋值为空，等待被jvm回收。注意：软引用对象在jvm内存不够的时候才会被回收，我们调用system.gc方法只是起通知作用，jvm什么时候扫描回收对象，是jvm自己的状态决定的。就算扫描到软引用对象也不一定回收。只有内存不够的时候才会回收<br>ReferenceQueue queue = new ReferenceQueue();<br>Person person = new Person();<br>SoftReference soft = new SoftReference(person,queue);<br>user = null;</li>
-<li>弱引用(WeakReference)：弱引用也是用描述非必需对象的，当jvm进行垃圾回收时，只要扫描到，无论内存是否充足(与软引用的区别)，都会回收弱引用关联的对象。在java中，用java.lang.ref.WeakReference类表示<br>WeakReference<person> weak = new WeakRefence<person>(new Person());<br>System.out.println(weak.get());<br>System.gc();//通知jvm的gc进行垃圾回收<br>System.out.println(weak.get());</person></person></li>
-<li>虚引用(PhantomReference)：<br>虚引用和前面的软引用，弱引用不同，它并不影响对象的生命周期。<br>在java中用java.lang.ref.PhantomReference类表示。如果一个对象与虚引用关联，则跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。要注意的是，虚引用必须和引用队列关联使用，当垃圾回收准备回收一个对象时，如果发现它还有虚引用，就会把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入虚引用，来了解被引用的对象是否将要被垃圾回收。如果程序发现某个虚引用已经被加入引用队列，那么就可以在所引用的对象内存被回收之前采取必要的行动。<br>ReferenceQueue queue = new ReferenceQueue();<br>PhantomReference<person> prf = new PhantomReference<person>(new Person(),queue);<br>System.out.print(prf.get());<br><a href="http://www.cnblogs.com/dolphin0520/p/3741519.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3741519.html</a><br><a href="http://www.cnblogs.com/dolphin0520/p/3749259.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3749259.html</a></person></person></li>
-</ol>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2015/09/22/java对象四大引用/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-android-正则表达式" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/09/22/android-正则表达式/">android 正则表达式</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/09/22/android-正则表达式/">
-            <time datetime="2015-09-22T01:52:37.000Z" itemprop="datePublished">2015-09-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p>android正则表达式及Pattern Matcher使用</p>
-</blockquote>
-<pre><code>// 反斜杠
-/t 间隔 (&apos;/u0009&apos;)
-/n 换行 (&apos;/u000A&apos;)
-/r 回车 (&apos;/u000D&apos;)
-/d 数字 等价于[0-9]
-/D 非数字 等价于[^0-9]
-/s 空白符号 [/t/n/x0B/f/r]
-/S 非空白符号 [^/t/n/x0B/f/r]
-/w 单独字符 [a-zA-Z_0-9]
-/W 非单独字符 [^a-zA-Z_0-9]
-/f 换页符
-/e Escape
-/b 一个单词的边界
-/B 一个非单词的边界
-/G 前一个匹配的结束
-
-^为限制开头
-^java     条件限制为以Java为开头字符
-$为限制结尾
-java$     条件限制为以java为结尾字符
-.  条件限制除/n以外任意一个单独字符
-java..     条件限制为java后除换行外任意两个字符
-
-
-加入特定限制条件「[]」
-[a-z]     条件限制在小写a to z范围中一个字符
-[A-Z]     条件限制在大写A to Z范围中一个字符
-[a-zA-Z] 条件限制在小写a to z或大写A to Z范围中一个字符
-[0-9]     条件限制在小写0 to 9范围中一个字符
-[0-9a-z] 条件限制在小写0 to 9或a to z范围中一个字符
-[0-9[a-z]] 条件限制在小写0 to 9或a to z范围中一个字符(交集)
-
-[]中加入^后加再次限制条件「[^]」
-[^a-z]     条件限制在非小写a to z范围中一个字符
-[^A-Z]     条件限制在非大写A to Z范围中一个字符
-[^a-zA-Z] 条件限制在非小写a to z或大写A to Z范围中一个字符
-[^0-9]     条件限制在非小写0 to 9范围中一个字符
-[^0-9a-z] 条件限制在非小写0 to 9或a to z范围中一个字符
-[^0-9[a-z]] 条件限制在非小写0 to 9或a to z范围中一个字符(交集)
-
-在限制条件为特定字符出现0次以上时，可以使用「*」
-J*     0个以上J
-.*     0个以上任意字符
-J.*D     J与D之间0个以上任意字符
-
-在限制条件为特定字符出现1次以上时，可以使用「+」
-J+     1个以上J
-.+     1个以上任意字符
-J.+D     J与D之间1个以上任意字符
-
-在限制条件为特定字符出现有0或1次以上时，可以使用「?」JA? J或者JA出现
-
-限制为连续出现指定次数字符「{a}」
-J{2}     JJ
-J{3}     JJJ
-文字a个以上，并且「{a,}」
-J{3,}     JJJ,JJJJ,JJJJJ,???(3次以上J并存)
-文字个以上，b个以下「{a,b}」
-J{3,5}     JJJ或JJJJ或JJJJJ
-两者取一「|」
-J|A     J或A
-Java|Hello     Java或Hello
-</code></pre><blockquote>
-<p>比如，在字符串包含验证时</p>
-</blockquote>
-<pre><code>//查找以Java开头,任意结尾的字符串
-Pattern pattern  = Pattern.compile(&quot;^Java.*&quot;);
-Matcher matcher = pattern.matcher(&quot;Java棒棒的&quot;);
-boolean bool = matcher.matches();
-System.out.println(bool); //true
-
-//以多条件分割字符串时
-Pattern pattern = Pattern.compile(&quot;[,|]+&quot;);
-String[] strs = pattern.split(&quot;Java Hello World  Java,Hello,,World|Sun&quot;);
-for (int i=0;i&lt;strs.length;i++) {  
- System.out.println(strs[i]);  
- //Java Hello World  Java
-//Hello
-//World
-//Sun
-}  
-
-//文字替换（首次出现字符）
-Pattern pattern = Pattern.compile(&quot;正则表达式&quot;);  
-Matcher matcher = pattern.matcher(&quot;正则表达式 Hello World,正则表达式 Hello       World&quot;);  
-//替换第一个符合正则的数据  
-System.out.println(matcher.replaceFirst(&quot;Java&quot;));  
-//Java Hello World,正则表达式 Hello
-
-//文字替换（全部）
-Pattern pattern = Pattern.compile(&quot;正则表达式&quot;);  
-Matcher matcher = pattern.matcher(&quot;正则表达式 Hello World,正则表达式 Hello       World&quot;);  
-//替换第一个符合正则的数据  
-System.out.println(matcher.replaceAll(&quot;Java&quot;));  
-//Java Hello World,Java Hello
-
-
-//◆文字替换（置换字符）
- Pattern pattern = Pattern.compile(&quot;正则表达式&quot;);
- Matcher matcher = pattern.matcher(&quot;正则表达式 Hello World,正则表达式 Hello World &quot;);
- StringBuffer sbr = new StringBuffer();
- while (matcher.find()) {
-        matcher.appendReplacement(sbr, &quot;Java&quot;);
- }
- matcher.appendTail(sbr);
- System.out.println(sbr.toString());
- //Java Hello World,Java Hello World 
-
-
- //验证是否为邮箱地址
- String str=&quot;ceponline@yahoo.com.cn&quot;;  
- Pattern pattern =  
- Pattern.compile(&quot;[//w//.//-]+@([//w//-]+//.)+[//w//-]+&quot;,Pattern.CASE_INSENSI
- TIVE);  
- Matcher matcher = pattern.matcher(str);
- System.out.println(matcher.matches());  //true
-
-//去除html标记
- Pattern pattern = Pattern.compile(&quot;&lt;.+?&gt;&quot;, Pattern.DOTALL);  
- Matcher matcher = pattern.matcher(&quot;&lt;a href=/&quot;index.html/&quot;&gt;主页&lt;/a&gt;&quot;);  
- String string = matcher.replaceAll(&quot;&quot;);  
- System.out.println(string); //主页
-
-//查找html中对应条件字符串
-Pattern pattern = Pattern.compile(&quot;href=\&quot;(.+?)\&quot;&quot;);
-Matcher matcher = pattern.matcher(&quot;&lt;a href=\&quot;index.html\&quot;&gt;主页&lt;/a&gt;&quot;);
-if(matcher.find())
-System.out.println(matcher.group(1));//index.html
-
-//截取http://地址
-Pattern pattern = Pattern.compile(&quot;(http://|https://){1}[//w//.//-/:]+&quot;);  
-Matcher matcher = pattern.matcher(&quot;dsdsds&lt;http://dsds//gfgffdfd&gt;fdf&quot;);  
-StringBuffer buffer = new StringBuffer();  
-while(matcher.find()){                
-buffer.append(matcher.group());          
-buffer.append(&quot;/r/n&quot;);                
-System.out.println(buffer.toString());  
-}  
-
-//替换指定{}中文字
-String str = &quot;Java目前的发展史是由{0}年-{1}年&quot;;  
-String[][] object={new String[]{&quot;//{0//}&quot;,&quot;1995&quot;},new 
-String[]{&quot;//{1//}&quot;,&quot;2007&quot;}};  
-System.out.println(replace(str,object));  
-public static String replace(final String sourceString,Object[] object) {  
-        String temp=sourceString;      
-        for(int i=0;i&lt;object.length;i++){  
-                  String[] result=(String[])object[i];  
-           Pattern    pattern = Pattern.compile(result[0]);  
-           Matcher matcher = pattern.matcher(temp);  
-           temp=matcher.replaceAll(result[1]);  
-        }  
-        return temp;  
-        }  //Java目前的发展史是由1995年-2007年
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2015/09/22/android-正则表达式/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">下一页 &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -843,6 +777,25 @@ public static String replace(final String sourceString,Object[] object) {
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/flutter/">flutter</a></p>
                             <p class="item-title"><a href="/2018/03/05/Flutter Widget 之旅/" class="title">Flutter Widget 之旅</a></p>
+                            <p class="item-date"><time datetime="2018-03-05T08:30:12.000Z" itemprop="datePublished">2018-03-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/05/sync.WaitGroup使用说明/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/apk/">apk</a></p>
+                            <p class="item-title"><a href="/2018/03/05/sync.WaitGroup使用说明/" class="title">Go sync包 WaitGroup使用</a></p>
                             <p class="item-date"><time datetime="2018-03-05T08:30:12.000Z" itemprop="datePublished">2018-03-05</time></p>
                         </div>
                     </li>
@@ -904,25 +857,6 @@ public static String replace(final String sourceString,Object[] object) {
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/11/09/Flex布局教程链接/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/web/">web</a></p>
-                            <p class="item-title"><a href="/2017/11/09/Flex布局教程链接/" class="title">Flex布局教程链接</a></p>
-                            <p class="item-date"><time datetime="2017-11-09T08:03:12.000Z" itemprop="datePublished">2017-11-09</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -932,7 +866,7 @@ public static String replace(final String sourceString,Object[] object) {
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android-studio/">android studio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rxjava/">rxjava</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tinker/">tinker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">22</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android-studio/">android studio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/apk/">apk</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rxjava/">rxjava</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tinker/">tinker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -941,7 +875,7 @@ public static String replace(final String sourceString,Object[] object) {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -950,7 +884,7 @@ public static String replace(final String sourceString,Object[] object) {
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -959,7 +893,7 @@ public static String replace(final String sourceString,Object[] object) {
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/https/" style="font-size: 12.5px;">https</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 15px;">mvp</a> <a href="/tags/resume/" style="font-size: 15px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 12.5px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 12.5px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/https/" style="font-size: 12.5px;">https</a> <a href="/tags/ios/" style="font-size: 15px;">ios</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 15px;">mvp</a> <a href="/tags/resume/" style="font-size: 15px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 12.5px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 12.5px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 12.5px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a>
         </div>
     </div>
 

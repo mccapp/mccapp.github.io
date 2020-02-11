@@ -159,7 +159,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                74
+                75
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -212,6 +212,114 @@
 
             
             <section id="main">
+    <article id="post-Git分支管理策略" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/10/24/Git分支管理策略/">Git分支管理策略</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/10/24/Git分支管理策略/">
+            <time datetime="2016-10-24T03:55:47.000Z" itemprop="datePublished">2016-10-24</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/git/">git</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/git/">git</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>Git分支管理策略 <a href="https://learngitbranching.js.org/?demo" target="_blank" rel="noopener">https://learngitbranching.js.org/?demo</a><br>1.主要分支：master</p>
+<pre><code>说明：代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支开发。
+</code></pre><p>2.开发分支：Develop</p>
+<pre><code>说明：主分支只用来分布重大版本，日常开发应该在另一个分支完成。我们把开发用的分支，叫做Develop
+
+命令：
+
+1.开启分支：git checkout -b  develop master
+2.将develop分支发布到Master分支命令：#切换到Master分支 git checkout master 
+#对Develop分支进行合并 git merge --no-ff develop -m&quot;合并分支信息&quot;
+</code></pre><p>3.临时分支：Feature/Release/Fixbug</p>
+<pre><code>1.Feature 功能分支：主要开发特定某功能，从Develop分支上面分出来。开发完成后，要再并入Develop。 
+命名格式采用 feature-* 创建一个临时分支 git checkout -b feature-x develop 
+开发完成后，将功能分支合并到develop分支。 
+
+1.git checkout develop  
+2.git merge --no-ff feature-x -m&quot;合并分支信息&quot; 
+3.git branch -d feature-x
+
+2.Felease 预发分支：是指发布正式版之前（即合并到Master分支之前），我们可能需要一个预发布的版本进行测试。
+从Develop分支上面分出来。
+开发完成后，要再并入Develop和Master。
+命名格式采用 release-* 创建预发分支 git checkout -b release-1.2 develop 开发确认没问题后。 
+1.git checkout master 
+2.git merge --on-ff release-1.2 -m&quot;合并分支信息&quot; 
+#对合并的生成的新节点，做一个标签 git tag -a 1.2  
+#再合并到develop分支： 
+
+1.git checkout develop  
+2.git merge --no-ff release-1.2 -m&quot;合并分支信息&quot; 
+3.git branch -d release-1.2
+
+3.Fixbug  bug分支：软件正式发布后，难免会出现bug，就需要创建一个分支，进行bug修补。
+从Master分支上面分出来的。修补结束以后，在合并到Master和Develop分支。
+命名格式fixbug-*  创建bug分支 git checkout -b fixbug-0.1 master 修复结束后 合并到master分支 
+1.git checkout master 
+2.git merge  --no-ff fixbug-0.1 -m&quot;合并分支信息&quot;  
+3.git tag -a 0.1.1 
+
+#再合并到develop分支 
+1.git checkout develop 
+2.git merge --no-ff fixbug-0.1 -m&quot;合并分支信息&quot; 
+3.git branch -d fixbug-0.1    
+</code></pre>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/10/24/Git分支管理策略/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-gradle包含库出现的问题" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -404,6 +512,73 @@
 
 
 
+    <article id="post-androidstudiosvn设置忽略" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/09/21/androidstudiosvn设置忽略/">androidstudiosvn设置忽略</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/09/21/androidstudiosvn设置忽略/">
+            <time datetime="2016-09-21T04:13:18.000Z" itemprop="datePublished">2016-09-21</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/git/">git</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/git/">git</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>一、Android Studio创建的Android项目一般需要忽略<br>1、.idea文件夹<br>2、.gradle文件夹<br>3、所有的build文件夹<br>4、所有的.iml文件<br>5、local.properties文件。<br>方法一、在项目的.idea/workspace.xml的文件里设置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;    </span><br><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">component</span> <span class="attr">name</span>=<span class="string">"ChangeListManager"</span>&gt;</span>    </span><br><span class="line">        ...    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">".gradle/"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">".idea/"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradle/"</span> /&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"项目名/build/"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradlew"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradlew.bat"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">mask</span>=<span class="string">"*.iml"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"local.properties"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"build/"</span> /&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">mask</span>=<span class="string">"*.apk"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">component</span>&gt;</span>    </span><br><span class="line">    ...    </span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="http://a1.eoeandroid.com/attachment/forum/201607/18/172122qdxadmdcidnzabmb.png" target="_blank" rel="noopener"><img src="http://a1.eoeandroid.com/attachment/forum/201607/18/172122qdxadmdcidnzabmb.png" alt=""></a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/09/21/androidstudiosvn设置忽略/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-androidstudiogit设置忽略" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -472,270 +647,6 @@
 
 
 
-    <article id="post-androidstudiosvn设置忽略" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/09/21/androidstudiosvn设置忽略/">androidstudiosvn设置忽略</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/09/21/androidstudiosvn设置忽略/">
-            <time datetime="2016-09-21T04:13:18.000Z" itemprop="datePublished">2016-09-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/git/">git</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/git/">git</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>一、Android Studio创建的Android项目一般需要忽略<br>1、.idea文件夹<br>2、.gradle文件夹<br>3、所有的build文件夹<br>4、所有的.iml文件<br>5、local.properties文件。<br>方法一、在项目的.idea/workspace.xml的文件里设置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;    </span><br><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">component</span> <span class="attr">name</span>=<span class="string">"ChangeListManager"</span>&gt;</span>    </span><br><span class="line">        ...    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">".gradle/"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">".idea/"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradle/"</span> /&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"项目名/build/"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradlew"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"gradlew.bat"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">mask</span>=<span class="string">"*.iml"</span> /&gt;</span>     </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"local.properties"</span> /&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">path</span>=<span class="string">"build/"</span> /&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">ignored</span> <span class="attr">mask</span>=<span class="string">"*.apk"</span> /&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">component</span>&gt;</span>    </span><br><span class="line">    ...    </span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><a href="http://a1.eoeandroid.com/attachment/forum/201607/18/172122qdxadmdcidnzabmb.png" target="_blank" rel="noopener"><img src="http://a1.eoeandroid.com/attachment/forum/201607/18/172122qdxadmdcidnzabmb.png" alt=""></a></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2016/09/21/androidstudiosvn设置忽略/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-Android之Lru算法" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/06/18/Android之Lru算法/">Android之Lru算法</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/06/18/Android之Lru算法/">
-            <time datetime="2016-06-18T12:45:21.000Z" itemprop="datePublished">2016-06-18</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>Lru：</p>
-<p>   LRU是Least Recently Used 的缩写，翻译过来就是“最近最少使用”，LRU缓存就是使用这种原理实现，简单的说就是缓存一定量的数据，当超过设定的阈值时就把一些过期的数据删除掉，比如我们缓存10000条数据，当数据小于10000时可以随意添加，当超过10000时就需要把新的数据添加进来，同时要把过期数据删除，以确保我们最大缓存10000条，那怎么确定删除哪条过期数据呢，采用LRU算法实现的话就是将最老的数据删掉。</p>
-<p> 1.）初始化MemoryCache</p>
-<p>  这里内存缓存的是Drawable 而不是Bitmap 理由是Drawable相对Bitmap来说有很大的内存优势<br>  int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小<br>  int mCacheSize = maxMemory / 8;//设置图片内存缓存占用八分之一<br>  mMemoryCache = new LruCache<string, drawable="">(mCacheSize) {<br>  //必须重写此方法，来测量Bitmap的大小<br>  @Override<br>  protected int sizeOf(String key, Drawable value) {<br>  　　if (value instanceof BitmapDrawable) {<br>  　　　　Bitmap bitmap = ((BitmapDrawable) value).getBitmap();<br>  　　　　return bitmap == null ? 0 : bitmap.getByteCount();<br>　　　}<br>　　　return super.sizeOf(key, value);<br>            }<br>        };</string,></p>
-<p>2.）添加一个Drawable到内存缓存<br>    /**</p>
-<pre><code> * 添加Drawable到内存缓存
- *
- * @param key
- * @param drawable
- */
-private void addDrawableToMemoryCache(String key, Drawable drawable) {
-    if (getDrawableFromMemCache(key) == null &amp;&amp; drawable != null) {
-        mMemoryCache.put(key, drawable);
-    }
-}
-</code></pre><p>3.）从内存缓存中获取一个Drawable</p>
-<pre><code>/**
- * 从内存缓存中获取一个Drawable
- *
- * @param key
- * @return
- */
-public Drawable getDrawableFromMemCache(String key) {
-    return mMemoryCache.get(key);
-}
-</code></pre><p>4.）从内存缓存中移除一个Drawable</p>
-<p>   /**</p>
-<pre><code> * 从内存缓存中移除
- *
- * @param key
- */
-public void removeCacheFromMemory(String key) {
-    mMemoryCache.remove(key);
-}
-</code></pre><p>5.）清空内存缓存</p>
-<pre><code>/**
- * 清理内存缓存
- */
-public void cleanMemoryCCache() {
-    mMemoryCache.evictAll();
-}
-</code></pre><p>其实Lru缓存机制本质上就是存储在一个LinkedHashMap存储，为了保障插入的数据顺序，方便清理。</p>
-<p>基于DiskLruCache实现磁盘缓存：</p>
-<p>   DiskLruCache类并不是谷歌官方实现，需要自行下载，下载地址：<a href="https://github.com/JakeWharton/DiskLruCache" target="_blank" rel="noopener">https://github.com/JakeWharton/DiskLruCache</a></p>
-<p>  1.）初始化DiskLruCache</p>
-<pre><code>File cacheDir = context.getCacheDir();//指定的是数据的缓存地址
- long diskCacheSize = 1024 * 1024 * 30;//最多可以缓存多少字节的数据
- int appVersion = DiskLruUtils.getAppVersion(context);//指定当前应用程序的版本号
- int valueCount = 1;//指定同一个key可以对应多少个缓存文件
- try {
-     mDiskCache = DiskLruCache.open(cacheDir, appVersion, valueCount, diskCacheSize);
- } catch (Exception ex) {
- }
-</code></pre><p>2.）写入一个文件到磁盘缓存</p>
-<pre><code>/**
- * 添加Bitmap到磁盘缓存
- *
- * @param key
- * @param value
- */
-private void addBitmapToDiskCache(String key, byte[] value) {
-    OutputStream out = null;
-    try {
-        DiskLruCache.Editor editor = mDiskCache.edit(key);
-        if (editor != null) {
-            out = editor.newOutputStream(0);
-            if (value != null &amp;&amp; value.length &gt; 0) {
-                out.write(value);
-                out.flush();
-                editor.commit();
-            } else {
-                editor.abort();
-            }
-        }
-        mDiskCache.flush();
-    } catch (IOException e) {
-        e.printStackTrace();
-    } finally {
-        DiskLruUtils.closeQuietly(out);
-    }
-}
-</code></pre><p>3.）从磁盘缓存中读取Drawable</p>
-<pre><code>/**
- * 从磁盘缓存中获取一个Drawable
- *
- * @param key
- * @return
- */
-public Drawable getDrawableFromDiskCache(String key) {
-    try {
-        DiskLruCache.Snapshot snapShot = mDiskCache.get(key);
-        if (snapShot != null) {
-            InputStream is = snapShot.getInputStream(0);
-            Bitmap bitmap = BitmapFactory.decodeStream(is);
-            Drawable drawable = DiskLruUtils.bitmap2Drawable(bitmap);
-            //从磁盘中读取到之后 加入内存缓存
-            addDrawableToMemoryCache(key, drawable);
-            return drawable;
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    return null;
-}
-</code></pre><p>4.）从磁盘缓存中移除</p>
-<pre><code>/**
- * 从磁盘缓存中移除
- *
- * @param key
- */
-public void removeCacheFromDisk(String key) {
-    try {
-        mDiskCache.remove(key);
-    } catch (Exception e) {
-    }
-}
-</code></pre><p>5.）清空磁盘缓存</p>
-<pre><code>/**
- * 清理磁盘缓存
- */
-public void cleanDiskCache() {
-    try {
-        mDiskCache.delete();
-    } catch (Exception e) {
-    }
-}
-</code></pre><p>图片下载过程：</p>
-<p>   接下来实例中用到了一点RxJava的知识有不了解RxJava的请自行了解一下。</p>
-<p>  1.）采用异步方式操作磁盘缓存和网络下载， 内存缓存可以在主线程中操作</p>
-<p>   public void disPlay(final ImageView imageView, String imageUrl) {<br>        //生成唯一key<br>        final String key = DiskLruUtils.hashKeyForDisk(imageUrl);<br>        //先从内存中读取<br>        Drawable drawableFromMemCache = getDrawableFromMemCache(key);<br>        if (drawableFromMemCache != null) {<br>            imageView.setImageDrawable(drawableFromMemCache);<br>            return;<br>        }<br>        Observable.just(imageUrl)<br>                .map(new Func1<string, drawable="">() {<br>                    @Override<br>                    public Drawable call(String imageUrl) { // 参数类型 String<br>                        //从磁盘中读取<br>                        Drawable drawableFromDiskCache = getDrawableFromDiskCache(key);<br>                        if (drawableFromDiskCache != null) {<br>                            return drawableFromDiskCache;<br>                        }<br>                        //网络下载<br>                        return download(imageUrl); // 返回类型 Drawable<br>                    }<br>                })<br>                .subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程<br>                .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程<br>                .subscribe(new Action1<drawable>() {<br>                    @Override<br>                    public void call(Drawable drawable) { // 参数类型 Drawable<br>                        imageView.setImageDrawable(drawable);<br>                    }<br>                });<br>    }</drawable></string,></p>
-<p>2.）下载图片过程以及处理</p>
-<p> private Drawable download(String imageUrl) {<br>        HttpURLConnection urlConnection = null;<br>        ByteArrayOutputStream bos = null;<br>        InputStream ins = null;<br>        try {<br>            final URL url = new URL(imageUrl);<br>            urlConnection = (HttpURLConnection) url.openConnection();<br>            ins = urlConnection.getInputStream();<br>            bos = new ByteArrayOutputStream();<br>            int b;<br>            while ((b = ins.read()) != -1) {<br>                bos.write(b);<br>            }<br>            bos.flush();<br>            byte[] bytes = bos.toByteArray();<br>            Bitmap bitmap = DiskLruUtils.bytes2Bitmap(bytes);<br>            String key = DiskLruUtils.hashKeyForDisk(imageUrl);<br>            Drawable drawable = DiskLruUtils.bitmap2Drawable(bitmap);<br>            //加入内存缓存<br>            addDrawableToMemoryCache(key, drawable);<br>            //加入磁盘缓存<br>            addBitmapToDiskCache(key, bytes);<br>            return drawable;<br>        } catch (IOException e) {<br>            e.printStackTrace();<br>        } finally {<br>            if (urlConnection != null) {<br>                urlConnection.disconnect();<br>            }<br>            DiskLruUtils.closeQuietly(bos);<br>            DiskLruUtils.closeQuietly(ins);<br>        }<br>        return null;<br>    }</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2016/06/18/Android之Lru算法/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/10/">下一页 &raquo;</a>
     </nav>
@@ -748,6 +659,25 @@ public void cleanDiskCache() {
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/05/}/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/10/05/}/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2019-10-05T10:09:09.629Z" itemprop="datePublished">2019-10-05</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -825,25 +755,6 @@ public void cleanDiskCache() {
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/10/06/sync.WaitGroup使用说明的副本/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/go/">go</a></p>
-                            <p class="item-title"><a href="/2018/10/06/sync.WaitGroup使用说明的副本/" class="title">Go语言中 new()和make()的区别详解</a></p>
-                            <p class="item-date"><time datetime="2018-10-06T10:30:12.000Z" itemprop="datePublished">2018-10-06</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -862,7 +773,7 @@ public void cleanDiskCache() {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -908,10 +819,13 @@ public void cleanDiskCache() {
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2019 阿荣<br>
+            &copy; 2020 阿荣<br>
             <!-- <a href="http://github.com/ppoffice">ppoffice</a>     
             主题 - <a href="http://hexo.io/" target="_blank">Hexo</a> -->  
              <a href="#" target="_blank">人生如逆旅  &phi; 我亦是行人 </a>
+             <div class="copyright" style="margin-top: 10px;">
+ 			ICP备案号： <a href="http://www.miitbeian.gov.cn" style="color:#fff;" target="_blank">粤ICP备16067940号</a><br>
+		</div>	
         </div>
     </div>
 </footer>

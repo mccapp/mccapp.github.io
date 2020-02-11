@@ -159,7 +159,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                74
+                75
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -212,6 +212,126 @@
 
             
             <section id="main">
+    <article id="post-}" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <pre><code>}
+</code></pre><h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><p>上面是签名的使用例子，下面分析签名的源码实现，首先看下数据结构Token，包含了我们标准中说道的三部分：头部，载荷和签名，此外还带了一个用于存储生成token的字段Raw和校验标识符Valid</p>
+<pre><code>// A JWT Token.  Different fields will be used depending on whether you&apos;re
+// creating or parsing/verifying a token.
+type Token struct {
+    Raw       string                 // The raw token.  Populated when you Parse a token
+    Method    SigningMethod          // The signing method used or to be used
+    Header    map[string]interface{} // The first segment of the token
+    Claims    Claims                 // The second segment of the token
+    Signature string                 // The third segment of the token.  Populated when you Parse a token
+    Valid     bool                   // Is the token valid?  Populated when you Parse/Verify a token
+}
+</code></pre><p>看下载荷，多了一个字段Audience</p>
+<pre><code>// Structured version of Claims Section, as referenced at
+// https://tools.ietf.org/html/rfc7519#section-4.1
+// See examples for how to use this with your own claim types
+type StandardClaims struct {
+    Audience  string `json:&quot;aud,omitempty&quot;`
+    ExpiresAt int64  `json:&quot;exp,omitempty&quot;`
+    Id        string `json:&quot;jti,omitempty&quot;`
+    IssuedAt  int64  `json:&quot;iat,omitempty&quot;`
+    Issuer    string `json:&quot;iss,omitempty&quot;`
+    NotBefore int64  `json:&quot;nbf,omitempty&quot;`
+    Subject   string `json:&quot;sub,omitempty&quot;`
+}
+</code></pre><h1 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h1><h3 id="初始化API"><a href="#初始化API" class="headerlink" title="初始化API"></a>初始化API</h3><h4 id="提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象"><a href="#提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象" class="headerlink" title="提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象"></a>提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象</h4><pre><code>// Create a new Token.  Takes a signing method
+func New(method SigningMethod) *Token {
+    return NewWithClaims(method, MapClaims{})
+}
+
+func NewWithClaims(method SigningMethod, claims Claims) *Token {
+    return &amp;Token{
+        Header: map[string]interface{}{
+            &quot;typ&quot;: &quot;JWT&quot;,
+            &quot;alg&quot;: method.Alg(),
+        },
+        Claims: claims,
+        Method: method,
+    }
+}
+</code></pre><h1 id="生成签名API"><a href="#生成签名API" class="headerlink" title="生成签名API"></a>生成签名API</h1><p>如标准所说，主要是将头部和载荷部分的结构对象转化为json格式，然后用base64编码，然后用’.’号连接，然后使用指定加密方法生成签名，再与前面的头部和载荷用’.’号连接</p>
+<pre><code>// Get the complete, signed token
+func (t *Token) SignedString(key interface{}) (string, error) {
+    var sig, sstr string
+    var err error
+    //把头部和载荷转化为json格式，base64编码之后用&apos;.&apos;号连接起来
+    if sstr, err = t.SigningString(); err != nil {
+        return &quot;&quot;, err
+    }
+    //使用指定的加密方法生成签名
+    if sig, err = t.Method.Sign(sstr, key); err != nil {
+        return &quot;&quot;, err
+    }
+    return strings.Join([]string{sstr, sig}, &quot;.&quot;), nil
+}
+</code></pre><p>头部和载荷数据结构对象的处理：</p>
+<pre><code>// Generate the signing string.  This is the
+// most expensive part of the whole deal.  Unless you
+// need this for something special, just go straight for
+// the SignedString.
+func (t *Token) SigningString() (string, error) {
+    var err error
+    parts := make([]string, 2)
+    for i, _ := range parts {
+        var jsonValue []byte
+        if i == 0 {
+            if jsonValue, err = json.Marshal(t.Header); err != nil {
+                return &quot;&quot;, err
+            }
+        } else {
+            if jsonValue, err = json.Marshal(t.Claims); err != nil {
+                return &quot;&quot;, err
+            }
+        }
+
+        parts[i] = EncodeSegment(jsonValue)
+    }
+    return strings.Join(parts, &quot;.&quot;), nil
+}
+</code></pre><h1 id="校验API"><a href="#校验API" class="headerlink" title="校验API"></a>校验API</h1><p>检验Token基本就是生成Token的逆过程了，也提供了两个API：</p>
+<pre><code>// Parse, validate, and return a token.
+// keyFunc will receive the parsed token and should return the key for validating.
+// If everything is kosher, err will be nil
+func Parse(tokenString string, keyFunc Keyfunc) (*Token, error) {
+    return new(Parser).Parse(tokenString, keyFunc)
+}
+
+func ParseWithClaims(tokenString string, claims Claims, keyFunc Keyfunc) (*Token, error) {
+    return new(Parser).ParseWithClaims(tokenString, claims, keyFunc)
+}
+</code></pre>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2019/10/05/}/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-MAC文件夹权限问题" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -527,88 +647,6 @@
 
 
 
-    <article id="post-sync.WaitGroup使用说明的副本" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/10/06/sync.WaitGroup使用说明的副本/">Go语言中 new()和make()的区别详解</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/10/06/sync.WaitGroup使用说明的副本/">
-            <time datetime="2018-10-06T10:30:12.000Z" itemprop="datePublished">2018-10-06</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/go/">go</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/go/">go</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>#概述<br>Go语言中的new和make 一直是新手比较容易混淆的东西，咋一看很相似，接下来我们来分析两者的区别</p>
-<p>#new的主要特性</p>
-<p>首先new是内建函数，你可以从  <a href="http://golang.org/pkg/builtin/#new" target="_blank" rel="noopener">http://golang.org/pkg/builtin/#new</a>  这儿看到它，它的定义也很简单：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br><span class="line">func new(Type) *Type</span><br></pre></td></tr></table></figure>
-<p>官方文档对于它的描述是：</p>
-<p>内建函数new用来分配内存，它的第一个参数是类型，不是一个值，它的返回值是一个指向新分配类型零值的指针</p>
-<p>根据这段描述，我们可以自己实现一个类似的new的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br><span class="line">func newInt() *Int&#123;</span><br><span class="line">	var i int</span><br><span class="line">	return &amp;i	</span><br><span class="line">&#125;</span><br><span class="line">someint :=newInt()</span><br></pre></td></tr></table></figure></p>
-<p>这个函数的功能跟 someInt :=new(int) 一摸一样，所以在我们自定义new开头的函数时，出于约定应该返回类型的指针。</p>
-<p>#make的主要特性</p>
-<p>make也是内建函数，你可以从<a href="http://golang.org/pkg/builtin/#make" target="_blank" rel="noopener">http://golang.org/pkg/builtin/#make</a> 这儿看到它，它的定义比 new 多了一个参数，返回值也不同：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br><span class="line">func make(Type,size INtergerType)Type</span><br></pre></td></tr></table></figure>
-<p>官方文档对于它的描述是：</p>
-<p>内建函数make用来为slie ，map 或 chan 类型分配内存和初始化一个对象(注意：只能用在这三种类型上)，跟new类似，第一个参数也是一个类型而不是一个值，<br>跟new不同的是，make返回的类型的引用而不是指针，而返回值也依赖于具体传入的类型，具体说明如下：</p>
-<p>代码如下：</p>
-<p>Slice ：第二个参数size指定了它的长度，它的容易和长度相同。<br>你可以传入第三个参数来指定不同的容量值，但必须不能长度值小。<br>比如 make([]int,0,10)<br>Map:根据size大小来初始化分配内存，不过分配后的map长度为0，如果size被忽略了，那么会在初始化分配内存时分配一个小尺寸的内存<br>Channel：管道缓冲区依据缓冲区容量被初始化。如果容量为0或者忽略容量。管道是没有缓冲区的</p>
-<p>总结</p>
-<p>new 的作用是初始化一个指向类型的指针(*T)，make 的作用是为 slice，map 或 chan 初始化并返回引用(T)。</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2018/10/06/sync.WaitGroup使用说明的副本/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
@@ -621,6 +659,25 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/05/}/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/10/05/}/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2019-10-05T10:09:09.629Z" itemprop="datePublished">2019-10-05</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -698,25 +755,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/10/06/sync.WaitGroup使用说明的副本/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/go/">go</a></p>
-                            <p class="item-title"><a href="/2018/10/06/sync.WaitGroup使用说明的副本/" class="title">Go语言中 new()和make()的区别详解</a></p>
-                            <p class="item-date"><time datetime="2018-10-06T10:30:12.000Z" itemprop="datePublished">2018-10-06</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -735,7 +773,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -781,10 +819,13 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2019 阿荣<br>
+            &copy; 2020 阿荣<br>
             <!-- <a href="http://github.com/ppoffice">ppoffice</a>     
             主题 - <a href="http://hexo.io/" target="_blank">Hexo</a> -->  
              <a href="#" target="_blank">人生如逆旅  &phi; 我亦是行人 </a>
+             <div class="copyright" style="margin-top: 10px;">
+ 			ICP备案号： <a href="http://www.miitbeian.gov.cn" style="color:#fff;" target="_blank">粤ICP备16067940号</a><br>
+		</div>	
         </div>
     </div>
 </footer>

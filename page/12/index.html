@@ -5,16 +5,16 @@
     
     <title>nearby.ren</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="nearby , 移动开发, 用户体验, 设计, Java, JavaWeb">
+    <meta name="description" content="nearby, 移动开发, 用户体验, 设计, Java, JavaWeb, Go">
 <meta property="og:type" content="website">
 <meta property="og:title" content="nearby.ren">
 <meta property="og:url" content="http://b.nearby.ren/page/12/index.html">
 <meta property="og:site_name" content="nearby.ren">
-<meta property="og:description" content="nearby , 移动开发, 用户体验, 设计, Java, JavaWeb">
+<meta property="og:description" content="nearby, 移动开发, 用户体验, 设计, Java, JavaWeb, Go">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nearby.ren">
-<meta name="twitter:description" content="nearby , 移动开发, 用户体验, 设计, Java, JavaWeb">
+<meta name="twitter:description" content="nearby, 移动开发, 用户体验, 设计, Java, JavaWeb, Go">
     
 
     
@@ -152,14 +152,14 @@
     <div class="inner profile-inner">
         <div class="base-info profile-block">
             <img id="avatar" src="/css/images/avatar.png">
-            <h2 id="name">ARONG</h2>
-            <h3 id="title">Android server web</h3>
+            <h2 id="name">lr</h2>
+            <h3 id="title">Android server web Go</h3>
             <span id="location"><i class="fa fa-map-marker"></i>china, Hainan</span>
             <a id="follow" target="_blank" href="https://github.com/mccapp">关注我</a>
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                77
+                78
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -212,6 +212,144 @@
 
             
             <section id="main">
+    <article id="post-android开发的经验教训" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/03/11/android开发的经验教训/">android开发的经验教训</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/03/11/android开发的经验教训/">
+            <time datetime="2016-03-11T02:19:45.000Z" itemprop="datePublished">2016-03-11</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <ol>
+<li><p>在添加任何第三方party之前，请三思：这真的是一个成熟的项目吗？</p>
+</li>
+<li><p>如果一个东西用户看不到，<a href="http://riggaroo.co.za/optimizing-layouts-in-android-reducing-overdraw/" target="_blank" rel="noopener">就不要绘制它！</a></p>
+</li>
+<li><p>除非真的需要，否则别使用数据库；</p>
+</li>
+<li><p>达到65k方法数限制来的非常快，真的，非常快！不过 <a href="https://medium.com/@rotxed/dex-skys-the-limit-no-65k-methods-is-28e6cb40cf71" target="_blank" rel="noopener">multidexing 可以拯救你</a>;</p>
+</li>
+<li><p><a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava</a> 是 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="noopener">AsyncTasks</a> 以及其它杂碎的最佳替代者；</p>
+</li>
+<li><p><a href="http://square.github.io/retrofit/" target="_blank" rel="noopener">Retrofit</a> 可能是现在最佳的网络请求库；</p>
+</li>
+<li><p>使用 <a href="https://medium.com/android-news/retrolambda-on-android-191cc8151f85" target="_blank" rel="noopener">Retrolambda</a>来简化你的代码；</p>
+</li>
+<li><p>把 <a href="https://medium.com/swlh/party-tricks-with-rxjava-rxandroid-retrolambda-1b06ed7cd29c" target="_blank" rel="noopener">RxJava 和 Retrofit 以及 Retrolambda</a> 结合起来会让你酷炸天！</p>
+</li>
+<li><p>我使用 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">EventBus</a>而且它也很好，但是我并不会用太多，因为这样代码库会变得凌乱；</p>
+</li>
+<li><p><a href="https://medium.com/the-engineering-team/package-by-features-not-layers-2d076df1964d" target="_blank" rel="noopener">包名按照功能来，而不是按分层来</a>;</p>
+</li>
+<li><p>把所有东西都移到 application thread之外；</p>
+</li>
+<li><p><a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank" rel="noopener">lint</a> 可以帮助你优化布局与布局树，这样你就能识别出那些可能已经被移除的冗余的View；</p>
+</li>
+<li><p>如果你在使用gradle，使用一切<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="noopener">可能</a>的方式去加速它；</p>
+</li>
+<li><p>对builds做<a href="https://medium.com/the-engineering-team/speeding-up-gradle-builds-619c442113cb" target="_blank" rel="noopener">profile reports</a>，以便知道什么占据了编译时间；</p>
+</li>
+<li><p>使用一个 <a href="http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/" target="_blank" rel="noopener">有名的</a> 架构；</p>
+</li>
+<li><p><a href="http://stackoverflow.com/a/67500/794485" target="_blank" rel="noopener">测试时比较花时间，但是一旦你找到诀窍它可以比不使用测试更快、更健壮</a>;</p>
+</li>
+<li><p>使用 <a href="http://fernandocejas.com/2015/04/11/tasting-dagger-2-on-android/" target="_blank" rel="noopener">依赖注入</a> 让你的app更模块化，从而更易于测试；</p>
+</li>
+<li><p>收听 <a href="http://fragmentedpodcast.com/" target="_blank" rel="noopener">fragmented podcast</a> 将会让你受益；</p>
+</li>
+<li><p><a href="https://www.reddit.com/r/Android/comments/2hywu9/google_play_only_one_strike_is_needed_to_ruin_you/" target="_blank" rel="noopener">千万别用私人邮箱作为你安卓市场的发布者账号</a>;</p>
+</li>
+<li><p>总是使用<a href="http://developer.android.com/training/keyboard-input/style.html" target="_blank" rel="noopener">恰当的</a>输入类型；</p>
+</li>
+<li><p>Use analytics to find usage patterns and isolate bugs;</p>
+</li>
+<li><p>关注最新的 <a href="http://android-arsenal.com/" target="_blank" rel="noopener">libraries</a>（使用<a href="https://github.com/cesarferreira/dryrun" target="_blank" rel="noopener">dryrun</a> 来快速查看它们的的效果）</p>
+</li>
+<li><p>你的service应该做你所需的事情，并且尽快死去；</p>
+</li>
+<li><p>使用 <a href="http://developer.android.com/reference/android/accounts/AccountManager.html" target="_blank" rel="noopener">Account Manager</a> 来提示登录用户名和邮箱地址；</p>
+</li>
+<li><p>使用CI（持续集成）来构建和发布你的beta和产品apk；</p>
+</li>
+<li><p>不要运行自己的CIserver，维护server是费时的事情，因为磁盘空间，安全问题，更新server以防止SSL攻击等等原因。使用circleci, travis 或者 shippable, 它们便宜，而且你也可以少担心一些事情；</p>
+</li>
+<li><p>Automate your deployments to the playstore;</p>
+</li>
+<li><p>如果一个library很大而你只需要使用其中的一部分功能，你应该寻找一个更小的来替代（比如依靠<a href="http://developer.android.com/tools/help/proguard.html" target="_blank" rel="noopener">proguard</a> ）；</p>
+</li>
+<li><p>不要使用多于实际需要的module。从零开始编译一个module或者仅仅是检查上个module是否最新所需要的时间几乎是加载 binary .jar/.aar依赖的4倍以上；</p>
+</li>
+<li><p>开始<a href="http://developer.android.com/tools/help/vector-asset-studio.html" target="_blank" rel="noopener">考虑用SVG来替代PNG</a> ；</p>
+</li>
+<li><p>Make library abstraction classes, it’ll be way easier to switch to a new library if you only need to switch in one place (e.g.AppLogger.d(“message”) can contain Log.d(TAG, message) and later realise that Timber.d(message) is a better option);</p>
+</li>
+<li><p>监控你的连接情况以及连接类型（wifi之下更新更多数据？）；</p>
+</li>
+<li><p>监控你的电源和电量（在充电的时候更新更多的数据？电量低的时候暂停更新？）；</p>
+</li>
+<li><p>一个用户界面就如一个笑话那样，如果你需要解释，那么证明它并不够好；</p>
+</li>
+<li><p><a href="https://twitter.com/danlew42/status/677151453476032512" target="_blank" rel="noopener">Tests are great for performance: Write slow (but correct) implementation then verify optimizations don’t break anything with tests.</a></p>
+</li>
+</ol>
+<p>原文：<a href="https://medium.com/@cesarmcferreira/building-android-apps-30-things-that-experience-made-me-learn-the-hard-way-313680430bf9#.6d0cbhkxa" target="_blank" rel="noopener">Building Android Apps — 30 things that experience made me learn the hard way。</a> </p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/03/11/android开发的经验教训/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-Flex布局教程链接" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -518,165 +656,6 @@
 
 
 
-    <article id="post-gradle目录解析" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2015/11/10/gradle目录解析/">gradle目录解析</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/11/10/gradle目录解析/">
-            <time datetime="2015-11-10T05:40:09.000Z" itemprop="datePublished">2015-11-10</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/gradle/">gradle</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/gradle/">gradle</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <blockquote>
-<p>Gradle目录解析</p>
-</blockquote>
-<p>Gradle 是以 Groovy 语言为基础，面向Java应用为主。基于DSL（领域特定语言）语法的自动化构建工具。<br>Gradle这个工具集成了构建，测试，发布和其他，比如软件打包，生成注释文档等功能。<br>之前eclipse使用ant进行软件的构建功能，需要配置一大堆的xml，但是在gradle中就不需要了。</p>
-<p>目前主流的打包方式有ant,maven,gradle。gradle是近几年发展起来的自动化构建工具，解决ant构建上的繁琐代码。<br>比如在ant上发布多渠道的包，你需要自己写脚本替换渠道名称，而在gradle中就不需要了。已经内建支持多渠道打包。</p>
-<blockquote>
-<p>Gradle的文件结构</p>
-</blockquote>
-<pre><code>./build.gradle
-./gradle.properties
-./gradlew
-./gradlew.bat
-./local.properties
-./setting.gradle
-./XXX.iml
-./app/build.gradle
-./app/app.iml
-./app/proguard-rules.pro
-</code></pre><p>./builld.gradle 和 ./app/build.grade</p>
-<p>gradle项目自动编译的时候要读取的配置文件。比如指定项目的依赖包等。<br>build.grade有两个，一个是全局的，一个是在模块里面。<br>全局的build.grade主要设置的是声明仓库源，gradle的版本号说明等。</p>
-<p>./build.gradle</p>
-<pre><code>buildscript {
-repositories {
-    // 声明仓库源，比如我们构建了一个安卓的库，现在想要把库上传到jcenter中供别人一起使用，则可以上传到jcenter中
-    // 具体上传步骤见：http://www.jcodecraeer.com/a/anzhuokaifa/Android_Studio/2015/0227/2502.html
-    jcenter()
-}
-dependencies {
-    // 说明gradle的版本号
-    classpath &apos;com.android.tools.build:gradle:1.3.0&apos;
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
-}
-}
-</code></pre><p>// 所有项目都继承这个配置</p>
-<pre><code>    allprojects {
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
-}
-</code></pre><p>./app/build.grade 设置了模块的gradle构建配置</p>
-<pre><code>// 说明这个模块是安卓项目，如果是多模块开发，有可能有的值为java/war
-</code></pre><p>apply plugin: ‘com.android.application’</p>
-<p>// 配置了所有android构建的参数<br>android {<br>    // 编译使用SDK版本<br>    compileSdkVersion 23<br>    // 编译工具的版本<br>    buildToolsVersion “23.0.1”</p>
-<pre><code>defaultConfig {
-    // 包名
-    applicationId &quot;com.awesomeproject&quot;
-    // sdk最低支持版本
-    minSdkVersion 16
-    // 目标SDK版本，如果目标设备的API版本正好等于此数值，就不会为此程序开启兼容性检查判断的工作
-    targetSdkVersion 22
-    // 版本号
-    versionCode 1
-    versionName &quot;1.0&quot;
-    // 原生
-    ndk {
-        abiFilters &quot;armeabi-v7a&quot;, &quot;x86&quot;
-    }
-}
-buildTypes {
-    // 发布时候的设置
-    release {
-        // 是否进行混淆
-        minifyEnabled false
-        // 混淆使用文件
-        proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;
-    }
-}
-}
-// 依赖的工具包
-dependencies {
-compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])
-compile &apos;com.android.support:appcompat-v7:23.0.0&apos;
-compile &apos;com.facebook.react:react-native:0.11.+&apos;
-}
-
-./app/proguard-rules.pro
-这个和上面说的一样混淆文件
-
-./gradle.properties
-grade的运行环境配置，比如使用多少内存之类的。
-
-./gradlew 和 ./gradlew.bat
-自动完成 gradle 环境的脚本，在linux和mac下直接运行gradlew会自动完成gradle环境的搭建。
-
-./local.properties
-配置SDK或者NDK的环境路径，各个机器上这个变量可能都是不一样的，所以不应该进入版本库
-
-./setting.gradle
-整个项目的管理，比如这个项目包含哪些模块等。
-
-./XXX.iml 和 ./app/app.iml
-iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基于开源的Intellij IDEA开发出来的IDE。所以AndroidStudio有的IDE功能是需要有.iml才能使用的。比如我们删除了iml文件，可能就在Android Studio中看不到一些目录了。
-</code></pre>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2015/11/10/gradle目录解析/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/11/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/">下一页 &raquo;</a>
     </nav>
@@ -689,6 +668,25 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/03/31/分享常用的GoLang包工具/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/go/">go</a></p>
+                            <p class="item-title"><a href="/2020/03/31/分享常用的GoLang包工具/" class="title">分享常用的GoLang包工具</a></p>
+                            <p class="item-date"><time datetime="2020-03-31T10:53:55.000Z" itemprop="datePublished">2020-03-31</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -766,25 +764,6 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/12/31/TPS和QPS区别/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/软件/">软件</a></p>
-                            <p class="item-title"><a href="/2018/12/31/TPS和QPS区别/" class="title">什么是TPS，什么是QPS，区别是什么？</a></p>
-                            <p class="item-date"><time datetime="2018-12-31T05:55:20.000Z" itemprop="datePublished">2018-12-31</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -794,7 +773,7 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RecyclerView/">RecyclerView</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android-studio/">android studio</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/apk/">apk</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linxu/">linxu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mac/">mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rxjava/">rxjava</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tinker/">tinker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/延迟搜索/">延迟搜索</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/适配/">适配</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/RecyclerView/">RecyclerView</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android-studio/">android studio</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/apk/">apk</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/dagger2/">dagger2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/flutter/">flutter</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/go/">go</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/gradle/">gradle</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linxu/">linxu</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mac/">mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/resume/">resume</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rxjava/">rxjava</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tinker/">tinker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vuforia/">vuforia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/延迟搜索/">延迟搜索</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/文字/">文字</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件/">软件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/适配/">适配</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -803,7 +782,7 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -812,7 +791,7 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-Linux/">Mac/Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-studio/">android studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linxu/">linxu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/延迟/">延迟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件名词/">软件名词</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mac-Linux/">Mac/Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android-studio/">android studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dagger2/">dagger2</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glide/">glide</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/">gradle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/h5/">h5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linxu/">linxu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mvp/">mvp</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resume/">resume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxandroid/">rxandroid</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rxjava/">rxjava</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/service/">service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/view/">view</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vuforia/">vuforia</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/延迟/">延迟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文字/">文字</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/歌曲/">歌曲</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/直播/">直播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/笔录/">笔录</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件名词/">软件名词</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -821,7 +800,7 @@ iml是Intellij模块文件。Intellij是一款JAVA的IDE。AndroidStudio是基�
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Mac-Linux/" style="font-size: 10px;">Mac/Linux</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/android-studio/" style="font-size: 10px;">android studio</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/go/" style="font-size: 12.5px;">go</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/https/" style="font-size: 12.5px;">https</a> <a href="/tags/ios/" style="font-size: 12.5px;">ios</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/linxu/" style="font-size: 12.5px;">linxu</a> <a href="/tags/mac/" style="font-size: 12.5px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 15px;">mvp</a> <a href="/tags/resume/" style="font-size: 15px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 12.5px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 12.5px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 15px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/延迟/" style="font-size: 10px;">延迟</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/软件名词/" style="font-size: 10px;">软件名词</a>
+            <a href="/tags/Mac-Linux/" style="font-size: 10px;">Mac/Linux</a> <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/android-studio/" style="font-size: 10px;">android studio</a> <a href="/tags/bug/" style="font-size: 10px;">bug</a> <a href="/tags/dagger2/" style="font-size: 12.5px;">dagger2</a> <a href="/tags/git/" style="font-size: 17.5px;">git</a> <a href="/tags/glide/" style="font-size: 15px;">glide</a> <a href="/tags/go/" style="font-size: 15px;">go</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/gradle/" style="font-size: 12.5px;">gradle</a> <a href="/tags/h5/" style="font-size: 10px;">h5</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/https/" style="font-size: 12.5px;">https</a> <a href="/tags/ios/" style="font-size: 12.5px;">ios</a> <a href="/tags/java/" style="font-size: 12.5px;">java</a> <a href="/tags/linxu/" style="font-size: 12.5px;">linxu</a> <a href="/tags/mac/" style="font-size: 12.5px;">mac</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/mvp/" style="font-size: 15px;">mvp</a> <a href="/tags/resume/" style="font-size: 15px;">resume</a> <a href="/tags/rxandroid/" style="font-size: 12.5px;">rxandroid</a> <a href="/tags/rxjava/" style="font-size: 12.5px;">rxjava</a> <a href="/tags/service/" style="font-size: 10px;">service</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/view/" style="font-size: 15px;">view</a> <a href="/tags/vuforia/" style="font-size: 10px;">vuforia</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/延迟/" style="font-size: 10px;">延迟</a> <a href="/tags/文字/" style="font-size: 12.5px;">文字</a> <a href="/tags/歌曲/" style="font-size: 12.5px;">歌曲</a> <a href="/tags/直播/" style="font-size: 10px;">直播</a> <a href="/tags/笔录/" style="font-size: 15px;">笔录</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/软件名词/" style="font-size: 10px;">软件名词</a>
         </div>
     </div>
 

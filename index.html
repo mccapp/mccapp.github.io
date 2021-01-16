@@ -805,89 +805,6 @@
 
 
 
-    <article id="post-Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/">
-            <time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linxu/">linxu</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linxu/">linxu</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC"><a href="#安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC" class="headerlink" title="安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC"></a>安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# rpm -q tigervnc tigervnc-server </span><br><span class="line">未安装软件包 tigervnc </span><br><span class="line">未安装软件包 tigervnc-server</span><br></pre></td></tr></table></figure>
-<p>没有安装的话直接使用yum进行安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby  ~]# yum -y install tigervnc tigervnc-server</span><br><span class="line">......</span><br><span class="line">已安装:</span><br><span class="line">igervnc.x86_64 0:1.8.0-13.el7  tigervnc-server.x86_64 0:1.8.0-13.el7                   </span><br><span class="line"> </span><br><span class="line">作为依赖被安装:</span><br><span class="line">fltk.x86_64 0:1.3.4-1.el7  mesa-libGLU.x86_64 0:9.0.0-4.el7    tigervnc-icons.noarch 0:1.8.0-13.el7   </span><br><span class="line"> </span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
-<p>复制配置模板并进行配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service</span><br><span class="line">[root@nearby ~]# vim /etc/systemd/system/vncserver@\:1.service</span><br></pre></td></tr></table></figure>
-<p>将配置文件中的<user>改成对应的用户，我这里用root<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Clean any existing files in /tmp/.X11-unix environment</span><br><span class="line">ExecStartPre=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br><span class="line">ExecStart=/usr/sbin/runuser -l &lt;USER&gt; -c &quot;/usr/bin/vncserver %i&quot;</span><br><span class="line">PIDFile=/home/&lt;USER&gt;/.vnc/%H%i.pid</span><br><span class="line">ExecStop=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br></pre></td></tr></table></figure></user></p>
-<p>调整为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Clean any existing files in /tmp/.X11-unix environment</span><br><span class="line">ExecStartPre=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br><span class="line">ExecStart=/usr/sbin/runuser -l root -c &quot;/usr/bin/vncserver %i&quot;</span><br><span class="line">PIDFile=/home/root/.vnc/%H%i.pid</span><br><span class="line">ExecStop=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br></pre></td></tr></table></figure></p>
-<p>要通知systemd重载此配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-<p>现在为这个用户配置个密码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# vncpasswd </span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">Would you like to enter a view-only password (y/n)? y</span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">[root@nearby ~]#</span><br></pre></td></tr></table></figure>
-<p>设置开机服务自启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# systemctl enable vncserver@:1.service</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/vncserver@:1.service to /etc/systemd/system/vncserver@:1.service.</span><br></pre></td></tr></table></figure></p>
-<p>启动服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# vncserver :1</span><br><span class="line">A VNC server is already running as :1</span><br><span class="line"> </span><br><span class="line">New &apos;nearby.jump:2 (root)&apos; desktop is nearby.jump:2</span><br><span class="line"> </span><br><span class="line">Starting applications specified in /root/.vnc/xstartup</span><br><span class="line">Log file is /root/.vnc/nearby.jump:2.log</span><br><span class="line"> </span><br><span class="line">[root@nearby ~]#</span><br></pre></td></tr></table></figure>
-<h3 id="安Centos-7-安装GNOME桌面环境"><a href="#安Centos-7-安装GNOME桌面环境" class="headerlink" title="安Centos 7 安装GNOME桌面环境"></a>安Centos 7 安装GNOME桌面环境</h3><p>第1步：安装GNOME及相应桌面管理工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# yum groupinstall -y &quot;X Window System&quot; &quot;GNOME Desktop&quot;</span><br></pre></td></tr></table></figure></p>
-<p>第2步：设置开机启动为GNOME<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# systemctl set-default graphical.target</span><br></pre></td></tr></table></figure></p>
-<p>第3步：重启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# reboot</span><br></pre></td></tr></table></figure></p>
-<p>第4步：开启VNC服务需要用到的5900和5901端口。【此处阿里云服务器配置】<br><img src="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/../../../../images/aliyunanquanzu01.png" alt="Alt text"><br><img src="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/../../../../images/aliyunanquanzu02.png" alt="Alt text"></p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-offce001" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -1124,6 +1041,89 @@ CallServerInterceptor：最后一个拦截器，用于真正发送网络请求�
 
 
 
+    <article id="post-Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/">
+            <time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/linxu/">linxu</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linxu/">linxu</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC"><a href="#安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC" class="headerlink" title="安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC"></a>安装之前检查下是否已经安装VNC安装之前检查下是否已经安装VNC</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# rpm -q tigervnc tigervnc-server </span><br><span class="line">未安装软件包 tigervnc </span><br><span class="line">未安装软件包 tigervnc-server</span><br></pre></td></tr></table></figure>
+<p>没有安装的话直接使用yum进行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby  ~]# yum -y install tigervnc tigervnc-server</span><br><span class="line">......</span><br><span class="line">已安装:</span><br><span class="line">igervnc.x86_64 0:1.8.0-13.el7  tigervnc-server.x86_64 0:1.8.0-13.el7                   </span><br><span class="line"> </span><br><span class="line">作为依赖被安装:</span><br><span class="line">fltk.x86_64 0:1.3.4-1.el7  mesa-libGLU.x86_64 0:9.0.0-4.el7    tigervnc-icons.noarch 0:1.8.0-13.el7   </span><br><span class="line"> </span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
+<p>复制配置模板并进行配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service</span><br><span class="line">[root@nearby ~]# vim /etc/systemd/system/vncserver@\:1.service</span><br></pre></td></tr></table></figure>
+<p>将配置文件中的<user>改成对应的用户，我这里用root<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Clean any existing files in /tmp/.X11-unix environment</span><br><span class="line">ExecStartPre=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br><span class="line">ExecStart=/usr/sbin/runuser -l &lt;USER&gt; -c &quot;/usr/bin/vncserver %i&quot;</span><br><span class="line">PIDFile=/home/&lt;USER&gt;/.vnc/%H%i.pid</span><br><span class="line">ExecStop=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br></pre></td></tr></table></figure></user></p>
+<p>调整为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Clean any existing files in /tmp/.X11-unix environment</span><br><span class="line">ExecStartPre=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br><span class="line">ExecStart=/usr/sbin/runuser -l root -c &quot;/usr/bin/vncserver %i&quot;</span><br><span class="line">PIDFile=/home/root/.vnc/%H%i.pid</span><br><span class="line">ExecStop=/bin/sh -c &apos;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&apos;</span><br></pre></td></tr></table></figure></p>
+<p>要通知systemd重载此配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+<p>现在为这个用户配置个密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# vncpasswd </span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">Would you like to enter a view-only password (y/n)? y</span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">[root@nearby ~]#</span><br></pre></td></tr></table></figure>
+<p>设置开机服务自启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# systemctl enable vncserver@:1.service</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/vncserver@:1.service to /etc/systemd/system/vncserver@:1.service.</span><br></pre></td></tr></table></figure></p>
+<p>启动服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# vncserver :1</span><br><span class="line">A VNC server is already running as :1</span><br><span class="line"> </span><br><span class="line">New &apos;nearby.jump:2 (root)&apos; desktop is nearby.jump:2</span><br><span class="line"> </span><br><span class="line">Starting applications specified in /root/.vnc/xstartup</span><br><span class="line">Log file is /root/.vnc/nearby.jump:2.log</span><br><span class="line"> </span><br><span class="line">[root@nearby ~]#</span><br></pre></td></tr></table></figure>
+<h3 id="安Centos-7-安装GNOME桌面环境"><a href="#安Centos-7-安装GNOME桌面环境" class="headerlink" title="安Centos 7 安装GNOME桌面环境"></a>安Centos 7 安装GNOME桌面环境</h3><p>第1步：安装GNOME及相应桌面管理工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# yum groupinstall -y &quot;X Window System&quot; &quot;GNOME Desktop&quot;</span><br></pre></td></tr></table></figure></p>
+<p>第2步：设置开机启动为GNOME<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# systemctl set-default graphical.target</span><br></pre></td></tr></table></figure></p>
+<p>第3步：重启<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nearby ~]# reboot</span><br></pre></td></tr></table></figure></p>
+<p>第4步：开启VNC服务需要用到的5900和5901端口。【此处阿里云服务器配置】<br><img src="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/../../../../images/aliyunanquanzu01.png" alt="Alt text"><br><img src="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/../../../../images/aliyunanquanzu02.png" alt="Alt text"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <nav id="page-nav">
         <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
@@ -1197,25 +1197,6 @@ CallServerInterceptor：最后一个拦截器，用于真正发送网络请求�
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
-                            <p class="item-title"><a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
-                            <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2020/02/23/offce001/" class="thumbnail">
     
     
@@ -1228,6 +1209,25 @@ CallServerInterceptor：最后一个拦截器，用于真正发送网络请求�
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
                             <p class="item-title"><a href="/2020/02/23/offce001/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
+                            <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
+                            <p class="item-title"><a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
                             <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
                         </div>
                     </li>
@@ -1296,12 +1296,12 @@ CallServerInterceptor：最后一个拦截器，用于真正发送网络请求�
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2020 阿荣<br>
+            &copy; 2021 阿荣<br>
             <!-- <a href="http://github.com/ppoffice">ppoffice</a>     
             主题 - <a href="http://hexo.io/" target="_blank">Hexo</a> -->  
              <a href="#" target="_blank">人生如逆旅  &phi; 我亦是行人 </a>
              <div class="copyright" style="margin-top: 10px;">
- 			ICP备案号： <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备16067940号</a><br>
+ 			ICP备案号： <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备16067940号</a><br>
 		</div>	
         </div>
     </div>

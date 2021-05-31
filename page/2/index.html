@@ -212,129 +212,6 @@
 
             
             <section id="main">
-    <article id="post-linxu安装python3" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2020/02/22/linxu安装python3/">linxu安装python3</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2020/02/22/linxu安装python3/">
-            <time datetime="2020-02-22T15:53:55.000Z" itemprop="datePublished">2020-02-22</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/linxu/">linxu</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/linxu/">linxu</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h3 id="1-首先来看一下系统版本"><a href="#1-首先来看一下系统版本" class="headerlink" title="1.首先来看一下系统版本"></a>1.首先来看一下系统版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure>
-<h3 id="2-更新一下yum源，yum源我这里用的都是阿里云的源"><a href="#2-更新一下yum源，yum源我这里用的都是阿里云的源" class="headerlink" title="2.更新一下yum源，yum源我这里用的都是阿里云的源"></a>2.更新一下yum源，yum源我这里用的都是阿里云的源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# cd /etc/yum.repos.d/</span><br><span class="line">[root@python3 yum.repos.d]# mkdir bak</span><br><span class="line">[root@python3 yum.repos.d]# mv * bak</span><br><span class="line">[root@python3 yum.repos.d]# wget http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">[root@python3 yum.repos.d]# wget http://mirrors.aliyun.com/repo/epel-7.repo</span><br></pre></td></tr></table></figure>
-<h3 id="3-安装python3-7之前需要先安装一些依赖，，这也是上面更新yum源的原因"><a href="#3-安装python3-7之前需要先安装一些依赖，，这也是上面更新yum源的原因" class="headerlink" title="3.安装python3.7之前需要先安装一些依赖，，这也是上面更新yum源的原因"></a>3.安装python3.7之前需要先安装一些依赖，，这也是上面更新yum源的原因</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# yum -y install zlib-devel bzip2-devel openssl-devel openssl-static ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel [root@python3 ~]# yum -y groupinstall &quot;Development tools&quot;</span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">[root@python3 ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br><span class="line">[root@python3 ~]# cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.6.1810 (Core)</span><br></pre></td></tr></table></figure>
-<h3 id="4-下载python3-7安装包，方法很多，我这里直接用wget从官网上下载"><a href="#4-下载python3-7安装包，方法很多，我这里直接用wget从官网上下载" class="headerlink" title="4.下载python3.7安装包，方法很多，我这里直接用wget从官网上下载"></a>4.下载python3.7安装包，方法很多，我这里直接用wget从官网上下载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# cd /usr/local/src/</span><br><span class="line">[root@python3 src]# wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tar.xz</span><br></pre></td></tr></table></figure>
-<pre><code>将安装包下载到/usr/local/src/目录下
-</code></pre><h3 id="5-解压-amp-amp-移动"><a href="#5-解压-amp-amp-移动" class="headerlink" title="5.解压&amp;&amp;移动"></a>5.解压&amp;&amp;移动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 src]# tar xvf Python-3.7.0.tar.xz</span><br><span class="line">[root@python3 src]# mv Python-3.7.0 /usr/local/python-3.7</span><br><span class="line">[root@python3 src]# cd /usr/local/python-3.7/</span><br></pre></td></tr></table></figure>
-<h3 id="6-安装-amp-amp-编译"><a href="#6-安装-amp-amp-编译" class="headerlink" title="6.安装&amp;&amp;编译"></a>6.安装&amp;&amp;编译</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 python-3.7]# ./configure --prefix=/usr/local/sbin/python-3.7</span><br></pre></td></tr></table></figure>
-<p>将python3.7安装到/usr/local/sbin/python-3.7目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 python-3.7]# make &amp;&amp; make install</span><br><span class="line">安装完成后，若出现以下两行，说明安装成功；</span><br><span class="line">Installing collected packages: setuptools, pip</span><br><span class="line">Successfully installed pip-10.0.1 setuptools-39.0.1</span><br></pre></td></tr></table></figure>
-<h3 id="7-安装成功之后就能使用了"><a href="#7-安装成功之后就能使用了" class="headerlink" title="7.安装成功之后就能使用了"></a>7.安装成功之后就能使用了</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 python-3.7]# /usr/local/sbin/python-3.7/bin/python3</span><br><span class="line">Python 3.7.0 (default, Mar 15 2019, 00:44:37) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-36)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">【此处退出的命令 exit()】</span><br><span class="line">虽然能用了，但是命令较长使用起来并不方便,we konw 系统本身是带的有python的，看一下版本</span><br><span class="line">[root@python3 ~]# python -V</span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
-<h3 id="8-看一下python命令的绝对路径"><a href="#8-看一下python命令的绝对路径" class="headerlink" title="8.看一下python命令的绝对路径"></a>8.看一下python命令的绝对路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# which python</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/usr/bin/python</span><br><span class="line"></span><br><span class="line">[root@python3 ~]# ll /usr/bin/ |grep python</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-rwxr-xr-x. 1 root root 11312 Nov 14 00:00 abrt-action-analyze-python</span><br><span class="line">lrwxrwxrwx. 1 root root 7 Mar 14 18:19 python -&gt; python2</span><br><span class="line">lrwxrwxrwx. 1 root root 9 Mar 14 18:19 python2 -&gt; python2.7</span><br><span class="line">-rwxr-xr-x. 1 root root 7216 Oct 31 07:46 python2.7</span><br></pre></td></tr></table></figure>
-<p>可以看到python命令是通过软链接连接到python2.7的，[做运维的小年轻]那我们现在安装了python3.7，是不是可以将python命令做一个软链接链接到python3，答案是肯定的昂。</p>
-<h3 id="9-将python命令通过软链接指向到python3命令（就是上面那一大串-usr-local-sbin-python-3-7-bin-python3）"><a href="#9-将python命令通过软链接指向到python3命令（就是上面那一大串-usr-local-sbin-python-3-7-bin-python3）" class="headerlink" title="9.将python命令通过软链接指向到python3命令（就是上面那一大串/usr/local/sbin/python-3.7/bin/python3）"></a>9.将python命令通过软链接指向到python3命令（就是上面那一大串/usr/local/sbin/python-3.7/bin/python3）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# rm -rf /usr/bin/python</span><br><span class="line"></span><br><span class="line">[root@python3 ~]# ln -sv /usr/local/sbin/python-3.7/bin/python3 /usr/bin/python</span><br><span class="line"></span><br><span class="line">‘/usr/bin/python’ -&gt; ‘/usr/local/sbin/python-3.7/bin/python3’</span><br><span class="line"></span><br><span class="line">[root@python3 ~]# ll /usr/bin/ |grep python</span><br><span class="line"></span><br><span class="line">-rwxr-xr-x. 1 root root 11312 Nov 14 00:00 abrt-action-analyze-python</span><br><span class="line">lrwxrwxrwx. 1 root root 38 Mar 14 19:24 python -&gt; /usr/local/sbin/python-3.7/bin/python3</span><br><span class="line">lrwxrwxrwx. 1 root root 9 Mar 14 18:19 python2 -&gt; python2.7</span><br><span class="line">-rwxr-xr-x. 1 root root 7216 Oct 31 07:46 python2.7</span><br></pre></td></tr></table></figure>
-<h3 id="10-查看现在的默认版本"><a href="#10-查看现在的默认版本" class="headerlink" title="10.查看现在的默认版本"></a>10.查看现在的默认版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# python -V</span><br><span class="line">Python 3.7.0</span><br></pre></td></tr></table></figure>
-<h3 id="11-修改完python默认版本之后，会存不能执行yum命令，需要做一些修改，如下："><a href="#11-修改完python默认版本之后，会存不能执行yum命令，需要做一些修改，如下：" class="headerlink" title="11.修改完python默认版本之后，会存不能执行yum命令，需要做一些修改，如下："></a>11.修改完python默认版本之后，会存不能执行yum命令，需要做一些修改，如下：</h3><p>①将/usr/bin/yum的顶部的：</p>
-<p>vim !/usr/bin/python  改成  !/usr/bin/python2.7 </p>
-<p>②将/usr/libexec/urlgrabber-ext-down的顶部的：</p>
-<p>vim /usr/bin/python  改为   /usr/bin/python2.7</p>
-<p>③将/usr/bin/yum-config-manager的顶部的</p>
-<h3 id="12-最后将pip指向到python3-7"><a href="#12-最后将pip指向到python3-7" class="headerlink" title="12.最后将pip指向到python3.7"></a>12.最后将pip指向到python3.7</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@python3 ~]# ln -s /usr/local/sbin/python-3.7/bin/pip3 /usr/bin/pip 或者 ln -sf /usr/local/sbin/python-3.7/bin/pip3 /usr/bin/pip</span><br><span class="line"></span><br><span class="line">[root@python3 ~]# pip --version</span><br><span class="line">pip 10.0.1 from /usr/local/sbin/python-3.7/lib/python3.7/site-packages/pip (python 3.7)</span><br></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2020/02/22/linxu安装python3/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-GoTo ken学习" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <h1 id="基本数据结构"><a href="#基本数据结构" class="headerlink" title="基本数据结构"></a>基本数据结构</h1><p>上面是签名的使用例子，下面分析签名的源码实现，首先看下数据结构Token，包含了我们标准中说道的三部分：头部，载荷和签名，此外还带了一个用于存储生成token的字段Raw和校验标识符Valid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// A JWT Token.  Different fields will be used depending on whether you&apos;re</span><br><span class="line">// creating or parsing/verifying a token.</span><br><span class="line">type Token struct &#123;</span><br><span class="line">	Raw       string                 // The raw token.  Populated when you Parse a token</span><br><span class="line">	Method    SigningMethod          // The signing method used or to be used</span><br><span class="line">	Header    map[string]interface&#123;&#125; // The first segment of the token</span><br><span class="line">	Claims    Claims                 // The second segment of the token</span><br><span class="line">	Signature string                 // The third segment of the token.  Populated when you Parse a token</span><br><span class="line">	Valid     bool                   // Is the token valid?  Populated when you Parse/Verify a token</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>看下载荷，多了一个字段Audience<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// Structured version of Claims Section, as referenced at</span><br><span class="line">// https://tools.ietf.org/html/rfc7519#section-4.1</span><br><span class="line">// See examples for how to use this with your own claim types</span><br><span class="line">type StandardClaims struct &#123;</span><br><span class="line">	Audience  string `json:&quot;aud,omitempty&quot;`</span><br><span class="line">	ExpiresAt int64  `json:&quot;exp,omitempty&quot;`</span><br><span class="line">	Id        string `json:&quot;jti,omitempty&quot;`</span><br><span class="line">	IssuedAt  int64  `json:&quot;iat,omitempty&quot;`</span><br><span class="line">	Issuer    string `json:&quot;iss,omitempty&quot;`</span><br><span class="line">	NotBefore int64  `json:&quot;nbf,omitempty&quot;`</span><br><span class="line">	Subject   string `json:&quot;sub,omitempty&quot;`</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="API介绍"><a href="#API介绍" class="headerlink" title="API介绍"></a>API介绍</h1><h3 id="初始化API"><a href="#初始化API" class="headerlink" title="初始化API"></a>初始化API</h3><h4 id="提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象"><a href="#提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象" class="headerlink" title="提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象"></a>提供了两个API，一个只需提供加密方法，一个需要提供加密方法和载荷结构对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// Create a new Token.  Takes a signing method</span><br><span class="line">func New(method SigningMethod) *Token &#123;</span><br><span class="line">	return NewWithClaims(method, MapClaims&#123;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">func NewWithClaims(method SigningMethod, claims Claims) *Token &#123;</span><br><span class="line">	return &amp;Token&#123;</span><br><span class="line">		Header: map[string]interface&#123;&#125;&#123;</span><br><span class="line">			&quot;typ&quot;: &quot;JWT&quot;,</span><br><span class="line">			&quot;alg&quot;: method.Alg(),</span><br><span class="line">		&#125;,</span><br><span class="line">		Claims: claims,</span><br><span class="line">		Method: method,</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="生成签名API"><a href="#生成签名API" class="headerlink" title="生成签名API"></a>生成签名API</h1><p>如标准所说，主要是将头部和载荷部分的结构对象转化为json格式，然后用base64编码，<br>然后用’.’号连接，然后使用指定加密方法生成签名，再与前面的头部和载荷用’.’号连接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// Get the complete, signed token</span><br><span class="line">func (t *Token) SignedString(key interface&#123;&#125;) (string, error) &#123;</span><br><span class="line">	var sig, sstr string</span><br><span class="line">	var err error</span><br><span class="line">	//把头部和载荷转化为json格式，base64编码之后用&apos;.&apos;号连接起来</span><br><span class="line">	if sstr, err = t.SigningString(); err != nil &#123;</span><br><span class="line">		return &quot;&quot;, err</span><br><span class="line">	&#125;</span><br><span class="line">	//使用指定的加密方法生成签名</span><br><span class="line">	if sig, err = t.Method.Sign(sstr, key); err != nil &#123;</span><br><span class="line">		return &quot;&quot;, err</span><br><span class="line">	&#125;</span><br><span class="line">	return strings.Join([]string&#123;sstr, sig&#125;, &quot;.&quot;), nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>头部和载荷数据结构对象的处理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// Generate the signing string.  This is the</span><br><span class="line">// most expensive part of the whole deal.  Unless you</span><br><span class="line">// need this for something special, just go straight for</span><br><span class="line">// the SignedString.</span><br><span class="line">func (t *Token) SigningString() (string, error) &#123;</span><br><span class="line">	var err error</span><br><span class="line">	parts := make([]string, 2)</span><br><span class="line">	for i, _ := range parts &#123;</span><br><span class="line">		var jsonValue []byte</span><br><span class="line">		if i == 0 &#123;</span><br><span class="line">			if jsonValue, err = json.Marshal(t.Header); err != nil &#123;</span><br><span class="line">				return &quot;&quot;, err</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			if jsonValue, err = json.Marshal(t.Claims); err != nil &#123;</span><br><span class="line">				return &quot;&quot;, err</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"> </span><br><span class="line">		parts[i] = EncodeSegment(jsonValue)</span><br><span class="line">	&#125;</span><br><span class="line">	return strings.Join(parts, &quot;.&quot;), nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="校验API"><a href="#校验API" class="headerlink" title="校验API"></a>校验API</h1><p>检验Token基本就是生成Token的逆过程了，也提供了两个API：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// Parse, validate, and return a token.</span><br><span class="line">// keyFunc will receive the parsed token and should return the key for validating.</span><br><span class="line">// If everything is kosher, err will be nil</span><br><span class="line">func Parse(tokenString string, keyFunc Keyfunc) (*Token, error) &#123;</span><br><span class="line">	return new(Parser).Parse(tokenString, keyFunc)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">func ParseWithClaims(tokenString string, claims Claims, keyFunc Keyfunc) (*Token, error) &#123;</span><br><span class="line">	return new(Parser).ParseWithClaims(tokenString, claims, keyFunc)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2019/10/05/GoTo ken学习/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-MAC文件夹权限问题" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -580,6 +457,158 @@
 
 
 
+    <article id="post-两种方式实现延迟搜索" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/11/08/两种方式实现延迟搜索/">android EditText 延迟搜索</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/11/08/两种方式实现延迟搜索/">
+            <time datetime="2018-11-08T03:52:03.000Z" itemprop="datePublished">2018-11-08</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/延迟搜索/">延迟搜索</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/延迟/">延迟</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>1.Handler<br>2.RxJava</p>
+<p>#Handler<br>监听EditText的输入，每当文本变化，先检查Handler当前有无未处理的消息，有则移除该消息，然后用sendEmptyMessageDelayed再发哟天延迟消息，<br>如果文本超过延迟时间没有变化，该延迟消息就可以成功执行。</p>
+<p>#例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">private final int RC_SEARCH = 1;</span><br><span class="line">private final int INTERVAL = 300; //输入时间间隔为300毫秒</span><br><span class="line">private EditText mEtHandler;</span><br><span class="line"></span><br><span class="line">private Handler mHandler = new Handler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void handleMessage(Message msg) &#123;</span><br><span class="line">            if (msg.what == RC_SEARCH) &#123;</span><br><span class="line">                handlerSearch();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">mEtHandler.addTextChangedListener(new TextWatcher() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void beforeTextChanged(CharSequence s, int start, int count, int after) &#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onTextChanged(CharSequence s, int start, int before, int count) &#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void afterTextChanged(Editable s) &#123;</span><br><span class="line"></span><br><span class="line">                if (mHandler.hasMessages(RC_SEARCH)) &#123;</span><br><span class="line">                    mHandler.removeMessages(RC_SEARCH);</span><br><span class="line">                &#125;</span><br><span class="line">                mHandler.sendEmptyMessageDelayed(RC_SEARCH, INTERVAL);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>#RxJava<br>学习了RxJava后发现还有更简便的方法，即使用debounce操作符处理不断产生的文本变化事件</p>
+<p>debounce操作符对源Observable每产生一个结果后，如果在规定的间隔时间内没有别的结果产生，则吧这个结果提交给订阅者处理，否则忽略结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">private EditText mEtRxJava;</span><br><span class="line"></span><br><span class="line">private final int INTERVAL = 300; //输入时间间隔为300毫秒</span><br><span class="line"></span><br><span class="line">RxTextView.textChangeEvents(mEtRxJava)</span><br><span class="line">                .debounce(INTERVAL, TimeUnit.MILLISECONDS)</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(new Observer&lt;TextViewTextChangeEvent&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void onCompleted() &#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public void onError(Throwable e) &#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public void onNext(TextViewTextChangeEvent textViewTextChangeEvent) &#123;</span><br><span class="line">                        rxJavaSearch();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2018/11/08/两种方式实现延迟搜索/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-sync.WaitGroup使用说明的副本" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/10/06/sync.WaitGroup使用说明的副本/">Go语言中 new()和make()的区别详解</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/10/06/sync.WaitGroup使用说明的副本/">
+            <time datetime="2018-10-06T10:30:12.000Z" itemprop="datePublished">2018-10-06</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/go/">go</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/go/">go</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>#概述<br>Go语言中的new和make 一直是新手比较容易混淆的东西，咋一看很相似，接下来我们来分析两者的区别</p>
+<p>#new的主要特性</p>
+<p>首先new是内建函数，你可以从  <a href="http://golang.org/pkg/builtin/#new" target="_blank" rel="noopener">http://golang.org/pkg/builtin/#new</a>  这儿看到它，它的定义也很简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br><span class="line">func new(Type) *Type</span><br></pre></td></tr></table></figure>
+<p>官方文档对于它的描述是：</p>
+<p>内建函数new用来分配内存，它的第一个参数是类型，不是一个值，它的返回值是一个指向新分配类型零值的指针</p>
+<p>根据这段描述，我们可以自己实现一个类似的new的功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br><span class="line">func newInt() *Int&#123;</span><br><span class="line">	var i int</span><br><span class="line">	return &amp;i	</span><br><span class="line">&#125;</span><br><span class="line">someint :=newInt()</span><br></pre></td></tr></table></figure></p>
+<p>这个函数的功能跟 someInt :=new(int) 一摸一样，所以在我们自定义new开头的函数时，出于约定应该返回类型的指针。</p>
+<p>#make的主要特性</p>
+<p>make也是内建函数，你可以从<a href="http://golang.org/pkg/builtin/#make" target="_blank" rel="noopener">http://golang.org/pkg/builtin/#make</a> 这儿看到它，它的定义比 new 多了一个参数，返回值也不同：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">代码如下：</span><br><span class="line">func make(Type,size INtergerType)Type</span><br></pre></td></tr></table></figure>
+<p>官方文档对于它的描述是：</p>
+<p>内建函数make用来为slie ，map 或 chan 类型分配内存和初始化一个对象(注意：只能用在这三种类型上)，跟new类似，第一个参数也是一个类型而不是一个值，<br>跟new不同的是，make返回的类型的引用而不是指针，而返回值也依赖于具体传入的类型，具体说明如下：</p>
+<p>代码如下：</p>
+<p>Slice ：第二个参数size指定了它的长度，它的容易和长度相同。<br>你可以传入第三个参数来指定不同的容量值，但必须不能长度值小。<br>比如 make([]int,0,10)<br>Map:根据size大小来初始化分配内存，不过分配后的map长度为0，如果size被忽略了，那么会在初始化分配内存时分配一个小尺寸的内存<br>Channel：管道缓冲区依据缓冲区容量被初始化。如果容量为0或者忽略容量。管道是没有缓冲区的</p>
+<p>总结</p>
+<p>new 的作用是初始化一个指向类型的指针(*T)，make 的作用是为 slice，map 或 chan 初始化并返回引用(T)。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2018/10/06/sync.WaitGroup使用说明的副本/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
     </nav>
@@ -592,25 +621,6 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2020/12/13/offce002/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/offce/">offce</a></p>
-                            <p class="item-title"><a href="/2020/12/13/offce002/" class="title">offce 002</a></p>
-                            <p class="item-date"><time datetime="2020-12-13T04:10:55.000Z" itemprop="datePublished">2020-12-13</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -653,25 +663,6 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2020/02/23/offce001/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
-                            <p class="item-title"><a href="/2020/02/23/offce001/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
-                            <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="thumbnail">
     
     
@@ -685,6 +676,44 @@
                             <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
                             <p class="item-title"><a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
                             <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/02/22/linxu安装python3/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
+                            <p class="item-title"><a href="/2020/02/22/linxu安装python3/" class="title">linxu安装python3</a></p>
+                            <p class="item-date"><time datetime="2020-02-22T15:53:55.000Z" itemprop="datePublished">2020-02-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/05/GoTo ken学习/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/10/05/GoTo ken学习/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2019-10-05T10:09:09.629Z" itemprop="datePublished">2019-10-05</time></p>
                         </div>
                     </li>
                 
@@ -706,7 +735,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 

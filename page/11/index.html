@@ -212,271 +212,6 @@
 
             
             <section id="main">
-    <article id="post-androidstudiogit设置忽略" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/09/21/androidstudiogit设置忽略/">androidstudiogit设置忽略</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/09/21/androidstudiogit设置忽略/">
-            <time datetime="2016-09-21T04:13:18.000Z" itemprop="datePublished">2016-09-21</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/git/">git</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/git/">git</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>要忽略的文件<br>-.idea文件夹<br>-.gradle文件夹<br>-所有文的build文件夹<br>-所有的.iml文件<br>-loca.properties文件</p>
-<p>所以：<br>跟目录的<br>.gitignore<br>.gradle<br>/local.properties<br>/.idea/workspace.xml<br>/.idea/libraries<br>.DS_Store<br>/build<br>/captures<br>.idea<br>*.iml</p>
-<p>module目录下的.gitignore<br>/build<br>*.iml</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2016/09/21/androidstudiogit设置忽略/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-Android之Lru算法" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2016/06/18/Android之Lru算法/">Android之Lru算法</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/06/18/Android之Lru算法/">
-            <time datetime="2016-06-18T12:45:21.000Z" itemprop="datePublished">2016-06-18</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/android/">android</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/android/">android</a>, <a class="tag-link" href="/tags/glide/">glide</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <p>Lru：</p>
-<p>   LRU是Least Recently Used 的缩写，翻译过来就是“最近最少使用”，LRU缓存就是使用这种原理实现，简单的说就是缓存一定量的数据，当超过设定的阈值时就把一些过期的数据删除掉，比如我们缓存10000条数据，当数据小于10000时可以随意添加，当超过10000时就需要把新的数据添加进来，同时要把过期数据删除，以确保我们最大缓存10000条，那怎么确定删除哪条过期数据呢，采用LRU算法实现的话就是将最老的数据删掉。</p>
-<p> 1.）初始化MemoryCache</p>
-<p>  这里内存缓存的是Drawable 而不是Bitmap 理由是Drawable相对Bitmap来说有很大的内存优势<br>  int maxMemory = (int) Runtime.getRuntime().maxMemory();//获取系统分配给应用的总内存大小<br>  int mCacheSize = maxMemory / 8;//设置图片内存缓存占用八分之一<br>  mMemoryCache = new LruCache<string, drawable="">(mCacheSize) {<br>  //必须重写此方法，来测量Bitmap的大小<br>  @Override<br>  protected int sizeOf(String key, Drawable value) {<br>  　　if (value instanceof BitmapDrawable) {<br>  　　　　Bitmap bitmap = ((BitmapDrawable) value).getBitmap();<br>  　　　　return bitmap == null ? 0 : bitmap.getByteCount();<br>　　　}<br>　　　return super.sizeOf(key, value);<br>            }<br>        };</string,></p>
-<p>2.）添加一个Drawable到内存缓存<br>    /**</p>
-<pre><code> * 添加Drawable到内存缓存
- *
- * @param key
- * @param drawable
- */
-private void addDrawableToMemoryCache(String key, Drawable drawable) {
-    if (getDrawableFromMemCache(key) == null &amp;&amp; drawable != null) {
-        mMemoryCache.put(key, drawable);
-    }
-}
-</code></pre><p>3.）从内存缓存中获取一个Drawable</p>
-<pre><code>/**
- * 从内存缓存中获取一个Drawable
- *
- * @param key
- * @return
- */
-public Drawable getDrawableFromMemCache(String key) {
-    return mMemoryCache.get(key);
-}
-</code></pre><p>4.）从内存缓存中移除一个Drawable</p>
-<p>   /**</p>
-<pre><code> * 从内存缓存中移除
- *
- * @param key
- */
-public void removeCacheFromMemory(String key) {
-    mMemoryCache.remove(key);
-}
-</code></pre><p>5.）清空内存缓存</p>
-<pre><code>/**
- * 清理内存缓存
- */
-public void cleanMemoryCCache() {
-    mMemoryCache.evictAll();
-}
-</code></pre><p>其实Lru缓存机制本质上就是存储在一个LinkedHashMap存储，为了保障插入的数据顺序，方便清理。</p>
-<p>基于DiskLruCache实现磁盘缓存：</p>
-<p>   DiskLruCache类并不是谷歌官方实现，需要自行下载，下载地址：<a href="https://github.com/JakeWharton/DiskLruCache" target="_blank" rel="noopener">https://github.com/JakeWharton/DiskLruCache</a></p>
-<p>  1.）初始化DiskLruCache</p>
-<pre><code>File cacheDir = context.getCacheDir();//指定的是数据的缓存地址
- long diskCacheSize = 1024 * 1024 * 30;//最多可以缓存多少字节的数据
- int appVersion = DiskLruUtils.getAppVersion(context);//指定当前应用程序的版本号
- int valueCount = 1;//指定同一个key可以对应多少个缓存文件
- try {
-     mDiskCache = DiskLruCache.open(cacheDir, appVersion, valueCount, diskCacheSize);
- } catch (Exception ex) {
- }
-</code></pre><p>2.）写入一个文件到磁盘缓存</p>
-<pre><code>/**
- * 添加Bitmap到磁盘缓存
- *
- * @param key
- * @param value
- */
-private void addBitmapToDiskCache(String key, byte[] value) {
-    OutputStream out = null;
-    try {
-        DiskLruCache.Editor editor = mDiskCache.edit(key);
-        if (editor != null) {
-            out = editor.newOutputStream(0);
-            if (value != null &amp;&amp; value.length &gt; 0) {
-                out.write(value);
-                out.flush();
-                editor.commit();
-            } else {
-                editor.abort();
-            }
-        }
-        mDiskCache.flush();
-    } catch (IOException e) {
-        e.printStackTrace();
-    } finally {
-        DiskLruUtils.closeQuietly(out);
-    }
-}
-</code></pre><p>3.）从磁盘缓存中读取Drawable</p>
-<pre><code>/**
- * 从磁盘缓存中获取一个Drawable
- *
- * @param key
- * @return
- */
-public Drawable getDrawableFromDiskCache(String key) {
-    try {
-        DiskLruCache.Snapshot snapShot = mDiskCache.get(key);
-        if (snapShot != null) {
-            InputStream is = snapShot.getInputStream(0);
-            Bitmap bitmap = BitmapFactory.decodeStream(is);
-            Drawable drawable = DiskLruUtils.bitmap2Drawable(bitmap);
-            //从磁盘中读取到之后 加入内存缓存
-            addDrawableToMemoryCache(key, drawable);
-            return drawable;
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    return null;
-}
-</code></pre><p>4.）从磁盘缓存中移除</p>
-<pre><code>/**
- * 从磁盘缓存中移除
- *
- * @param key
- */
-public void removeCacheFromDisk(String key) {
-    try {
-        mDiskCache.remove(key);
-    } catch (Exception e) {
-    }
-}
-</code></pre><p>5.）清空磁盘缓存</p>
-<pre><code>/**
- * 清理磁盘缓存
- */
-public void cleanDiskCache() {
-    try {
-        mDiskCache.delete();
-    } catch (Exception e) {
-    }
-}
-</code></pre><p>图片下载过程：</p>
-<p>   接下来实例中用到了一点RxJava的知识有不了解RxJava的请自行了解一下。</p>
-<p>  1.）采用异步方式操作磁盘缓存和网络下载， 内存缓存可以在主线程中操作</p>
-<p>   public void disPlay(final ImageView imageView, String imageUrl) {<br>        //生成唯一key<br>        final String key = DiskLruUtils.hashKeyForDisk(imageUrl);<br>        //先从内存中读取<br>        Drawable drawableFromMemCache = getDrawableFromMemCache(key);<br>        if (drawableFromMemCache != null) {<br>            imageView.setImageDrawable(drawableFromMemCache);<br>            return;<br>        }<br>        Observable.just(imageUrl)<br>                .map(new Func1<string, drawable="">() {<br>                    @Override<br>                    public Drawable call(String imageUrl) { // 参数类型 String<br>                        //从磁盘中读取<br>                        Drawable drawableFromDiskCache = getDrawableFromDiskCache(key);<br>                        if (drawableFromDiskCache != null) {<br>                            return drawableFromDiskCache;<br>                        }<br>                        //网络下载<br>                        return download(imageUrl); // 返回类型 Drawable<br>                    }<br>                })<br>                .subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程<br>                .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程<br>                .subscribe(new Action1<drawable>() {<br>                    @Override<br>                    public void call(Drawable drawable) { // 参数类型 Drawable<br>                        imageView.setImageDrawable(drawable);<br>                    }<br>                });<br>    }</drawable></string,></p>
-<p>2.）下载图片过程以及处理</p>
-<p> private Drawable download(String imageUrl) {<br>        HttpURLConnection urlConnection = null;<br>        ByteArrayOutputStream bos = null;<br>        InputStream ins = null;<br>        try {<br>            final URL url = new URL(imageUrl);<br>            urlConnection = (HttpURLConnection) url.openConnection();<br>            ins = urlConnection.getInputStream();<br>            bos = new ByteArrayOutputStream();<br>            int b;<br>            while ((b = ins.read()) != -1) {<br>                bos.write(b);<br>            }<br>            bos.flush();<br>            byte[] bytes = bos.toByteArray();<br>            Bitmap bitmap = DiskLruUtils.bytes2Bitmap(bytes);<br>            String key = DiskLruUtils.hashKeyForDisk(imageUrl);<br>            Drawable drawable = DiskLruUtils.bitmap2Drawable(bitmap);<br>            //加入内存缓存<br>            addDrawableToMemoryCache(key, drawable);<br>            //加入磁盘缓存<br>            addBitmapToDiskCache(key, bytes);<br>            return drawable;<br>        } catch (IOException e) {<br>            e.printStackTrace();<br>        } finally {<br>            if (urlConnection != null) {<br>                urlConnection.disconnect();<br>            }<br>            DiskLruUtils.closeQuietly(bos);<br>            DiskLruUtils.closeQuietly(ins);<br>        }<br>        return null;<br>    }</p>
-
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-            
-    
-        <a href="http://b.nearby.ren/2016/06/18/Android之Lru算法/#comments" class="article-comment-link">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-Android之Glide缓存" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -845,6 +580,195 @@ public void cleanDiskCache() {
 
 
 
+    <article id="post-androidstudio项目目录结构解析" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/04/10/androidstudio项目目录结构解析/">androidstudio项目目录结构解析</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/04/10/androidstudio项目目录结构解析/">
+            <time datetime="2016-04-10T02:35:56.000Z" itemprop="datePublished">2016-04-10</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/android/">android</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>首先先上图<br><img src="http://ww1.sinaimg.cn/mw690/005zrb37gw1f9mtxo22gnj30bj0kngo7.jpg" alt="此处输入图片的描述"></p>
+<p>大家看到的是android studio 创建的项目清单【图方便，就用完整的项目来做示例 - - 】<br>app/build app模块build编译输出的目录( 关于上传svn或github需要忽略的文件待会说明)<br>app/build.gradle (主要配置 编译sdk版本、编译工具    、包名、sdk最低支持版本、目标sdk版本、app版本号、app版本名称、ndk等等)<br>app/app.iml app模块的配置文件(Intellij模块文件，很重要但是基本不用管，大家都知道Intellij是AndroidStudio的亲妈的嘛，所以有这个文件是正常的)<br>app/proguard-rules.pro app模块proguard文件(混淆配置文件,主要用于打包签名apk配置混淆代码[是否混淆是可选的])<br>build.gradle 项目的build.gradle编译文件，主要就是申明仓库地址和版本号<br>settings.gradle定义项目包含哪些模块[指引用了哪些外库]<br>local.properties 配置SDK/NDK<br>nearby.iml 项目的配置文件<br>External Libraries 项目依赖的Lib, 编译时自动下载的</p>
+<blockquote>
+<p>AndroidStudio自动忽略</p>
+</blockquote>
+<pre><code>现在的AndroidStudio已经很智能了，当创建项目的时候自动给我们创建了一个
+上传svn或git需要忽略的文件如下：
+.gitignore 并给我们忽略了一些文件
+
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+
+手动忽略
+1、.idea文件
+2、.gradle文件夹
+3、所有的build文件夹
+4、所有的.iml文件
+5、local.properties文件
+</code></pre>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/04/10/androidstudio项目目录结构解析/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/">
+            <time datetime="2016-03-28T01:37:48.000Z" itemprop="datePublished">2016-03-28</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p> 　自2014年以来，SaaS、CRM、OA、ERP、HR、APM、进销存、财务系统等，这些名词大量出现在微信朋友圈、电视楼宇广告和千百万融资资讯中。它们到底是什么意思？相互之间又有什么区别？在这个飞速发展的互联网时代，再不知道这些可就OUT了！</p>
+<p>　　SaaS、CRM、OA、ERP、HR、进销存究竟是什么？<br>　　<img src="http://img.mp.itc.cn/upload/20160409/7daac8961ba14a06af4f77edb2889702_th.jpg?_=5776061" alt="此处输入图片的描述"><br>SaaS模式就像用自来水</p>
+<p>　　2015年被媒体和IT从业人员称为SaaS元年。什么是SaaS呢？SaaS是Software-as-a-Service（软件即服务）的简称，“软件即服务”，简单理解也就是“按需租用别人提供的软件服务”，它是一种软件交付模式。SaaS这个说法是区别于以往软件购买和交付方式而提出的。</p>
+<p>　　在以往，如果你的公司需要使用一款软件来管理财务记账，作为公司管理者，你需要向软件提供公司说明需求、支付购买软件的费用并提供安装软件的硬件环境，然后软件公司就会上门安装调试软件，调试完后就可以正式投入使用了。</p>
+<p>　　这里有一个很显著的特点是，软件都安装在你指定的地方，你拥有100%的管控权，相应的，你后续还需要继续投入人员和资源来维护系统的正常运行。</p>
+<p>　　SaaS的模式就不一样了，在客户还没有到来之前，软件提供公司就自己提服务器、数据库等硬件，把软件安装发布好，这样作为软件使用方的你就变得轻松很多，一上来就可以直接进行体验，体验之后，你觉得哪些功能合适你的，就挑选出来，按月支付比较低廉的费用就可以正式使用了。后续的升级、维护也由软件公司负责。简而言之，SaaS模式就是软件提供公司事先把所有的软件相关工作都归类准备好了，用户直接过来挑选自己需要的用就OK了。</p>
+<p>　　业内有一个很恰当的比喻：一开始的时候，各家都是自己挖井抽水蓄水，挖井抽水蓄水的技术是有专业的公司提供，但总的来说喝水这个事情是自家管自家的，这是传统软件的供水模式。在SaaS模式下，挖井抽水蓄水净水修水管这些工作对使用方来说都是透明的，你有需要的时候就打开水龙头取水就OK了，然后每月自来水公司会过来跟你结算。同样的，优缺点很明显，优点是按需用水省事了，成本变低了，缺点是水由水务公司完全控制，供水稳定性、供水质量取决于水务公司实力。</p>
+<p>　　CRM是什么呢？追踪客户的</p>
+<p>　　CRM是英文Customer Relationship Management （客户关系管理）的简称。这个比较好理解，就是用来管理客户的。</p>
+<p>　　一般来说，CRM客户管理系统由客户信息管理、销售过程自动化（SFA）、营销自动化（MA）、客户服务与支持（CSS）管理、客户分析（CA）系统这5大主要功能模块组成。</p>
+<p>　　通俗一点说，CRM系统特别是移动CRM系统能帮助你及你的同事很方便地记录客户信息、跟踪分析新老客户、挖掘潜在客户。</p>
+<p>　　OA是什么呢？管办公室活动的</p>
+<p>　　OA是Office Automation（办公自动化）的简称，本来OA涵盖的范围非常广泛，基本上所有和办公相关的系统都可以称作是OA，但现在大都数公司都把OA系统定义为企业内部的协作沟通系统，一般提供的功能有流程审批（请假报销等）、即时沟通、文档管理、内部论坛、任务管理、会议管理、通讯录、问卷调查等。</p>
+<p>　　ERP是什么呢？生产制造一条龙全包</p>
+<p>　　ERP是Enterprise Resource Planning（企业资源计划）的简称，从字面上理解，各企业的资源、计划相关的管理都可以算在ERP的范畴里，比如员工、生产、制造、财务、销售、采购、仓储、分销、质量等等，只要是用于企业管理的软件都属于ERP的范畴。由于越来越多的细分系统的出现，行业内人们为了做区分，一般把功能比较全面（往往包含从原料到生产到仓储到销售一系列）的偏生产制造的管理系统才定义为ERP系统，而其中某项细分功能的系统虽然原则上属于ERP，但一般不称为ERP。</p>
+<p>　　HR软件是什么？管员工的</p>
+<p>　　HR软件是human resource software（人力资源软件）的简称，就是用来管理人事相关的系统，比如招聘管理、职工管理、劳动合同、奖惩管理、办公用品、培训管理、绩效管理、考勤管理、社保管理等。</p>
+<p>　　什么是进销存？</p>
+<p>　　进销存是指企业管理过程中采购（进货）→入库（库存）→销售（销货）的三个管理过程。这三个过程是一般企业特别是中小商户的核心经营过程，用来管理这三个过程的系统就是进销存系统，简称进销存。</p>
+<p>　　什么是财务系统？</p>
+<p>　　财务系统是指专门用于完成会计工作的管理系统。财务系统一般包含：总账管理、固定资产管理、资金管理、客户及应收应付管理、报表管理、财务分析、核算系统等。</p>
+<p>　　SaaS、CRM、OA、ERP、HR、进销存、财务系统的区别在哪里？</p>
+<p>　　SaaS是一种软件交付（交易）模式，以这种“按需租用”模式提供服务的软件称为SaaS，目前大部分的软件都采取这种模式，也就是说大部分的OA、ERP、HR、进销存、财务系统都可以叫作SaaS软件。由于ERP系统覆盖的链条很长，一般需要深度定制，所以比较少是以SaaS提供的。</p>
+<p>　　现在的CRM、OA、HR、进销存、财务系统一般都以SaaS方式提供，CRM更专注于销售方面的管理，OA更专注于企业内部的协作沟通，HR更专注于人力管理，进销存专注于仓库相关的管理、财务系统专注资产、预算相关的管理。</p>
+<p>　　由于它们涉及到企业不同时间段、不同角色、不同业务等各个方面，同时也因为各企业的规模、经营方式几乎完全不同，所以目前没有哪一款产品能囊括CRM、OA、HR、进销存等这些功能，目前市面上的产品能还处于在自己专注的领域深耕发展的阶段。</p>
+<p>　　当然为了更快地拉开同竞争对手的差距，它们往往选择开放相互对接的方式，比较钉钉这些OA系统就提供了开放平台，用于对接进销存、财务系统。</p>
+<p>　　CRM、OA、ERP、HR、进销存、财务系统目前有哪些代表产品？</p>
+<p>　　CRM的标杆是美国的Salesforce，国内有纷享逍客、销售易、红圈营销、八百客等。</p>
+<p>　　OA在国内有钉钉、云之家、今目标、微信企业号、企业微信（即将上线）这几个产品，有很多稍微大一点的企业内部会自建OA系统，等内部使用实施成熟后也会开放出来供外部使用。</p>
+<p>　　ERP和财务系统，素来有“南金蝶北用友”之称，这两家拿下中国大部分市场份额，SAP则是全球最成功是ERP厂商，据称85%的世界500强公司都有使用SAP系统，但这套系统非常昂贵非常复杂，不适用于中小企业。</p>
+<p>　　HR。有北森、dayHR、金柚等，由于单纯的HR系统很容易被OA或进销存击穿，现在的HR往往做得非常深，人才评测、招聘等都会涉及。</p>
+<p>　　进销存系统，有管家婆、智慧记、云销城、秦丝生意通等，在采购、销售、库存这三个最核心的管理环节需求会非常强烈，但对于操作速度要求很高，一般软件很难满足，所以目前来说进销存的普及率还不到8%。</p>
+<p>　　2016年CRM、OA、ERP、HR、进销存、财务系统的趋势是怎么样的？</p>
+<p>　　1、SaaS化。对于提供方而言标准化的SaaS产品更具有爆发性，对于消费方而言SaaS具有低成本、随时随地接入访问这些特性，再加上IT基础设施、安全技术等方面的成熟，SaaS将成为以后最主要的软件模式。</p>
+<p>　　2、移动化。金蝶创始人徐少春在发布云之家的时候，把笔记本直接扔进垃圾桶了，说以后只使用手机办公，这虽然是一个噱头，但确实说明移动办公是个大趋势。</p>
+<p>　　3、垂直化。前面说过，不同规模、不同阶段、不同行业的企业对企业应用的需求千差万别，企业内部中不同岗位、不同时段、不同职别的员工对企业应用的需求同样也千差万别，往往需要垂直细分到具体的行业才有可能做精，做更好的体验。</p>
+<p>　　4、免费化。SaaS化、竞争白热化、周边资源可整合、软件边际成本趋零等这些原因会使得免费的企业级应用会越来越多。</p>
+<p>　　5、合纵连横化。条件成熟，创业公司有机会崛起，BAT头巨头大举进入，在这个巨大的看似类似却又碎片化的领域，接下来我们会看到一场场合纵连横的好戏会不断上演。</p>
+<p>　　6、更普及。以前信息化系统成本很高，往往只有大企业才有能力使用，现在条件成熟，投资机构热钱及创业者的热情投入，企业级应用空前繁荣，企业无论大小都能选择一款适合自己的应用。</p>
+<p>　　涨姿势：几个概念</p>
+<p>　　企业级应用。是指为商业组织、企业服务的应用系统，业内一般称为To B类应用，用于区别对个人类的应用（To C）。</p>
+<p>　　APM是Application Performance Management &amp; Monitoring（应用性能管理 &amp; 监控）的简称，是用来监控和管理应用软件是否有效运行的，为上面据说的系统提供相关的监控。</p>
+<p>　　EIP 是Enterprise Information Portal（企业信息门户）的简称，当一公司把前面所提到的OA、进销存、财务等等系统都使用上之后，使用人员需要在各个系统之间来回切换，非常麻烦低效，于是EIP就出现了，它就是把各种应用系统统一集成到一个入口系统中，在一平台时管理各个业务。</p>
+<p>　　客服系统可以说是CRM系统的延伸，主要提供在线客服聊天、机器人客服、帮助文档、客户反馈等功能。</p>
+<p>  <a href="http://www.cnblogs.com/tuyile006/p/5776061.html" target="_blank" rel="noopener">原文地址</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+            
+    
+        <a href="http://b.nearby.ren/2016/03/28/一秒钟看懂SaaS、CRM、OA、ERP、HR、进销存/#comments" class="article-comment-link">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/10/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/">下一页 &raquo;</a>
     </nav>
@@ -857,25 +781,6 @@ public void cleanDiskCache() {
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2020/12/13/offce002/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/offce/">offce</a></p>
-                            <p class="item-title"><a href="/2020/12/13/offce002/" class="title">offce 002</a></p>
-                            <p class="item-date"><time datetime="2020-12-13T04:10:55.000Z" itemprop="datePublished">2020-12-13</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -918,25 +823,6 @@ public void cleanDiskCache() {
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2020/02/23/offce001/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
-                            <p class="item-title"><a href="/2020/02/23/offce001/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
-                            <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
                             <a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="thumbnail">
     
     
@@ -950,6 +836,44 @@ public void cleanDiskCache() {
                             <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
                             <p class="item-title"><a href="/2020/02/23/Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程/" class="title">Centos 7 安装GNOME桌面环境与安装 VNC 使用图形界面远程</a></p>
                             <p class="item-date"><time datetime="2020-02-23T07:10:55.000Z" itemprop="datePublished">2020-02-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/02/22/linxu安装python3/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/linxu/">linxu</a></p>
+                            <p class="item-title"><a href="/2020/02/22/linxu安装python3/" class="title">linxu安装python3</a></p>
+                            <p class="item-date"><time datetime="2020-02-22T15:53:55.000Z" itemprop="datePublished">2020-02-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/10/05/GoTo ken学习/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/10/05/GoTo ken学习/" class="title"></a></p>
+                            <p class="item-date"><time datetime="2019-10-05T10:09:09.629Z" itemprop="datePublished">2019-10-05</time></p>
                         </div>
                     </li>
                 
@@ -971,7 +895,7 @@ public void cleanDiskCache() {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 

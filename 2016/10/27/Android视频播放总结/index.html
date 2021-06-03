@@ -14,7 +14,7 @@
 <meta property="og:description" content="[Android] Android 视频播放总结  1VideoView VideoView 的使用非常简单，播放视频的步骤：  在界面布局文件中定义VideoView组件，或在程序中创建VideoView组件 调用VideoView的如下两个方法来加载指定的视频：   setVideoPath(String path);加载path文件代表的视频 setVideoURL(Uri uri);加载">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.qiji.tech/wp-content/uploads/2016/03/standard-model.png">
-<meta property="og:updated_time" content="2016-12-21T09:05:18.846Z">
+<meta property="og:updated_time" content="2021-06-03T15:08:24.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android视频播放总结">
 <meta name="twitter:description" content="[Android] Android 视频播放总结  1VideoView VideoView 的使用非常简单，播放视频的步骤：  在界面布局文件中定义VideoView组件，或在程序中创建VideoView组件 调用VideoView的如下两个方法来加载指定的视频：   setVideoPath(String path);加载path文件代表的视频 setVideoURL(Uri uri);加载">
@@ -311,20 +311,15 @@
 <p><strong>用法</strong><br>Vitamio的使用步骤：  </p>
 <ol>
 <li>下载Vitamio库，并作为工程依赖。</li>
-<li><p>在Activity的onCreate方法中添加如下代码，初始化Vitamio的解码器</p>
-<p>@Override public void onCreate(Bundle icicle){</p>
-<pre><code>super.onCreate(icicle)
-if(!LibsChecker.checkVitamioLibs(this))
-return ;
-</code></pre><p>}</p>
+<li>在Activity的onCreate方法中添加如下代码，初始化Vitamio的解码器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override public void onCreate(Bundle icicle)&#123;</span><br><span class="line">    super.onCreate(icicle)</span><br><span class="line">    if(!LibsChecker.checkVitamioLibs(this))</span><br><span class="line">    return ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <ol>
 <li>在AndroidMainfest.xml中声明InitActivity</li>
 </ol>
-<p><activity android:name="io.vov.vitamio.activity.InitActivity" android:configchanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden" android:launchmode="singleTop" android:theme="@android:style/Theme.NoTitleBar" android:windowsoftinputmode="stateAlwaysHidden"> </activity></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;io.vov.vitamio.activity.InitActivity&quot; android:configChanges=&quot;orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden&quot;</span><br><span class="line">    android:launchMode=&quot;singleTop&quot; android:theme=&quot;@android:style/Theme.NoTitleBar&quot;</span><br><span class="line">    android:windowSoftInputMode=&quot;stateAlwaysHidden&quot;/&gt;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>其余步骤和使用 Android 原生的 VideoView 是一样的。</li>
-</ol>
-</li>
 </ol>
 <p><strong>优点</strong></p>
 <ul>
@@ -345,21 +340,10 @@ return ;
 </li>
 </ul>
 <p>配置 NDK</p>
-<pre><code># add these lines to your ~/.bash_profile or ~/.profile
-# export ANDROID_SDK=&lt;your sdk path&gt;
-# export ANDROID_NDK=&lt;your ndk path&gt;
-</code></pre><p>clone 项目</p>
-<pre><code>git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android
-</code></pre><p>编译 ffmpeg    </p>
-<pre><code>cd ijkplayer-android 
-./init-android.sh 
-cd config
-rm module.sh
-ln -s module-default.sh module.sh
-cd android/contrib
-./compile-ffmpeg.sh clean
-./compile-ffmpeg.sh all
-</code></pre><p>ffmpeg 编译通过后，编译 ijkplayer </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># add these lines to your ~/.bash_profile or ~/.profile</span><br><span class="line"># export ANDROID_SDK=&lt;your sdk path&gt;</span><br><span class="line"># export ANDROID_NDK=&lt;your ndk path&gt;</span><br><span class="line"></span><br><span class="line">clone 项目</span><br><span class="line"></span><br><span class="line">git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android</span><br></pre></td></tr></table></figure>
+<p>编译 ffmpeg    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd ijkplayer-android </span><br><span class="line">./init-android.sh </span><br><span class="line">cd config</span><br><span class="line">rm module.sh</span><br><span class="line">ln -s module-default.sh module.sh</span><br><span class="line">cd android/contrib</span><br><span class="line">./compile-ffmpeg.sh clean</span><br><span class="line">./compile-ffmpeg.sh all</span><br></pre></td></tr></table></figure>
+<p>ffmpeg 编译通过后，编译 ijkplayer </p>
 <pre><code>cd ..
 ./compile-ijk.sh all
 </code></pre><p>编译通过后在 android 目录下有 ijkplayer 文件夹，这个是 ijkplayer 的 demo。导入 Android Studio 即可。ijkplayer 的 demo 中提供了 IjkVideoView 类，它封装了 Android 原生的 MediaPlayer 、ExoPlayer 和 IjkMediaPlayer。可根据需要选择。</p>
